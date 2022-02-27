@@ -1,0 +1,19 @@
+.bg{
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.card{
+    margin-left: 36%;
+    margin-top: 7%;
+    padding: 20px;
+    align-items: center;
+    position: absolute;
+    background: #fff;
+    border-radius: 3%;
+}
+
+.Text {
+    color: #fff;
+}

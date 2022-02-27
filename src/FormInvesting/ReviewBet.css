@@ -1,0 +1,30 @@
+.bg{
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.cardBet{
+    margin-left: 27%;
+    max-width: 600px;
+    margin-top: 7%;
+    padding: 20px;
+    align-items: center;
+    position: absolute;
+    background: #fff;
+    border-radius: 3%;
+}
+.reviewBetText {
+    text-align: center;
+    padding: 5%;
+}
+.reviewBetText > div  {
+    margin-top: 5%;
+    position: relative;
+    text-align: left;
+
+}
+
+.Text {
+    color: #fff;
+}

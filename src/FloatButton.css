@@ -1,0 +1,16 @@
+.FloatButton {
+     position:fixed;
+
+}
+@media only screen and (max-width: 600px) {
+    .FloatButton {
+        margin-top: 100%;
+        margin-left: 75%;
+    }
+  }
+@media only screen and (min-width: 601px) {
+    .FloatButton {
+        margin-top: 42%;
+        margin-left:85%;
+    }
+  }
