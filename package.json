@@ -18,6 +18,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "chart.js": "^3.7.1",
+    "faker": "^6.6.6",
     "firebase": "^8.2.4",
     "framer-motion": "^3.2.2-rc.1",
     "popmotion": "^9.1.0",
