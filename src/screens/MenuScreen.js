@@ -8,7 +8,10 @@ import { Fade } from "react-awesome-reveal";
 import BuyBitcoin from '../images/Designer _Flatline.svg'
 import Featured from "../Featured";
 import MainInvestingPage from "../ForInvesting/MainInvestingPage"
+import { getAuth, sendEmailVerification } from "firebase/auth";
 function MenuScreen() {
+  const auth = getAuth();
+  console.log(auth);
   return (
     <div className="menuScreen">
       <MenuHeader />

@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./features/userSlice";
 import { useHistory } from "react-router-dom";
 import db, { auth } from "./firebase";
-import { getAuth, sendEmailVerification } from "firebase/compat/auth";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 function SignupForm() {
   const { register, handleSubmit, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -34,8 +34,7 @@ function SignupForm() {
       const auth = getAuth();
       sendEmailVerification(auth.currentUser)
         .then(() => {
-          // Email verification sent!
-          // ...
+          console.log('Sended Verification')
         });
     }
     auth
@@ -55,7 +54,7 @@ function SignupForm() {
                 displayName: fName,
               })
             );
-            history.replace("/menu");
+            history.replace("/VerifyEmail");
           });
       })
 

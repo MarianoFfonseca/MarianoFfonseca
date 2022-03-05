@@ -9,12 +9,11 @@ import db from "../../firebase";
 import { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import Fingerprint from "@mui/icons-material/Fingerprint";
-
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 function MyAccount() {
-  
   const HandleChangeName = (e) => {
-    setName(e.target.value)
-  }
+    setName(e.target.value);
+  };
   const setNewName = () => {
     Users.map((x) => {
       if (x.email === user.email) {
@@ -22,23 +21,22 @@ function MyAccount() {
           .doc(x.uid)
           .get()
           .then((snapshot) => {
-            
             db.collection("users")
-            .doc(x.uid)
-            .update({
-              name: Name,
-            })
-            .then(function () {
-              console.log("succes Users");
-              alert('Name Changed!')
-            })
-            .catch(function (error) {
-              console.error("Error writing Users ", error);
-            });
+              .doc(x.uid)
+              .update({
+                name: Name,
+              })
+              .then(function () {
+                console.log("succes Users");
+                alert("Name Changed!");
+              })
+              .catch(function (error) {
+                console.error("Error writing Users ", error);
+              });
           });
       }
     });
-  }
+  };
   const ariaLabel = { "aria-label": "description" };
   const FUsers = () => {
     db.collection("users")
@@ -52,8 +50,21 @@ function MyAccount() {
   };
   const [Users, setUsers] = useState([]);
   const user = useSelector(selectUser);
-  const [Name, setName] = useState('')
-  
+  const [Name, setName] = useState("");
+
+  const ResetPassword = () => {
+    const auth = getAuth();
+    const email = user.email
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+       console.log('sended!')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
 
   useEffect(() => {
     FUsers();
@@ -75,16 +86,19 @@ function MyAccount() {
                       variant="filled"
                       onChange={HandleChangeName}
                     />
-                    <Button onClick={setNewName} variant="contained">Set new name</Button>
+                    <Button onClick={setNewName} variant="contained">
+                      Set new name
+                    </Button>
                   </Box>
                   <Box style={{ marginTop: "5%" }}>
                     <TextField
+                      disabled
                       label="Email"
                       id="filled-size-normal"
                       defaultValue={x.email}
                       variant="filled"
                     />
-                    <Button  variant="contained">Verify email</Button>
+                    <p>Email Verifiyed!</p>
                   </Box>
 
                   <Box style={{ marginTop: "5%" }}>
@@ -93,8 +107,9 @@ function MyAccount() {
                       id="filled-size-normal"
                       defaultValue={x.password}
                       variant="filled"
+                      type="password"
                     />
-                    <Button variant="contained">Change password</Button>
+                    <Button onClick={ResetPassword} variant="contained">Change password</Button>
                   </Box>
                   <Box style={{ marginTop: "5%" }}>
                     <Input
@@ -105,7 +120,7 @@ function MyAccount() {
                     <Button
                       onClick={() => {
                         navigator.clipboard.writeText(x.uid);
-                        alert('copied!')
+                        alert("copied!");
                       }}
                       variant="contained"
                       endIcon={<Fingerprint />}
