@@ -24,6 +24,7 @@ import Succes from "./FormInvesting/AfterCheckOut/Succes"
 import Cancel from "./FormInvesting/AfterCheckOut/Cancel"
 import Analisis from './About/myBets/Analisis'
 import FloatButton from './FloatButton'
+import MyAccount from './About/myAcount/MyAccount'
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -101,6 +102,10 @@ function App() {
           <Route exact path="/about/Analisis">
                 <Header menuPage/>  
                 <Analisis/>
+          </Route>
+          <Route exact path="/about/MyAccount">
+                <Header menuPage/>  
+                <MyAccount/>
           </Route>
 
 

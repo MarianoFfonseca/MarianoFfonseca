@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { useState, useEffect } from "react";
@@ -27,8 +27,6 @@ export default function FirstChart(props) {
    const persentNotThisBet = nNotThisBet * 100 / nAllBets
    let fPersentThisValue = parseInt(persentThisBet);
    let fPersentNotThisValue = parseInt(persentNotThisBet);
-   
-   
 
   useEffect(() => {
     betLotery();
@@ -46,5 +44,5 @@ export default function FirstChart(props) {
       },
     ],
   };
-  return <Pie data={data} width="50" height="50" />;
+      return <Pie data={data} width="50" height="50" />;
 }

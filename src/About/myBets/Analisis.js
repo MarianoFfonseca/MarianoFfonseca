@@ -7,9 +7,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
-
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -74,7 +71,7 @@ function Analisis() {
       <MenuHeader />
       <div className="menuScreen__container">
         <div className="menuScreen__left">
-          <MenuList />
+         
         </div>
         <div style={{ margin: "5%", marginLeft: "5%", width: "80%" }}>
         

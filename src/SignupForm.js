@@ -11,16 +11,14 @@ import { useDispatch } from "react-redux";
 import { login } from "./features/userSlice";
 import { useHistory } from "react-router-dom";
 import db, { auth } from "./firebase";
-
+import { getAuth, sendEmailVerification } from "firebase/compat/auth";
 function SignupForm() {
   const { register, handleSubmit, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-  
 
   const onSubmit = ({ fName, lName, email, password }) => {
-
     //Hacer que se suba a firebase
     function addFirestore(userAuth) {
       db.collection("users").doc(userAuth.user.uid).set({
@@ -28,30 +26,40 @@ function SignupForm() {
         email: userAuth.user.email,
         password: password,
         uid: userAuth.user.uid,
-        bets: 0
-    })
+        bets: 0,
+      });
     }
-    auth.createUserWithEmailAndPassword(email, password).then((userAuth) => {
-      addFirestore(userAuth);
-      userAuth.user.updateProfile({
-        displayName: fName,
-      }).then(() => {
-          dispatch(
-            login({
-              email: userAuth.user.email,
-              uid: userAuth.user.uid,
-              displayName: fName
+    function SentEmailVerification() {
 
-            })
-          )
-          history.replace("/menu");
-        })
-    })
-    
-      .catch((error) => alert(error.message))
-      
-      
-      ;
+      const auth = getAuth();
+      sendEmailVerification(auth.currentUser)
+        .then(() => {
+          // Email verification sent!
+          // ...
+        });
+    }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        addFirestore(userAuth);
+        SentEmailVerification()
+        userAuth.user
+          .updateProfile({
+            displayName: fName,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: fName,
+              })
+            );
+            history.replace("/menu");
+          });
+      })
+
+      .catch((error) => alert(error.message));
   };
 
   return (
