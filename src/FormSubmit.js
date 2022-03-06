@@ -1,11 +1,11 @@
 import React from 'react'
 import './FormSubmit.css'
-
+import {motion} from 'framer-motion'
 function FormSubmit({ name, type, onClick }) {
   return (
-    <button className='formSubmit' type={type}>
+    <motion.button whileHover={{scaleX:1.05}}  className='formSubmit' type={type}>
       {name}
-    </button>
+    </motion.button>
   )
 }
 

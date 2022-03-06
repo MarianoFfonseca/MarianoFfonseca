@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import FindAStore from './FindAStore'
 import './FooterSecondary.css'
+import {motion} from 'framer-motion'
 
 function FooterSecondary({ alignItems, paddingLeft, flexDirection }) {
   return (
@@ -14,18 +15,16 @@ function FooterSecondary({ alignItems, paddingLeft, flexDirection }) {
         style={{ paddingLeft: `${paddingLeft}px` }}
       >
         <div className='footerSecondary__info'>
-          <div className='footerSecondary__left'>
-            <FindAStore />
-          </div>
+          
           <div className='footerSecondary__right' style={{ flexDirection }}>
-            <Link>Responsibility</Link>
-            <Link>Web Accessibility</Link>
-            <Link>Privacy Policy</Link>
-            <Link>Terms of Use </Link>
-            <Link>Cookie Preferences</Link>
+            <motion.div whileHover={{scale:1.2, originX:0}}><Link>Responsibility</Link></motion.div>
+            <motion.div whileHover={{scale:1.2, originX:0}}><Link>Web Accessibility</Link></motion.div>
+            <motion.div whileHover={{scale:1.2, originX:0}}><Link>Privacy Policy</Link></motion.div>
+            <motion.div whileHover={{scale:1.2, originX:0}}> <Link>Terms of Use </Link></motion.div>
+            <motion.div whileHover={{scale:1.2, originX:0}}><Link>Cookie Preferences</Link></motion.div>
           </div>
         </div>
-        <span className='footerSecondary__copyright'>© 2021 Starbucks</span>
+        <span className='footerSecondary__copyright'>© 2021 modernLotery</span>
       </div>
     </div>
   )

@@ -3,28 +3,37 @@ import { Link } from "react-router-dom";
 import FooterSecondary from "../FooterSecondary";
 import "./SignupScreen.css";
 import SignupForm from "../SignupForm";
-
+import {motion} from 'framer-motion'
 function SignupScreen() {
   return (
     <div className="signupScreen">
       <div className="signupScreen__header">
         <Link to="/">
-          <img
+          <motion.img  animate={{ x: 0 }}
+            initial={{ x: -100 }}
+            transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
+            whileHover={{ rotate: 360 }}
             src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
             alt=""
           />
         </Link>
       </div>
-      <h1 className="signupScreen__heading">Create an account</h1>
+      <motion.h1  animate={{ x: 0 }}
+            initial={{ x: 1000 }}
+            transition={{ type: "spring", duration: 1, stiffness: 75 }} className="signupScreen__heading">Create an account 🙌</motion.h1>
       <div className="signupScreen__rewards">
-        <h4>STARBUCKS® REWARDS</h4>
+        <h4>MODERNLOTERY® REWARDS</h4>
         <p>
-          Join Starbucks Rewards to earn Stars for free food and drinks, any way
+          Join modernLotery Rewards to earn Stars for free food and drinks, any way
           you pay. Get access to mobile ordering, a birthday Reward, and{" "}
           <Link>more</Link>.
         </p>
       </div>
+      <motion.div animate={{ y: 0 }}
+            initial={{ y: 1000 }}
+            transition={{ type: "spring", duration: 1 }}>
       <SignupForm />
+      </motion.div>
       <FooterSecondary alignItems="center" flexDirection="column" />
     </div>
   );

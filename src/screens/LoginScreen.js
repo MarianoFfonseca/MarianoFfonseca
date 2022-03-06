@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 import FormSubmit from "../FormSubmit";
 import FooterSecondary from "../FooterSecondary";
-
+import { motion } from "framer-motion";
 function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -37,13 +37,28 @@ function LoginScreen() {
     <div className="loginScreen">
       <div className="loginScreen__left">
         <Link to="/">
-          <img
+          <motion.img
+            animate={{ x: 0 }}
+            initial={{ x: -100 }}
+            transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
+            whileHover={{ rotate: 360 }}
             src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
             alt=""
           />
         </Link>
         <div className="loginScreen__info">
-          <h1>Sign in or create an account 🌟</h1>
+          <motion.h1
+            animate={{ x: 0 }}
+            initial={{ x: -700 }}
+            transition={{
+              type: "spring",
+              duration: 0.8,
+              delay: 0.2,
+              stiffness: 50,
+            }}
+          >
+            Sign in or create an account 👨‍💻
+          </motion.h1>
         </div>
       </div>
       <div className="loginScreen__right">
@@ -105,21 +120,23 @@ function LoginScreen() {
               </div>
             )}
           </div>
-          <div className="loginScreen__resetLinks">
+          {/* <div className="loginScreen__resetLinks">
             <Link>Forgot your username?</Link>
             <Link>Forgot your password?</Link>
-          </div>
+          </div> */}
           <FormSubmit name="Sign in" type="submit" />
         </form>
         <div className="loginScreen__rewards">
-          <h4>JOIN STARBUCKS® REWARDS</h4>
+          <h4>JOIN MODERNLOTERY'S REWARDS</h4>
         </div>
         <div className="loginScreen__joinNow">
           <div className="loginScreen__joinNowContainer">
-            <Link to="/account/create">Join now</Link>
+            <motion.div whileHover={{scale:1.4, originX:0 }}>
+              <Link to="/account/create">Join now</Link>
+            </motion.div>
             <h4>Create an account and bring on the Rewards!</h4>
             <p>
-              Join Starbucks® Rewards to earn free food and drinks, get free
+              Join modernLotery® Rewards to earn free food and drinks, get free
               refills, pay and order with your phone, and more.
             </p>
           </div>

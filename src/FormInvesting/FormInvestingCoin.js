@@ -38,7 +38,6 @@ export default function FormInvestingCoin() {
     setValue(event.target.value);
     setHelperText(" ");
     setError(false);
-    console.log(Doit);
   };
 
   const handleSubmit = (event) => {

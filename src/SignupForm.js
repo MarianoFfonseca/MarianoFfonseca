@@ -173,11 +173,11 @@ function SignupForm() {
             )}
           </div>
           <h4 className="signupForm__rewards">
-            COLLECT MORE STARS & EARN REWARDS
+            COLLECT MORE STARS AND EARN REWARDS
           </h4>
           <span className="signupForm__span">
             Email is a great way to know about offers and what’s new from
-            Starbucks.
+            modernLotery®.
           </span>
           <FormSubmit name="Create account" type="submit" />
         </form>

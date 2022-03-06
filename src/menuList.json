@@ -7,14 +7,14 @@
         "image": "https://globalassets.starbucks.com/assets/f12bc8af498d45ed92c5d6f1dac64062.jpg?impolicy=1by1_tight_288"
       },
       {
-        "path": "/menu",
+        "path": "/FormCoin",
         "type": "Fast bet",
         "image": "https://globalassets.starbucks.com/assets/f12bc8af498d45ed92c5d6f1dac64062.jpg?impolicy=1by1_tight_288"
       }
     ],
     "food": [
       {
-        "path": "/food/hot-breakfast",
+        "path": "/Train",
         "type": "Train myself",
         "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
       }],

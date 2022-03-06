@@ -31,7 +31,8 @@ export default function FormInvestingDay(Coin) {
   const [error, setError] = React.useState(false);
   const [Doit, setDoit] = React.useState(false);
   const [helperText, setHelperText] = React.useState("Chose...");
-  console.log(Doit);
+ 
+
 
 
 
@@ -58,7 +59,7 @@ export default function FormInvestingDay(Coin) {
       setError(true);
     }
   };
-  console.log(value)
+ 
   return (
     <div className="All">
       <div className="bg"></div>

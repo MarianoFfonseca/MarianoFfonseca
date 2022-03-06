@@ -5,37 +5,34 @@ import Featured from "../Featured";
 import Heading from "../Heading";
 import Info from "../Info";
 import { Fade } from "react-awesome-reveal";
-import Bitcoin from "../images/Bitcoin _Monochromatic.svg"
-import { motion } from "framer-motion"
-import BuyBitcoin from '../images/Designer _Flatline.svg'
+import Bitcoin from "../images/Bitcoin _Monochromatic.svg";
+import { motion } from "framer-motion";
+import undraw_Investing from "../images/undraw_Investing.svg";
 
-import Bitcoin_Outline from '../images/Bitcoin _Outline.svg'
-import SecondBuyBitcoin from '../images/Bitcoin _Flatline.svg'
+import undraw_Bitcoin from "../images/undraw_Bitcoin.svg";
+import undraw_wallet from "../images/undraw_wallet.svg";
 
 function HomeScreen() {
   return (
     <div className="homeScreen">
-
       <Fade>
         <div className="homeScreen__bottom">
-          <motion.div
-
-
-            className="homeScreen__bottomLeft">
-            <h4>Investing in our communities</h4>
+          <motion.div className="homeScreen__bottomLeft">
+            <h4>Investing in our communities 😏</h4>
             <p>
               The Starbucks Foundation awarded grants to over 400 nonprofits
               serving communities of color. Recipients were nominated by
               Starbucks partners (employees).
             </p>
-            <button>Learn more</button>
+            <motion.button whileHover={{ scale: 1.2 }}>
+              Learn more
+            </motion.button>
           </motion.div>
           <div className="homeScreen__bottomRight">
-
             <motion.img
-              animate={{ y: 25, x: 20 }}
+              animate={{ y: 25, x: 25 }}
               initial={{ y: -30 }}
-              transition={{ yoyo: Infinity, duration: 2 }}
+              transition={{ yoyo: Infinity, duration: 1.5 }}
               drag
               dragConstraints={{
                 top: -50,
@@ -43,10 +40,9 @@ function HomeScreen() {
                 right: 50,
                 bottom: 50,
               }}
-              src={Bitcoin_Outline}
+              src={undraw_Bitcoin}
               alt="Image of bitcoin"
             />
-
           </div>
         </div>
       </Fade>
@@ -60,7 +56,7 @@ function HomeScreen() {
             info="Say yes to sips of delight with our Honey Almondmilk Flat White and new Honey Almondmilk Cold Brew."
             link="Explore the honey drinks"
             path=""
-            image={BuyBitcoin}
+            image={undraw_Investing}
             background="#f0ebe0"
             color="#000"
             className="featured__hoverLight"
@@ -72,7 +68,7 @@ function HomeScreen() {
             info="Embrace creamy coffee bliss with our new Pistachio Latte and Pistachio Frappuccino® blended beverage."
             link="Try the new pistachio drinks"
             path=""
-            image={SecondBuyBitcoin}
+            image={undraw_wallet}
             order="2"
             background="#f0ebe0"
             color="#000"

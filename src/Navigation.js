@@ -101,9 +101,6 @@ export const Navigation = ({ toggle }) => {
               <LogoutButton />
             )}
           </motion.div>
-          <motion.div variants={variants2}>
-            <FindAStore />
-          </motion.div>
         </motion.ul>
       )}
     </>

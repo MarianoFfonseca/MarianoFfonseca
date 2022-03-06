@@ -102,14 +102,13 @@
   font-size: medium;
 }
 
-.homeScreen__bottomLeft > button:hover {
-  background-color: #14213D
-}
+
 
 
 .homeScreen__bottomRight > img {
   object-fit: contain;
-  width: 700px;
+  width: 400px;
+  height: 400px;
 }
 
 @media (max-width: 1024px) {

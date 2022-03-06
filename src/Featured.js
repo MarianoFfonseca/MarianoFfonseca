@@ -24,9 +24,13 @@ function Featured({
       className='featured__left' style={{ order, color }}>
         <h1>{title}</h1>
         <h4>{info}</h4>
+        <motion.div whileHover={{scale:1.2}}  >
         <Link to={path} className={className}>
+        
           {link}
+         
         </Link>
+        </motion.div>
       </motion.div>
       <div className='featured__right'>
         <motion.img 

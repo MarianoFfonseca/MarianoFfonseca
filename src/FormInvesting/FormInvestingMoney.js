@@ -31,7 +31,7 @@ export default function FormInvestingMoney(props) {
   const [error, setError] = React.useState(false);
   const [Doit, setDoit] = React.useState(false);
   const [helperText, setHelperText] = React.useState("Chose...");
-  console.log(props)
+  
 
   // const optionsLotery = async () => {
   //   const response = db.collection("optionsLotery");

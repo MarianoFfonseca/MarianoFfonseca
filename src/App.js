@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
 import {
@@ -17,20 +17,25 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import MenuScreen from "./screens/MenuScreen";
 import SignupScreen from "./screens/SignupScreen";
-import FormInvestingCoin from "./FormInvesting/FormInvestingCoin"
-import FormInvestingDay from "./FormInvesting/FormInvestingDay"
+import FormInvestingCoin from "./FormInvesting/FormInvestingCoin";
+import FormInvestingDay from "./FormInvesting/FormInvestingDay";
 import MyBets from "./About/myBets/MyBets";
-import Succes from "./FormInvesting/AfterCheckOut/Succes"
-import Cancel from "./FormInvesting/AfterCheckOut/Cancel"
-import Analisis from './About/myBets/Analisis'
-import FloatButton from './FloatButton'
-import MyAccount from './About/myAcount/MyAccount'
+import Succes from "./FormInvesting/AfterCheckOut/Succes";
+import Cancel from "./FormInvesting/AfterCheckOut/Cancel";
+import Analisis from "./About/myBets/Analisis";
+import FloatButton from "./FloatButton";
+import MyAccount from "./About/myAcount/MyAccount";
 import VerifyEmail from "./VerifyEmail";
+import Train from "./TrainMyself/Train";
+import { getAuth } from "firebase/auth";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
+  const [profile, setProfile] = useState([]);
+  const [load, setLoad] = useState(false);
   useEffect(() => {
+    setProfile(getAuth());
+    setLoad(true);
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         // User is signed in
@@ -71,10 +76,8 @@ function App() {
               <Redirect to="/account/signin" />
             ) : (
               <>
-             
                 <Header menuPage />
                 <MenuScreen />
-                
               </>
             )}
           </Route>
@@ -85,34 +88,72 @@ function App() {
           </Route> */}
 
           <Route exact path="/formCoin">
-                <Header />  
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header />
                 <FormInvestingCoin />
+              </>
+            )}
           </Route>
           <Route exact path="/cancel">
-                <Header />  
-                <Cancel />
+            <Header />
+            <Cancel />
           </Route>
           <Route exact path="/succes">
-                <Header />  
-                <Succes />
+            <Header />
+            <Succes />
           </Route>
           <Route exact path="/about/Mybets">
-                <Header menuPage/>  
-                <MyBets/>
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <MyBets />
+              </>
+            )}
           </Route>
           <Route exact path="/about/Analisis">
-                <Header menuPage/>  
-                <Analisis/>
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <Analisis />
+              </>
+            )}
           </Route>
           <Route exact path="/about/MyAccount">
-                <Header menuPage/>  
-                <MyAccount/>
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <MyAccount />
+              </>
+            )}
           </Route>
-          <Route exact path="/VerifyEmail">            
-                <VerifyEmail/>
+          <Route exact path="/VerifyEmail">
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <VerifyEmail />
+              </>
+            )}
           </Route>
-
-
+          <Route exact path="/Train">
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <Train />
+              </>
+            )}
+          </Route>
 
           <Route exact path="/menu/featured">
             <Header />
