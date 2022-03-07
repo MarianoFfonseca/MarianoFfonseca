@@ -3,36 +3,36 @@
     "drinks": [
       {
         "path": "/menu",
-        "type": "Main Page",
+        "type": "🏠Main Page",
         "image": "https://globalassets.starbucks.com/assets/f12bc8af498d45ed92c5d6f1dac64062.jpg?impolicy=1by1_tight_288"
       },
       {
         "path": "/FormCoin",
-        "type": "Fast bet",
+        "type": "🔥Fast bet",
         "image": "https://globalassets.starbucks.com/assets/f12bc8af498d45ed92c5d6f1dac64062.jpg?impolicy=1by1_tight_288"
       }
     ],
     "food": [
       {
         "path": "/Train",
-        "type": "Train myself",
+        "type": "🤓Train myself",
         "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
       }],
     "atHomeCoffee": [
       {
         "path": "/about/MyBets",
-        "type": "Mybets",
+        "type": "📖Mybets",
         "image": "https://globalassets.starbucks.com/assets/69b578aa962c40f98d88d9d521c5410c.jpg?impolicy=1by1_wide_1242"
       },
       {
         "path": "/about/Analisis",
-        "type": "Analisis",
+        "type": "📊 Analisis",
         "image": "https://globalassets.starbucks.com/assets/833e95732cc849a4b1fe1d315771ae0a.jpg?impolicy=1by1_wide_1242"
       }
       ,
       {
         "path": "/about/MyAccount",
-        "type": "My account",
+        "type": "😲 My account",
         "image": "https://globalassets.starbucks.com/assets/833e95732cc849a4b1fe1d315771ae0a.jpg?impolicy=1by1_wide_1242"
       }
     ]

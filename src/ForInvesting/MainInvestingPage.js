@@ -1,65 +1,96 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import "./MainInvestingPage.css"
-import {Link} from 'react-router-dom'
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-  </Box>
-);
-
+import * as React from "react";
+import {motion } from 'framer-motion'
+import Button from "@mui/material/Button";
+import "./MainInvestingPage.css";
+import { Link } from "react-router-dom";
+import undraw_outer from "../images/undraw_outer.svg";
+import undraw_astronaut from '../images/undraw_astronaut.svg'
+import undraw_real from '../images/undraw_real.svg'
+import undraw_calendar from '../images/undraw_calendar.svg'
 export default function MainInvestingPage() {
   return (
     <div>
-    <Card className='Card' sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-        HOW MODERNLOTERY WORKS?
-        </Typography>
-       
-        <Typography variant="body2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt inventore corporis at, eligendi earum recusandae consectetur provident voluptatem vero, dolores veritatis ex doloribus soluta quasi sed cupiditate repellat labore. Expedita!
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Link to='/formCoin'>
-        <Button to="/form" size="small">let start</Button>
-        </Link>
-      </CardActions>
-    </Card>
-    
-    <Card className='Card2' sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-        OTHER WAYS TO WIN WITH MODERN LOTERY
-        </Typography>
-       
-        <Typography variant="body2">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, modi. Eveniet dicta voluptatibus eligendi tenetur, vero eum dolores similique repudiandae recusandae, reprehenderit nisi cumque sequi ut consequatur itaque pariatur enim?
-        A, sunt quas! Tenetur distinctio pariatur earum harum esse illo eius similique praesentium illum a exercitationem obcaecati, veniam inventore temporibus doloremque iusto! Dolore nulla ullam cum sed veniam animi a.
-        Molestias exercitationem ipsam tempore et ipsa, veniam vel molestiae laborum commodi voluptatibus cum asperiores. Ducimus placeat, corrupti adipisci quibusdam earum provident blanditiis pariatur totam consequatur odit reprehenderit sit assumenda facere.
-        Impedit, tempora commodi? Impedit sint eveniet nihil, numquam natus assumenda aspernatur? Asperiores accusamus illum temporibus. Totam tenetur eveniet amet! Sequi perferendis facere ut modi maiores ducimus suscipit recusandae possimus iste.
-        Eaque, repellat animi, facilis maxime voluptatibus, dolore voluptas dolores expedita sunt architecto nemo magni recusandae! Voluptates animi cum numquam minima incidunt neque iste libero esse, cupiditate totam, commodi nisi aspernatur.
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+      <div className="upContainer">
+        <motion.div   animate={{ x: 0 }}
+            initial={{ x: 1000}}
+            transition={{ type: "spring", duration: 1.5 }} className="card1">
+          <div className="left">
+            <img src={undraw_outer} alt="" />
+          </div>
+          <div className="rigth">
+            <h3>Fast Bet 🔥</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusantium sint accusamus recusandae optio voluptate alias
+              blanditiis 
+            </p>
+            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+              Lets Start
+            </motion.button>
+          </div>
+        </motion.div>
+        <motion.div animate={{ x: 0 }}
+            initial={{ x: 1000}}
+            transition={{ type: "spring", duration: 1.2, delay:0.5 }}  className="card1">
+          <div className="left2">
+            <img src={undraw_astronaut} alt="" />
+          </div>
+          <div className="rigth2">
+            <h3>Pre Made Bet ♻</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit
+              Accusantium sint accusamus recusandae optio voluptate alias
+              blanditiis 
+            </p>
+            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+              Learn more
+            </motion.button>
+          </div>
+        </motion.div>
+        
+      </div>
+      <motion.div
+      animate={{ y: 0 }}
+      initial={{ y: 1000}}
+      transition={{ type: "spring", delay:0.7, duration: 1.5 }} 
+      
+      className="card3">
+          <div className="left3">
+            <img  src={undraw_real} alt="" />
+          </div>
+          <div className="rigth3">
+            <h3>Analize and track your bets 📊</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusantium sint accusamus recusandae optio voluptate alias
+              blanditiis 
+            </p>
+            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+              Track
+            </motion.button>
+            <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
+              Analize
+            </motion.button>
+          </div>
+        </motion.div>
+      <motion.div className="card3">
+          <div className="rigth4">
+            <h1>Monthly lotery investing 🗓</h1>
+            <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, provident debitis, fuga amet quam id porro at dolorem animi totam ab temporibus voluptatum odit quaerat eaque. Perferendis eveniet a ab?
+            Architecto, vel nam autem laudantium enim ad assumenda reprehenderit ipsa veritatis consequuntur laborum iusto, aliquam itaque at? Facere laborum voluptates necessitatibus blanditiis a saepe vitae qui sequi! Placeat, dolores commodi! 
+            </p>
+            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+              See plans
+            </motion.button>
+            <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
+              More info
+            </motion.button>
+          </div>
+          <div className="left4">
+            <img  src={undraw_calendar} alt="" />
+          </div>
+        </motion.div>
     </div>
-
   );
 }

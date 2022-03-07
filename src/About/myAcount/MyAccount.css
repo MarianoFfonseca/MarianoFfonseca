@@ -1,0 +1,53 @@
+.myaccount_card1 {
+    width: 95%;
+    margin-right: 2%;
+    display: block;
+    border-color: black;
+    border-radius: 40px;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 2%;
+    padding: 30px;
+
+  }
+.myaccount_card2 {
+    width: 45%;
+    margin-right: 2%;
+    margin-top: 2%;
+    display: block;
+    border-color: black;
+    border-radius: 40px;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 2%;
+    padding: 30px;
+
+  }
+  .myaccount_cardup{
+      display: flex;
+  }
+  .myaccount_carddown{
+      margin-top: 10%;
+      display: flex;
+  }
+  .myaccount_cardSecond{
+      margin-left: 50%;
+  }
+  .myaccount_cardSecond2{
+      margin-left: 53%;
+  }
+  @media only screen and (max-width: 770px) {
+    .myaccount_card1 {
+      width: auto;
+      margin-bottom: 5%;
+      display: block;
+    }
+    .responsive {
+        display: block;
+    }
+    
+    .responsive > div{
+        margin-top: 5%;
+    }
+}
+    

@@ -63,7 +63,8 @@ function Header({ menuPage }) {
           </>
         ) : (
           <div className="header__logout">
-            {menuPage ? <LogoutButton /> : <Link to="/menu">Main Page</Link>}
+            {menuPage ? <motion.div animate={{ x: 0 }} initial={{ x:200}}
+            transition={{ type: "spring", duration: 0.8, stiffness: 50 }} whileHover={{scale:1.2}}><LogoutButton /></motion.div>:<motion.div whileHover={{scale:1.2}}><Link to="/menu">Main Page</Link> </motion.div>}
           </div>
         )}
       </div>

@@ -20,9 +20,8 @@ function MenuScreen() {
           <MenuList />
         </div>
         <div className="menuScreen__right">
-          <h1>Main page</h1>
+          <h1>🏠 Main page</h1>
           <div className="menuScreen__category">
-            <h2>Start investing😁</h2>
             
               <MainInvestingPage></MainInvestingPage>
             

@@ -44,7 +44,7 @@
 }
 
 
-.header__logout > a {
+.header__logout > div > a {
   color: white;
   text-decoration: none;
   font-weight: 800;

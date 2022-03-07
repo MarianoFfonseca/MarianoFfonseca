@@ -1,20 +1,19 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
-import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
-import IconButton from "@mui/material/IconButton";
-import Fingerprint from "@mui/icons-material/Fingerprint";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import MenuHeader from "../../MenuHeader";
+import MenuList from "../../MenuList";
+import "./MyAccount.css";
+import { motion } from "framer-motion";
 function MyAccount() {
   const HandleChangeName = (e) => {
     setName(e.target.value);
   };
-  const setNewName = () => {
+  const setNewName = (e) => {
+    e.preventDefault();
     Users.map((x) => {
       if (x.email === user.email) {
         db.collection("users")
@@ -28,7 +27,7 @@ function MyAccount() {
               })
               .then(function () {
                 console.log("succes Users");
-                alert("Name Changed!");
+                alert("Name Changed, refresh the page!");
               })
               .catch(function (error) {
                 console.error("Error writing Users ", error);
@@ -52,12 +51,13 @@ function MyAccount() {
   const user = useSelector(selectUser);
   const [Name, setName] = useState("");
 
-  const ResetPassword = () => {
+  const ResetPassword = (e) => {
+    e.preventDefault();
     const auth = getAuth();
-    const email = user.email
+    const email = user.email;
     sendPasswordResetEmail(auth, email)
       .then(() => {
-       console.log('sended!')
+        alert("Email Sended!");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -70,71 +70,163 @@ function MyAccount() {
     FUsers();
   }, []);
   return (
-    <div style={{ margin: "10%" }}>
-      <h1>Your Accout</h1>
-      <form>
-        {Users &&
-          Users.map((x) => {
-            if (x.email === user.email) {
-              return (
-                <div id={x.uid}>
-                  <Box style={{ marginTop: "5%" }}>
-                    <TextField
-                      label="Name"
-                      id="filled-size-normal"
-                      defaultValue={x.name}
-                      variant="filled"
-                      onChange={HandleChangeName}
-                    />
-                    <Button onClick={setNewName} variant="contained">
-                      Set new name
-                    </Button>
-                  </Box>
-                  <Box style={{ marginTop: "5%" }}>
-                    <TextField
-                      disabled
-                      label="Email"
-                      id="filled-size-normal"
-                      defaultValue={x.email}
-                      variant="filled"
-                    />
-                    <p>Email Verifiyed!</p>
-                  </Box>
+    <div>
+      {/* onClick={() => {navigator.clipboard.writeText(x.uid) alert("copied!")}} */}
+      <div className="menuScreen">
+        <MenuHeader />
+        <div className="menuScreen__container">
+          <div className="menuScreen__left">
+            <MenuList />
+          </div>
+          <div className="menuScreen__right">
+            <h1>😲 My Account</h1>
+            <div className="menuScreen__category">
+              <form>
+                {Users &&
+                  Users.map((x) => {
+                    if (x.email === user.email) {
+                      console.log(x);
+                      return (
+                        <div key={x.uid}>
+                          <motion.div
+                            animate={{ y: 0 }}
+                            initial={{ y: 1000 }}
+                            transition={{ type: "spring", duration: 1.5 }}
+                            className="myaccount_card1"
+                          >
+                            <div className="myaccount_cardup responsive">
+                              <div style={{ width: "50%" }}>
+                                <p>📜Name:</p>
+                                <motion.h1
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(x.name);
+                                  }}
+                                  whileHover={{ cursor: "pointer" }}
+                                  style={{ marginTop: "5%" }}
+                                >
+                                  {x.name}
+                                </motion.h1>
+                              </div>
+                              <div>
+                                <p>📨Email:</p>
+                                <motion.h1
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(x.email);
+                                  }}
+                                  whileHover={{ cursor: "pointer" }}
+                                  style={{ marginTop: "5%" }}
+                                >
+                                  {x.email}
+                                </motion.h1>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="myaccount_carddown responsive">
+                                <div style={{ width: "50%" }}>
+                                  <p>📌Uid:</p>
+                                  <motion.h1
+                                    whileHover={{ cursor: "pointer" }}
+                                    style={{ marginTop: "1%" }}
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(x.uid);
+                                    }}
+                                  >
+                                    {x.uid[0]}
+                                    {x.uid[1]}
+                                    {x.uid[2]}
+                                    {x.uid[3]}
+                                    {x.uid[4]}
+                                    {x.uid[5]}
+                                    {x.uid[6]}
+                                    {x.uid[7]}
+                                    {x.uid[8]}
+                                    {x.uid[9]}*****
+                                  </motion.h1>
+                                </div>
+                                <div>
+                                  <p>📂N*Bets:</p>
+                                  <motion.h1
+                                    whileHover={{ cursor: "pointer" }}
+                                    style={{ marginTop: "5%" }}
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(x.bets);
+                                    }}
+                                  >
+                                    #{x.bets}
+                                  </motion.h1>
+                                </div>
+                              </div>
+                            </div>
+                          </motion.div>
+                          {/* Aca es el segundo */}
 
-                  <Box style={{ marginTop: "5%" }}>
-                    <TextField
-                      label="Password"
-                      id="filled-size-normal"
-                      defaultValue={x.password}
-                      variant="filled"
-                      type="password"
-                    />
-                    <Button onClick={ResetPassword} variant="contained">Change password</Button>
-                  </Box>
-                  <Box style={{ marginTop: "5%" }}>
-                    <Input
-                      disabled
-                      defaultValue={x.uid}
-                      inputProps={ariaLabel}
-                    />
-                    <Button
-                      onClick={() => {
-                        navigator.clipboard.writeText(x.uid);
-                        alert("copied!");
-                      }}
-                      variant="contained"
-                      endIcon={<Fingerprint />}
-                    >
-                      Copy
-                    </Button>
-                  </Box>
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-      </form>
+                          <motion.h1
+                            animate={{ x: 0 }}
+                            initial={{ x: 1000 }}
+                            transition={{
+                              type: "spring",
+                              delay: 1,
+                              duration: 1.5,
+                            }}
+                            style={{ marginTop: "5%" }}
+                          >
+                            🔧Change
+                          </motion.h1>
+                          <div className="myaccount_card2">
+                            <div>
+                              <p>~ You can change your password</p>
+                              <motion.button
+                                onClick={ResetPassword}
+                                style={{ marginTop: "2%" }}
+                                whileHover={{ scale: 1.2, originX: 0 }}
+                              >
+                                👉change password
+                              </motion.button>
+                            </div>
+                            <div style={{ marginTop: "5%" }}>
+                              <p>~ You can change your email</p>
+                              <motion.button
+                                style={{ marginTop: "2%" }}
+                                whileHover={{ scale: 1.2, originX: 0 }}
+                              >
+                                👉change email
+                              </motion.button>
+                            </div>
+                            <div style={{ marginTop: "5%" }}>
+                              <p>~You can change your Name</p>
+                              <form style={{ marginTop: "2%" }} action="">
+                                <input
+                                  onChange={HandleChangeName}
+                                  style={{
+                                    borderRadius: "30px",
+                                    width: "25%",
+                                    height: "15px",
+                                    padding: "2%",
+                                    fontSize: "100%",
+                                    borderWidth: "1px",
+                                  }}
+                                  type="text"
+                                />
+                                <motion.button
+                                  onClick={setNewName}
+                                  whileHover={{ scale: 1.2, originX: 0 }}
+                                >
+                                  set
+                                </motion.button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

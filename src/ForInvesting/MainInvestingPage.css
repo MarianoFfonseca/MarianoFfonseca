@@ -1,8 +1,165 @@
-.Card {
- margin-top: auto;
- margin-right:5%;
+.upContainer {
+  display: flex;
 }
-.Card2{
- margin-top: 5%;
- margin-right:5%;
+
+.card1 {
+  width: 45%;
+  margin-right: 2%;
+  display: flex;
+  border-color: black;
+  border-radius: 40px;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 2%;
+  padding: 10px;
+}
+.card3 {
+  width: 94%;
+  height: 10%;
+  margin-right: 2%;
+  margin-top: 2%;
+  display: flex;
+  border-color: black;
+  border-radius: 40px;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 2%;
+  padding: 10px;
+}
+
+.left2 > img {
+  width: 75%;
+  
+  margin-top: 15%;
+  margin-left: 5%;
+}
+.left3 {
+  width: 30%;
+  height: 30%;
+}
+.left3 > img {
+  width: 50%;
+  height: 30%;
+  margin-top: 10%;
+  margin-left: 20%;
+
+}
+.left4 {
+  width: 100%;
+  height: 100%;
+}
+.left4 > img {
+  width: 100%;
+  height: 50%;
+  margin-top: 10%;
+  margin-left: -10% ;
+
+}
+.left > img {
+  max-width: 70%;
+  margin-top: 4%;
+}
+button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: inherit;
+  background: none;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: #000;
+  font-weight: 600;
+  outline: none;
+  font-size: medium;
+}
+
+.rigth {
+  max-width: 70%;
+  margin-left: -10%;
+  width: auto;
+  margin-top: 5%;
+}
+
+.rigth > h3 {
+  margin-bottom: 2%;
+}
+.rigth > p {
+  margin-bottom: 6%;
+}
+
+.rigth2 {
+  max-width: 70%;
+  margin-left: -5%;
+  width: auto;
+  margin-top: 5%;
+}
+
+.rigth2 > h3 {
+  margin-bottom: 2%;
+}
+.rigth2 > p {
+  margin-bottom: 6%;
+}
+.rigth3 {
+  max-width: 70%;
+  margin-left: -5%;
+  width: auto;
+  margin-top: 3%;
+}
+
+.rigth3 > h3 {
+  margin-bottom: 2%;
+}
+.rigth3 > p {
+  margin-bottom: 2%;
+}
+.rigth4 {
+  max-width: 60%;
+  margin-left: 5%;
+  width: auto;
+  margin-top: 5%;
+}
+
+.rigth4 > h1 {
+  margin-bottom: 5%;
+}
+.rigth4 > p {
+  max-width: 80%;
+  margin-bottom: 5%;
+}
+@media only screen and (max-width: 770px) {
+  .upContainer {
+    display: block;
+  }
+  .card1 {
+    width: auto;
+    margin-bottom: 5%;
+    display: block;
+  }
+  img{
+    display: none;
+  }
+  .rigth{
+    margin-left: 6%;
+  }
+  .rigth2{
+    margin-left: 6%;
+  }
+  .rigth3{
+    margin-left: -20%;
+  }
+  .rigth4{
+    max-width: 150%;
+  }
+  .rigth4 > p {
+    max-width: 100%;
+    margin-bottom: 5%;
+  }
 }
