@@ -65,7 +65,7 @@ export default function FormInvestingBet({bet, setCoinBet}) {
          <input style={{padding:'1%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} type="number" onChange={((e)=>{setCoinBet(e.target.value)})} name="" id="" />
         </div>
         {bet.CoinBet && (
-          <Link to="">
+          <Link to="/ReviewBet">
             <motion.button
               transition={{ type: "spring" }}
               initial={{ x: "-1000px" }}
@@ -82,7 +82,6 @@ export default function FormInvestingBet({bet, setCoinBet}) {
           </Link>
         )}
       </div>
-     {Doit === true ? <ReviewBet Coin={'props.Coin'} Day={'props.day'} Money={'props.Money'} CoinBet={value}></ReviewBet> : null} 
     </div>
   );
 }

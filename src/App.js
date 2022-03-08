@@ -29,6 +29,7 @@ import Train from "./TrainMyself/Train";
 import { getAuth } from "firebase/auth";
 import FormInvestingMoney from "./FormInvesting/FormInvestingMoney";
 import FormInvestingBet from "./FormInvesting/FormInvestingBet";
+import ReviewBet from "./FormInvesting/ReviewBet";
 function App() {
 
   function Stap() {setLoad(true)}
@@ -138,6 +139,16 @@ console.log(profile.currentUser)
               <>
                 <Header />
                 <FormInvestingBet setCoinBet={setCoinBet} bet={bet} />
+              </>
+            )}
+          </Route>
+          <Route exact path="/ReviewBet">
+            {!user ? (
+              <Redirect to="/ReviewBet" />
+            ) : (
+              <>
+                <Header />
+                <ReviewBet setCoinBet={setCoinBet} bet={bet} />
               </>
             )}
           </Route>

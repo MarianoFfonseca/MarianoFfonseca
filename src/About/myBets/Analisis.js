@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Button } from "@mui/material";
+import {motion} from 'framer-motion'
 
 function Analisis() {
   const user = useSelector(selectUser);
@@ -48,7 +49,6 @@ function Analisis() {
   const [bets, setBets] = useState([]);
   const [Users, setUsers] = useState([]);
 
-
   useEffect(() => {
     betLotery();
     FUsers();
@@ -59,81 +59,83 @@ function Analisis() {
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    setChanged(!changed)
-   
+    setChanged(!changed);
   };
   const ChangeToTrue = () => {
-    setChanged(true)
-  }
+    setChanged(true);
+  };
 
   return (
     <div className="menuScreen">
       <MenuHeader />
       <div className="menuScreen__container">
         <div className="menuScreen__left">
-         
+          <MenuList></MenuList>
         </div>
-        <div style={{ margin: "5%", marginLeft: "5%", width: "80%" }}>
-        
-        {Users &&
+        <div style={{width:'100%'}}>
+          {Users &&
             Users.map((fUsers) => {
-        
               if (fUsers.email === user.email) {
                 if (fUsers.bets === 0) {
-                  return <div>
-                    <h1>You dont have any bet yet, let start!</h1>
-                  </div>;
+                  return (
+                    <div>
+                      <h1>You dont have any bet yet, let start!</h1>
+                    </div>
+                  );
                 } else {
                   return (
                     <div>
-    <h1 style={{ fontSize: "50px" }}>Analisis of Data</h1>
-          <hr />
-          <p>First select which of yours bets you wanna analise</p>
+                      <h1 style={{ fontSize: "50px" }}>📊Analisis</h1>
+                      
+                      <h3 style={{marginTop:'3%'}}>First select which of yours bets you wanna analise</h3>
 
-          <div>
-            <FormControl sx={{ m: 1, minWidth: 200 }}>
-              <InputLabel id="demo-simple-select-autowidth-label">
-                Age
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-autowidth-label"
-                id="demo-simple-select-autowidth"
-                value={age}
-                onChange={handleChange}
-                autoWidth
-                label="Age"
-              >
-                {bets &&
-                  bets.map((bet) => {
-                    if (
-                      bet.data.userEmail === user.email ||
-                      bet.data.payment === true
-                    ) {
-                      return (
-                        <MenuItem key={bet.id} value={bet}>
-                          {bet.data.Coin} #{bet.id[0]}
-                          {bet.id[1]}
-                          {bet.id[2]}
-                          {bet.id[3]}
-                        </MenuItem>
-                      );
-                    }
-                  })}
-                  
-              </Select>
-            </FormControl>
-          
-          </div>
-          {changed == false && age !== '' ? <Button onClick={ChangeToTrue}>Reload</Button> : null }
+                      <div>
+                        <FormControl sx={{ m: 1, minWidth: 200 }}>
+                          <InputLabel  id="demo-simple-select-autowidth-label">
+                            Select a bet
+                          </InputLabel>
+                          <Select 
+                          style={{borderRadius:'30px'}}
+                            labelId="demo-simple-select-autowidth-label"
+                            id="demo-simple-select-autowidth"
+                            value={age}
+                            onChange={handleChange}
+                            autoWidth
+                            label="Select a bet"
+                          >
+                            {bets &&
+                              bets.map((bet) => {
+                                if (
+                                  bet.data.userEmail === user.email ||
+                                  bet.data.payment === true
+                                ) {
+                                  return (
+                                    <MenuItem key={bet.id} value={bet}>
+                                      {bet.data.Coin} #{bet.id[0]}
+                                      {bet.id[1]}
+                                      {bet.id[2]}
+                                      {bet.id[3]}
+                                    </MenuItem>
+                                  );
+                                }
+                              })}
+                          </Select>
+                        </FormControl>
+                      </div>
+                      {changed == false && age !== "" ? (
+                        <motion.button initial={{x:-100, opacity:0}} animate={{x:0, opacity:1}} transition={{type:'spring', duration:1, stiffness:100}}  style={{marginLeft:'1%'}} onClick={ChangeToTrue}>Reload</motion.button>
+                      ) : null}
 
-          <Charts SelectedBet={age} Changed={changed} AllBets={bets}></Charts>
+                      <Charts
+                        SelectedBet={age}
+                        Changed={changed}
+                        AllBets={bets}
+                      ></Charts>
                     </div>
                   );
                 }
               }
             })}
-
-      
         </div>
       </div>
     </div>

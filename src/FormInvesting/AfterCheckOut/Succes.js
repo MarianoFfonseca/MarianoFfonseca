@@ -8,6 +8,7 @@ import db from "../../firebase";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import {Link} from 'react-router-dom'
 function Succes() {
   //User
   const user = useSelector(selectUser);
@@ -110,7 +111,7 @@ function Succes() {
               Starbucks partners (employees).
             </p>
             <p>
-              Track your bet 👉 <a href=""> here</a> 👈
+              Track your bet 👉 <Link to='/about/Mybets'> here</Link> 👈
             </p>
             <button>Menu</button>
           </motion.div>

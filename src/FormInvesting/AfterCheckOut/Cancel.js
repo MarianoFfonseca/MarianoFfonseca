@@ -37,7 +37,7 @@ function Cancel() {
 
   function filterBets() {
     bets.map((bet) => {
-      if (bet.data.userEmail === user.email || bet.data.payment === false) {
+      if (bet.data.userEmail === user.email && bet.data.payment === false) {
         db.collection("bets")
           .doc(bet.id)
           .delete()

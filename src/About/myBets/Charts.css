@@ -1,5 +1,18 @@
-.App {
-    font-family: sans-serif;
-    text-align: center;
-  }
+.charts_container {
+  display: flex;
+  width: 100%;
+  margin-left: 1%;
+  margin-bottom: 10%;
+}
+.charts_card {
+  border: solid;
+  border-radius: 30px;
+  border-width: 1px;
+  width: 45%;
+  height: auto;
+  padding: 1%;
+}
+.second{ 
+  margin-left: 2.5%;
+}
   

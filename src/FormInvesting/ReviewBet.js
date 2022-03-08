@@ -13,15 +13,15 @@ import { selectUser } from "../features/userSlice";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
 
 //StripePromise
 
-export default function ReviewBet(props) {
+export default function ReviewBet({bet}) {
   let stripePromise;
-  console.log(props);
   const getStripe = () => {
     if (!stripePromise) {
       stripePromise = loadStripe(
@@ -34,7 +34,7 @@ export default function ReviewBet(props) {
   const [bets, setBets] = useState([]);
   const [Mybets, setMyBets] = useState([]);
   const user = useSelector(selectUser);
-
+  console.log(bet)
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")
@@ -67,7 +67,6 @@ export default function ReviewBet(props) {
     quantity: 1,
   };
 
-
   const checkoutOptions = {
     lineItems: [item2],
     mode: "payment",
@@ -80,12 +79,13 @@ export default function ReviewBet(props) {
     db.collection("bets")
       .doc()
       .set({
-        Coin: props.Coin,
-        Day: props.Day,
-        Money: props.Money,
-        CoinBet: props.CoinBet,
+        Coin: bet.Coin,
+        Day: bet.Day,
+        Money: bet.Money,
+        CoinBet: bet.CoinBet,
         payment: false,
         userEmail: user.email,
+        status : 'Lose'
       })
       .then(function () {
         console.log("Value successfully written!");
@@ -114,66 +114,47 @@ export default function ReviewBet(props) {
       });
   };
   const [options, setOptions] = useState([]);
-  const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(false);
-  const [Doit, setDoit] = React.useState(false);
-  const [helperText, setHelperText] = React.useState("Chose...");
 
   useEffect(() => {
     optionsLotery();
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
 
-    if (value) {
-      setHelperText("Perfect✅");
-      setError(false);
-      setDoit(true);
-    } else {
-      setHelperText("Please select an option.");
-      setError(true);
-    }
-  };
 
   return (
-    <div className="All">
-      <div className="bg"></div>
-      <motion.form
-        animate={{ y: 0 }}
-        initial={{ y: 200 }}
-        transition={{ duration: 1 }}
-        className="cardBet"
-        //
-        onSubmit={redirectToCheckOut}
-      >
-        <FormControl sx={{ m: 3 }} error={error} variant="standard">
-          <FormLabel style={{ color: "black" }} id="demo-error-radios">
-            Review your bet
-          </FormLabel>
-          <hr />
-          <div className="reviewBetText">
-            <p>
-              You are making a bet that the value of <b>{props.Coin}</b> by{" "}
-              <b>{props.Day}</b> is going to be <b>{props.CoinBet}</b>{" "}
-            </p>
-            <div>
-              <p>
-                You are accpeting our <b>term and conditions</b>
-              </p>
-
-              <p>
-                You are betting <b>${props.Money} dollars</b>
-              </p>
-            </div>
-          </div>
-          {/* <FormHelperText style={{color:"green"}}>{helperText}</FormHelperText> */}
-          <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
-            Go to check out 🤑
-          </Button>
-        </FormControl>
-      </motion.form>
-      {/* {Doit === true ? <FormInvestingBet Coin={props.Coin} day={props.Day}  Money={value}></FormInvestingBet> : null} */}
+    <div className="Total">
+      <div className="FormInvesting_card">
+        <h3>
+          Review your bet before check out{" "}
+          <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
+            - Info
+          </p>
+        </h3>
+        <div style={{ marginTop: "5%" }}>
+          <li>- {bet.Coin}</li>
+          <li>- ${bet.Money}</li>
+          <li>- {bet.Day}</li>
+          <li>- {bet.CoinBet}</li>
+        </div>
+       
+         
+            <motion.button
+              transition={{ type: "spring" }}
+              onClick={redirectToCheckOut}
+              initial={{ x: "-1000px" }}
+              animate={{ x: 0 }}
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+                boxShadow: "0px 0px 8px #fff",
+              }}
+              style={{ color: "white" }}
+            >
+              Go Check Out
+            </motion.button>
+          
+        
+      </div>
     </div>
   );
 }

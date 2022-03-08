@@ -48,8 +48,8 @@ export default function MyLastsBets() {
     }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <div className='mybets_container' component={Paper}>
+      <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Coin</TableCell>
@@ -58,33 +58,68 @@ export default function MyLastsBets() {
             <TableCell align="right">Day of the bet</TableCell>
             <TableCell align="right">Price of Coin (bet)</TableCell>
             <TableCell align="right">Final price of the coin</TableCell>
+            <TableCell align="right">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {bets && bets.map((bet) => {
-            if(bet.userEmail === user.email || bet.payment === true){
-              return (
-                <TableRow
-                key={bet.userEmail}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                       
-                 
-                <TableCell component="th" scope="row">
-                  {bet.Coin}
-                </TableCell>
-                <TableCell align="right">${bet.Money}</TableCell>
-                <TableCell align="right">{bet.Day}</TableCell>
-                <TableCell align="right">{bet.CoinBet}</TableCell>
-                <TableCell align="right">Final Price</TableCell>
-                
-                                </TableRow>
-              )
+            var betDay = new Date(bet.Day)
+            var today = new Date()
+            var sss = betDay.getTime()
+            var yyy = today.getTime()
+            if(sss < yyy){
+              if(bet.userEmail === user.email || bet.payment === true){
+                if(bet.status === 'Lose') {
+                  return (
+                    <TableRow
+                    style={{background:'#FE9090', border:'solid', borderRadius:'30px', borderWidth:'1px'}}
+                    key={bet.userEmail}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                           
+                     
+                    <TableCell component="th" scope="row">
+                      {bet.Coin}
+                    </TableCell>
+                    <TableCell align="right">${bet.Money}</TableCell>
+                    <TableCell align="right">{bet.Day}</TableCell>
+                    <TableCell align="right">{bet.CoinBet}</TableCell>
+                    <TableCell align="right">Final Price</TableCell>
+                    <TableCell align="right">
+                                  {bet.status}
+                                  </TableCell>
+                                    </TableRow>
+                  )
+                }else if (bet.status === 'First'){
+                  return (
+                    <TableRow
+                    style={{borderColor:'#90FEAD', border:'solid', borderRadius:'30px', borderWidth:'3px'}}
+                    key={bet.userEmail}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                           
+                     
+                    <TableCell component="th" scope="row">
+                      {bet.Coin}
+                    </TableCell>
+                    <TableCell align="right">${bet.Money}</TableCell>
+                    <TableCell align="right">{bet.Day}</TableCell>
+                    <TableCell align="right">{bet.CoinBet}</TableCell>
+                    <TableCell align="right">Final Price</TableCell>
+                    <TableCell align="right">
+                                  {bet.status}
+                                  </TableCell>
+                                    </TableRow>
+                  )
+                }
+            
+              }
             }
+           
            
             })}
         </TableBody>
       </Table>
-    </TableContainer>
+    </div>
   );
 }

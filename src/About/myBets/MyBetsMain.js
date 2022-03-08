@@ -11,7 +11,7 @@ import { selectUser } from "../../features/userSlice";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import "./Mybets.css";
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -49,14 +49,10 @@ export default function MyBetsMain() {
           setUsers((users) => [...users, data]);
         });
       });
-
   }
-
-
 
   const [bets, setBets] = useState([]);
   const [users, setUsers] = useState([]);
-
 
   useEffect(() => {
     betLotery();
@@ -64,12 +60,8 @@ export default function MyBetsMain() {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{ minWidth: 650 }}
-        style={{ width: "100%" }}
-        aria-label="simple table"
-      >
+    <div className="mybets_container" component={Paper}>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Coin</TableCell>
@@ -82,47 +74,45 @@ export default function MyBetsMain() {
           </TableRow>
         </TableHead>
         <TableBody>
-          
-                    {bets &&
-                      bets.map((bet) => {
-                        if (
-                          bet.data.userEmail === user.email ||
-                          bet.payment === true
-                        ) {
-                          return (
-                            <TableRow
-                              key={bet.id}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell component="th" scope="row">
-                                {bet.data.Coin}
-                              </TableCell>
-                              <TableCell align="right">
-                                ${bet.data.Money}
-                              </TableCell>
-                              <TableCell align="right">
-                                {bet.data.Day}
-                              </TableCell>
-                              <TableCell align="right">No yet</TableCell>
-                              <TableCell align="right">
-                                {bet.data.CoinBet}
-                              </TableCell>
-                              <TableCell align="right">
-                                {bet.id[0]}
-                                {bet.id[1]}
-                                {bet.id[2]}
-                                {bet.id[3]}
-                              </TableCell>
-                            </TableRow>
-                          );
-                        }
-                      })}
+          {bets &&
+            bets.map((bet) => {
+              var betDay = new Date(bet.data.Day)
+              var today = new Date()
+              var fbetDay = betDay.getTime()
+              var fToday = today.getTime()
+              console.log('Estoy aca')
+              if(fToday < fbetDay){
+                console.log(bet.data.userEmail, user.email)
+              if (bet.data.userEmail === user.email && bet.data.payment === true) {
+                console.log('here2')
+                return (
+                  <TableRow
+                    key={bet.id}
+                    sx={{
+                      "&:last-child td, &:last-child th": {
+                        border: 0,
+                      },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {bet.data.Coin}
+                    </TableCell>
+                    <TableCell align="right">${bet.data.Money}</TableCell>
+                    <TableCell align="right">{bet.data.Day}</TableCell>
+                    <TableCell align="right">No yet</TableCell>
+                    <TableCell align="right">{bet.data.CoinBet}</TableCell>
+                    <TableCell align="right">
+                      {bet.id[0]}
+                      {bet.id[1]}
+                      {bet.id[2]}
+                      {bet.id[3]}
+                    </TableCell>
+                  </TableRow>
+                );
+              }}
+            })}
         </TableBody>
       </Table>
-    </TableContainer>
+    </div>
   );
 }

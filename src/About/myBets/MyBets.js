@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
-
+import {motion } from 'framer-motion'
 import db from "../../firebase";
 import { useState, useEffect } from "react";
 function MyBets() {
@@ -38,7 +38,7 @@ function MyBets() {
         <div className="menuScreen__left">
           <MenuList />
         </div>
-        <div style={{ margin: "5%", marginLeft: "15%" }}>
+        <div style={{}}>
           {Users &&
             Users.map((fUsers) => {
               console.log(fUsers)
@@ -52,23 +52,22 @@ function MyBets() {
                 } else {
                   return (
                     <div>
-                      <Alert severity="info">
-                        Now you can analize your bets{" "}
-                        <strong>
-                          {" "}
-                          <Link to="/about/Analisis">check it out !</Link>
-                        </strong>
-                      </Alert>
-                      <h1 style={{ fontSize: "50px", marginTop: "5%" }}>
-                        Your Bets
+                      <div>
+                      <h1 style={{ fontSize: "50px" }}>
+                      📂Your Active Bets
                       </h1>
+                      <motion.div initial={{x:1500}} animate={{x:0}} transition={{type:'spring', stiffness:75, duration:1.5}} >
                       <MyBetsMain></MyBetsMain>
-
-                      <hr style={{ fontSize: "50px", marginTop: "5%" }} />
-                      <h1 style={{ fontSize: "50px", marginTop: "5%" }}>
-                        Your Lasts Bets
+                      </motion.div>
+                      </div>
+                      <div style={{marginBottom:'15%'}}>
+                      <h1 style={{ fontSize: "50px", marginTop: "15%" }}>
+                      📑Your Lasts Bets
                       </h1>
+                      <motion.div initial={{x:1500}} animate={{x:0}} transition={{type:'spring', delay:0.2, stiffness:75, duration:1.5}}>
                       <MyLastsBets></MyLastsBets>
+                      </motion.div>
+                      </div>
                     </div>
                   );
                 }
