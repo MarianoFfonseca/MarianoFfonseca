@@ -8,12 +8,13 @@ import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
 import "./FormInvestingDay.css";
 import { motion } from "framer-motion";
-import FormInvestingMoney from "./FormInvestingMoney"
+import FormInvestingMoney from "./FormInvestingMoney";
+import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
 
-export default function FormInvestingDay(Coin) {
+export default function FormInvestingDay({ bet, setDay }) {
   const optionsLotery = () => {
     db.collection("optionsLotery")
       .get()
@@ -28,82 +29,58 @@ export default function FormInvestingDay(Coin) {
   };
   const [options, setOptions] = useState([]);
   const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(false);
   const [Doit, setDoit] = React.useState(false);
-  const [helperText, setHelperText] = React.useState("Chose...");
- 
-
-
-
-
   useEffect(() => {
     optionsLotery();
   }, []);
+  console.log(bet);
 
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-    setHelperText(" ");
-    setError(false);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (value) {
-      setValue(value)
-      setHelperText("Perfect✅");
-      setError(false);
-      setDoit(true);
-    } else {
-      setHelperText("Please select an option.");
-      setError(true);
-    }
-  };
- 
   return (
-    <div className="All">
-      <div className="bg"></div>
-      <motion.form
-        animate={{ y: 0 }}
-        initial={{ y: 200 }}
-        transition={{ duration: 1 }}
-        className="card"
-        onSubmit={handleSubmit}
-      >
-        <FormControl sx={{ m: 3 }} error={error} variant="standard">
-          <FormLabel style={{ color: "black" }} id="demo-error-radios">
-            When do you want to invest?
-          </FormLabel>
-          <hr />
-
-          <RadioGroup
-            aria-labelledby="demo-error-radios"
-            name="quiz"
-            value={value}
-            onChange={handleRadioChange}
-          >
-            {options &&
-              options.map((option) => {
-                if (option.Coin === Coin.Coin) {
-                  return (
-                    <div key={option.Key}>
-                      <FormControlLabel
-                        value={option.Day}
-                        control={<Radio />}
-                        label={option.Day}
-                      />
-                    </div>
-                  );
-                }
-              })}
-          </RadioGroup>
-          {/* <FormHelperText style={{color:"green"}}>{helperText}</FormHelperText> */}
-          <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
-            Next question👉
-          </Button>
-        </FormControl>
-      </motion.form>
-      {Doit === true ? <FormInvestingMoney Day={value} Coin={Coin.Coin} ></FormInvestingMoney> : null}
+    <div className="Total">
+      <div className="FormInvesting_card">
+        <h3>
+          In what Day do you wanna make this bet{" "}
+          <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
+            - Info
+          </p>
+        </h3>
+        <div style={{ marginTop: "5%" }}>
+          {options.map((Day) => {
+            let spanClass = bet.Day === Day.Day ? "active" : "";
+            return (
+              <motion.li
+                whileHover={{
+                  scale: 1.4,
+                  originX: 0,
+                }}
+                className="li"
+                key={Day.key}
+                onClick={() => setDay(Day.Day)}
+              >
+                <span className={spanClass}>{Day.Day}</span>
+              </motion.li>
+            );
+          })}
+        </div>
+        {bet.Day && (
+          <Link to="/formMoney">
+            <motion.button
+              transition={{ type: "spring" }}
+              initial={{ x: "-1000px" }}
+              animate={{ x: 0 }}
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+                boxShadow: "0px 0px 8px #fff",
+              }}
+              style={{ color: "white" }}
+            >
+              Next Question
+            </motion.button>
+          </Link>
+        )}
+      </div>
+     
     </div>
   );
 }

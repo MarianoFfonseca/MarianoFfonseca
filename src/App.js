@@ -23,19 +23,38 @@ import MyBets from "./About/myBets/MyBets";
 import Succes from "./FormInvesting/AfterCheckOut/Succes";
 import Cancel from "./FormInvesting/AfterCheckOut/Cancel";
 import Analisis from "./About/myBets/Analisis";
-import FloatButton from "./FloatButton";
 import MyAccount from "./About/myAcount/MyAccount";
 import VerifyEmail from "./VerifyEmail";
 import Train from "./TrainMyself/Train";
 import { getAuth } from "firebase/auth";
+import FormInvestingMoney from "./FormInvesting/FormInvestingMoney";
+import FormInvestingBet from "./FormInvesting/FormInvestingBet";
 function App() {
+
+  function Stap() {setLoad(true)}
+
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [bet, setBet] = useState({ Coin: '', Money:'', CoinBet:'', Day:''})
+  console.log(bet)
+  const setCoin = (Coin) => {
+    setBet({...bet, Coin})
+  }
+  const setDay = (Day) => {
+    setBet({...bet, Day})
+  }
+  const setMoney = (Money) => {
+    setBet({...bet, Money})
+  }
+  const setCoinBet = (CoinBet) => {
+    setBet({...bet, CoinBet})
+  }
+
   const [profile, setProfile] = useState([]);
   const [load, setLoad] = useState(false);
   useEffect(() => {
-    setProfile(getAuth());
-    setLoad(true);
+    Stap()
+    setProfile(getAuth())
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         // User is signed in
@@ -52,9 +71,10 @@ function App() {
       }
     });
   }, [dispatch]);
-
-  return (
+console.log(profile.currentUser)
+ return (
     <div className="app">
+      {load === true ? 
       <Router>
         <Switch>
           <Route exact path="/">
@@ -81,19 +101,43 @@ function App() {
               </>
             )}
           </Route>
-          {/* For the form
-          <Route exact path="/form">
-                <Header />
-                <FormInvestingCoin />
-          </Route> */}
-
           <Route exact path="/formCoin">
             {!user ? (
-              <Redirect to="/account/signin" />
+              <Redirect to="/formCoin" />
             ) : (
               <>
                 <Header />
-                <FormInvestingCoin />
+                <FormInvestingCoin setCoin={setCoin} bet={bet} />
+              </>
+            )}
+          </Route>
+          <Route exact path="/formDay">
+            {!user ? (
+              <Redirect to="/formDay" />
+            ) : (
+              <>
+                <Header />
+                <FormInvestingDay setDay={setDay} bet={bet} />
+              </>
+            )}
+          </Route>
+          <Route exact path="/formMoney">
+            {!user ? (
+              <Redirect to="/formMoney" />
+            ) : (
+              <>
+                <Header />
+                <FormInvestingMoney setMoney={setMoney} bet={bet} />
+              </>
+            )}
+          </Route>
+          <Route exact path="/formCoinBet">
+            {!user ? (
+              <Redirect to="/formCoinBet" />
+            ) : (
+              <>
+                <Header />
+                <FormInvestingBet setCoinBet={setCoinBet} bet={bet} />
               </>
             )}
           </Route>
@@ -106,7 +150,7 @@ function App() {
             <Succes />
           </Route>
           <Route exact path="/about/Mybets">
-            {!user ? (
+            {profile.currentUser === null ? (
               <Redirect to="/account/signin" />
             ) : (
               <>
@@ -126,7 +170,7 @@ function App() {
             )}
           </Route>
           <Route exact path="/about/MyAccount">
-            {!user ? (
+            {!user ? (  
               <Redirect to="/account/signin" />
             ) : (
               <>
@@ -163,7 +207,8 @@ function App() {
             </Fade>
           </Route>
         </Switch>
-      </Router>
+      </Router> : <p>Loading</p>}
+      
     </div>
   );
 }

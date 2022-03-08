@@ -1,9 +1,44 @@
-.bg{
-    background-color: black;
-    position: fixed;
-    width: 100%;
-    height: 100%;
+.Total {
+background-color: black;
+position: fixed;
+width: 100%;
+height: 100%;
 }
+.FormInvesting_card {
+    color: white;
+    position:relative;
+    margin-left: 35%;
+    margin-top: 10%;
+    
+}
+.FormInvesting_card > button {
+    color: white;
+}
+.FormInvestin_form {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.FormInvestin_form > div {
+    display: block;
+}
+.FormInvestin_form > li {
+    cursor: pointer;
+
+}
+.FormInvestin_form > li span.active{
+    font-weight: bold;
+  }
+.li span.active::before{
+    content: '>';
+    color: #fff;
+    position: relative;
+    top: -2px;
+    margin-right: 6px;
+    transform: scale(0.8, 1);
+    display: inline-block;
+  }
+
+
 .card{
     margin-left: 36%;
     margin-top: 7%;
@@ -12,6 +47,7 @@
     position: absolute;
     background: #fff;
     border-radius: 3%;
+    display: none;
 }
 
 .Text {

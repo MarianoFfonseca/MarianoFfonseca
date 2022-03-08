@@ -1,20 +1,13 @@
 import * as React from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormLabel from "@mui/material/FormLabel";
-import Button from "@mui/material/Button";
 import "./FormInvestingBet.css";
 import { motion } from "framer-motion";
-import TextField from '@mui/material/TextField';
 import ReviewBet from "./ReviewBet"
+import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
 
-export default function FormInvestingBet(props) {
+export default function FormInvestingBet({bet, setCoinBet}) {
   const optionsLotery = () => {
     db.collection("optionsLoteryMoney")
       .get()
@@ -60,40 +53,36 @@ export default function FormInvestingBet(props) {
   };
 
   return (
-    <div className="All">
-      <div className="bg"></div>
-      <motion.form
-        animate={{ y: 0 }}
-        initial={{ y: 200 }}
-        transition={{ duration: 1 }}
-        className="cardd"
-        onSubmit={handleSubmit}
-      >
-        <FormControl sx={{ m: 3 }} error={error} variant="standard">
-          <FormLabel style={{ color: "black" }} id="demo-error-radios">
-       For you wich is going to be the price of <b>{props.Coin}</b> by <b>{props.day}</b> ?
-          </FormLabel>
-          <hr />
-
-            {/* Poner para que cada valor sea unico */}
-          <TextField
-          id="outlined-number"
-          label=""
-          type="number"
-          onChange={handleRadioChange}
-          value={value}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-         
-          {/* <FormHelperText style={{color:"green"}}>{helperText}</FormHelperText> */}
-          <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
-            Next question👉
-          </Button>
-        </FormControl>
-      </motion.form>
-     {Doit === true ? <ReviewBet Coin={props.Coin} Day={props.day} Money={props.Money} CoinBet={value}></ReviewBet> : null} 
+    <div className="Total">
+      <div className="FormInvesting_card">
+        <h3>
+          What is gonna be the price for you?{" "}
+          <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
+            - Info
+          </p>
+        </h3>
+        <div style={{ marginTop: "5%" }}>
+         <input style={{padding:'1%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} type="number" onChange={((e)=>{setCoinBet(e.target.value)})} name="" id="" />
+        </div>
+        {bet.CoinBet && (
+          <Link to="">
+            <motion.button
+              transition={{ type: "spring" }}
+              initial={{ x: "-1000px" }}
+              animate={{ x: 0 }}
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+                boxShadow: "0px 0px 8px #fff",
+              }}
+              style={{ color: "white" }}
+            >
+              Next Question
+            </motion.button>
+          </Link>
+        )}
+      </div>
+     {Doit === true ? <ReviewBet Coin={'props.Coin'} Day={'props.day'} Money={'props.Money'} CoinBet={value}></ReviewBet> : null} 
     </div>
   );
 }
