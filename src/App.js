@@ -25,11 +25,12 @@ import Cancel from "./FormInvesting/AfterCheckOut/Cancel";
 import Analisis from "./About/myBets/Analisis";
 import MyAccount from "./About/myAcount/MyAccount";
 import VerifyEmail from "./VerifyEmail";
-import Train from "./TrainMyself/Train";
+import Train from "./InfoInvesting/Train";
 import { getAuth } from "firebase/auth";
 import FormInvestingMoney from "./FormInvesting/FormInvestingMoney";
 import FormInvestingBet from "./FormInvesting/FormInvestingBet";
 import ReviewBet from "./FormInvesting/ReviewBet";
+import HowInvest from "./InfoInvesting/HowInvest/HowInvest";
 function App() {
 
   function Stap() {setLoad(true)}
@@ -206,6 +207,16 @@ console.log(profile.currentUser)
               <>
                 <Header menuPage />
                 <Train />
+              </>
+            )}
+          </Route>
+          <Route exact path="/HowInvest">
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <HowInvest />
               </>
             )}
           </Route>
