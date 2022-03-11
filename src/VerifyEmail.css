@@ -1,0 +1,9 @@
+.verify_div {
+    border: solid;
+    border-width: 2px;
+    border-radius: 30px;
+    padding: 5%;
+    position: absolute;
+    text-align: center;
+    margin-top: 10%;
+}

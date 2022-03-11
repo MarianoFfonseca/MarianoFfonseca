@@ -13,6 +13,7 @@ import { login } from "../features/userSlice";
 import FormSubmit from "../FormSubmit";
 import FooterSecondary from "../FooterSecondary";
 import { motion } from "framer-motion";
+import modernLoteryLogoBlanco from '../images/modernLoteryLogoBlanco.png'
 function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -41,9 +42,8 @@ function LoginScreen() {
             animate={{ x: 0 }}
             initial={{ x: -100 }}
             transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
-            whileHover={{ rotate: 360 }}
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
-            alt=""
+            src={modernLoteryLogoBlanco}
+             alt=""
           />
         </Link>
         <div className="loginScreen__info">

@@ -37,6 +37,7 @@ export default function FormInvestingCoin({ setCoin, bet }) {
         {bet.Coin && (
           <Link to='/formDay'>
           <motion.button
+          
             transition={{type:'spring'}}
             initial={{ x:'-1000px' }}
             animate={{ x: 0 }}

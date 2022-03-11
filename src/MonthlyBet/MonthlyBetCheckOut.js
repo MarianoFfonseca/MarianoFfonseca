@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./ReviewBet.css";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
@@ -13,7 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 //StripePromise
 
-export default function ReviewBet({bet}) {
+export default function MonthlyBetCheckOut({monthlyB}) {
   let stripePromise;
   const getStripe = () => {
     if (!stripePromise) {
@@ -25,9 +24,7 @@ export default function ReviewBet({bet}) {
   };
   //For the user
   const [bets, setBets] = useState([]);
-  const [Mybets, setMyBets] = useState([]);
   const user = useSelector(selectUser);
-  console.log(bet)
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")
@@ -47,49 +44,59 @@ export default function ReviewBet({bet}) {
 
   //for get how many bets the user has
 
-  const item2 = {
+  const halfYear = {
     price: "price_1KW5nqAUHkiFgFqfJQrI1j7V",
     quantity: 1,
   };
-  const item5 = {
+  const fullYear = {
     price: "price_1KZyKWAUHkiFgFqfJYgtXSSs",
-    quantity: 1,
-  };
-  const item20 = {
-    price: "price_1KZyNMAUHkiFgFqfjlzPzgZY",
     quantity: 1,
   };
 
   const checkoutOptions = {
-    lineItems: [item2],
+    lineItems: [halfYear],
     mode: "payment",
-    successUrl: `${window.location.origin}/succes`,
-    cancelUrl: `${window.location.origin}/cancel`,
+    successUrl: `${window.location.origin}/SuccesMonthly`,
+    cancelUrl: `${window.location.origin}/CancelMonthly`,
   };
+  const checkoutOptions2 = {
+    lineItems: [fullYear],
+    mode: "payment",
+    successUrl: `${window.location.origin}/SuccesMonthly`,
+    cancelUrl: `${window.location.origin}/CancelMonthly`,
+  };
+  const FirebaseEasy = () => {
+    db.collection("monthly_bet")
+    .doc()
+    .set({
+      Day: new Date(),
+      Money: monthlyB,
+      payment: false,
+      userUid: user.uid,
+    })
+    .then(function () {
+      console.log("Value successfully written!");
+    })
+    .catch(function (error) {
+      console.error("Error writing Value: ", error);
+    })
+  }
 
   const redirectToCheckOut = async (e) => {
     e.preventDefault();
-    db.collection("bets")
-      .doc()
-      .set({
-        Coin: bet.Coin,
-        Day: bet.Day,
-        Money: bet.Money,
-        CoinBet: bet.CoinBet,
-        payment: false,
-        userEmail: user.email,
-        status : 'Lose'
-      })
-      .then(function () {
-        console.log("Value successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing Value: ", error);
-      });
-    console.log("redirect");
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
-    console.log("Stripe checkout error", error);
+      FirebaseEasy();
+      console.log("redirect");
+      const stripe = await getStripe();
+      const { error } = await stripe.redirectToCheckout(checkoutOptions);
+      console.log("Stripe checkout error", error);
+  };
+  const redirectToCheckOut2 = async (e) => {
+    e.preventDefault();
+      FirebaseEasy();
+      console.log("redirect");
+      const stripe = await getStripe();
+      const { error } = await stripe.redirectToCheckout(checkoutOptions2);
+      console.log("Stripe checkout error", error);
   };
 
   const optionsLotery = () => {
@@ -122,16 +129,26 @@ export default function ReviewBet({bet}) {
           </p>
         </h3>
         <div style={{ marginTop: "5%" }}>
-          <li>- {bet.Coin}</li>
-          <li>- ${bet.Money}</li>
-          <li>- {bet.Day}</li>
-          <li>- {bet.CoinBet}</li>
+        {monthlyB === "fullYear" ? (
+  <div>
+    <li>$10 dollars for 12 months</li>
+    <li>12 bets in total</li>
+    <li>Saving $120 dollars</li>
+  </div>
+) : (
+  <div>
+    {" "}
+    <li>$15 dollars for 6 months</li>
+    <li>6 bets total</li>
+    <li>Saving $55 dollars</li>
+  </div>
+)}
         </div>
        
          
             <motion.button
               transition={{ type: "spring" }}
-              onClick={redirectToCheckOut}
+              onClick={monthlyB === 'halfYear' ? redirectToCheckOut : redirectToCheckOut2}
               initial={{ x: "-1000px" }}
               animate={{ x: 0 }}
               whileHover={{
@@ -149,3 +166,7 @@ export default function ReviewBet({bet}) {
     </div>
   );
 }
+
+
+// export default MonthlyBetCheckOut;
+

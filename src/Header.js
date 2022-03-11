@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 import { motion } from "framer-motion";
 import LogoutButton from "./LogoutButton";
+import modernLoteryLogo from './images/modernLoteryLogo.png'
 function Header({ menuPage }) {
   const user = useSelector(selectUser);
 
@@ -23,8 +24,9 @@ function Header({ menuPage }) {
             whileHover={{ rotate:360, duration:5}}
           >
             <img
-              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
-              alt=""
+            src={modernLoteryLogo}
+              // src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
+               alt=""
             />
           </motion.div>
         </Link>

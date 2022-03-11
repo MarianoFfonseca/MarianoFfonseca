@@ -4,6 +4,7 @@ import FooterSecondary from "../FooterSecondary";
 import "./SignupScreen.css";
 import SignupForm from "../SignupForm";
 import {motion} from 'framer-motion'
+import modernLoteryLogoBlanco from '../images/modernLoteryLogoBlanco.png'
 function SignupScreen() {
   return (
     <div className="signupScreen">
@@ -13,7 +14,7 @@ function SignupScreen() {
             initial={{ x: -100 }}
             transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
             whileHover={{ rotate: 360 }}
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
+            src={modernLoteryLogoBlanco}
             alt=""
           />
         </Link>
