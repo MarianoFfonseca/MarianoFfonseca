@@ -27,7 +27,7 @@ export default function ReviewBet({bet}) {
   const [bets, setBets] = useState([]);
   const [Mybets, setMyBets] = useState([]);
   const user = useSelector(selectUser);
-  console.log(bet)
+  console.log(bet.Money)
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")
@@ -66,9 +66,20 @@ export default function ReviewBet({bet}) {
     successUrl: `${window.location.origin}/succes`,
     cancelUrl: `${window.location.origin}/cancel`,
   };
+  const checkoutOptions5 = {
+    lineItems: [item5],
+    mode: "payment",
+    successUrl: `${window.location.origin}/succes`,
+    cancelUrl: `${window.location.origin}/cancel`,
+  };
+  const checkoutOptions20 = {
+    lineItems: [item20],
+    mode: "payment",
+    successUrl: `${window.location.origin}/succes`,
+    cancelUrl: `${window.location.origin}/cancel`,
+  };
 
-  const redirectToCheckOut = async (e) => {
-    e.preventDefault();
+  const EasyFirebase = () => {
     db.collection("bets")
       .doc()
       .set({
@@ -86,9 +97,30 @@ export default function ReviewBet({bet}) {
       .catch(function (error) {
         console.error("Error writing Value: ", error);
       });
+  }
+
+  const redirectToCheckOut = async (e) => {
+    e.preventDefault();
+    EasyFirebase()
     console.log("redirect");
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error);
+  };
+  const redirectToCheckOut5 = async (e) => {
+    e.preventDefault();
+    EasyFirebase()
+    console.log("redirect");
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout(checkoutOptions5);
+    console.log("Stripe checkout error", error);
+  };
+  const redirectToCheckOut20 = async (e) => {
+    e.preventDefault();
+    EasyFirebase()
+    console.log("redirect");
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout(checkoutOptions20);
     console.log("Stripe checkout error", error);
   };
 
@@ -114,7 +146,9 @@ export default function ReviewBet({bet}) {
 
   return (
     <div className="Total">
-      <div className="FormInvesting_card">
+      <motion.div  transition={{type:'spring', duration:2}}
+            initial={{ x:100, opacity:0 }}
+            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
         <h3>
           Review your bet before check out{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -128,8 +162,7 @@ export default function ReviewBet({bet}) {
           <li>- {bet.CoinBet}</li>
         </div>
        
-         
-            <motion.button
+         {bet.Money === '2' ? <motion.button
               transition={{ type: "spring" }}
               onClick={redirectToCheckOut}
               initial={{ x: "-1000px" }}
@@ -142,10 +175,39 @@ export default function ReviewBet({bet}) {
               style={{ color: "white" }}
             >
               Go Check Out
-            </motion.button>
+            </motion.button> : null}
+         {bet.Money === '5' ? <motion.button
+              transition={{ type: "spring" }}
+              onClick={redirectToCheckOut5}
+              initial={{ x: "-1000px" }}
+              animate={{ x: 0 }}
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+                boxShadow: "0px 0px 8px #fff",
+              }}
+              style={{ color: "white" }}
+            >
+              Go Check Out
+            </motion.button> : null}
+         {bet.Money === '20' ? <motion.button
+              transition={{ type: "spring" }}
+              onClick={redirectToCheckOut20}
+              initial={{ x: "-1000px" }}
+              animate={{ x: 0 }}
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+                boxShadow: "0px 0px 8px #fff",
+              }}
+              style={{ color: "white" }}
+            >
+              Go Check Out
+            </motion.button> : null}
+            
           
         
-      </div>
+      </motion.div>
     </div>
   );
 }

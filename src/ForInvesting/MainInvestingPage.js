@@ -24,9 +24,10 @@ export default function MainInvestingPage() {
               Accusantium sint accusamus recusandae optio voluptate alias
               blanditiis 
             </p>
+            <Link to='/formCoin'>
             <motion.button whileHover={{ scale: 1.2, originX:0 }}>
               Lets Start
-            </motion.button>
+            </motion.button></Link>
           </div>
         </motion.div>
         <motion.div animate={{ x: 0 }}
@@ -42,9 +43,10 @@ export default function MainInvestingPage() {
               Accusantium sint accusamus recusandae optio voluptate alias
               blanditiis 
             </p>
+            <Link to='/PremadeBet'>
             <motion.button whileHover={{ scale: 1.2, originX:0 }}>
               Learn more
-            </motion.button>
+            </motion.button></Link>
           </div>
         </motion.div>
         
@@ -65,12 +67,16 @@ export default function MainInvestingPage() {
               Accusantium sint accusamus recusandae optio voluptate alias
               blanditiis 
             </p>
+            <Link to='/about/MyBets'>
             <motion.button whileHover={{ scale: 1.2, originX:0 }}>
               Track
             </motion.button>
+            </Link>
+            <Link to='/about/Analisis'>
             <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
               Analize
             </motion.button>
+            </Link>
           </div>
         </motion.div>
       <motion.div className="card3">
@@ -80,12 +86,14 @@ export default function MainInvestingPage() {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, provident debitis, fuga amet quam id porro at dolorem animi totam ab temporibus voluptatum odit quaerat eaque. Perferendis eveniet a ab?
             Architecto, vel nam autem laudantium enim ad assumenda reprehenderit ipsa veritatis consequuntur laborum iusto, aliquam itaque at? Facere laborum voluptates necessitatibus blanditiis a saepe vitae qui sequi! Placeat, dolores commodi! 
             </p>
+            <Link to='/MonthlyBet'>
             <motion.button whileHover={{ scale: 1.2, originX:0 }}>
               See plans
-            </motion.button>
+            </motion.button></Link>
+            <Link to='/MonthlyBet'>
             <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
               More info
-            </motion.button>
+            </motion.button></Link>
           </div>
           <div className="left4">
             <img  src={undraw_calendar} alt="" />

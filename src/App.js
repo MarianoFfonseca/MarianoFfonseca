@@ -37,6 +37,7 @@ import MonthlyBetCheckOut from "./MonthlyBet/MonthlyBetCheckOut";
 import SuccesMonthly from "./MonthlyBet/SuccesMonthly";
 import CancelMonthly from "./MonthlyBet/CancelMonthly";
 import PremadeBet from "./PremadeBet/PremadeBet";
+import ForSetBet from "./About/myBets/MyMonthlyBet/ForSetBet";
 function App() {
   function Stap() {
     setLoad(true);
@@ -45,7 +46,7 @@ function App() {
   const dispatch = useDispatch();
   const [bet, setBet] = useState({ Coin: "", Money: "", CoinBet: "", Day: "" });
   const [monthlyB, setmonthlyB] = useState("fullYear");
-
+  const [monthlyId, setmonthlyId] = useState(null);
   const setmonthlyBB = (x) => {
     setmonthlyB(x);
   };
@@ -184,6 +185,16 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/ForSetBet">
+              {!user ? (
+                <Redirect to="/ForSetBet" />
+              ) : (
+                <>
+                  <Header />
+                  <ForSetBet monthlyId={monthlyId} setBet={setBet} setCoinBet={setCoinBet} setDay={setDay} bet={bet} />
+                </>
+              )}
+            </Route>
             <Route exact path="/cancel">
               <Header />
               <Cancel />
@@ -198,7 +209,7 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <MyBets />
+                  <MyBets  setmonthlyId={setmonthlyId} />
                 </>
               )}
             </Route>

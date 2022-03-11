@@ -10,7 +10,8 @@ import { selectUser } from "../../features/userSlice";
 import {motion } from 'framer-motion'
 import db from "../../firebase";
 import { useState, useEffect } from "react";
-function MyBets() {
+import MyMonthlyBets from "./MyMonthlyBets";
+function MyBets({setmonthlyId}) {
   //for the user
   const user = useSelector(selectUser);
   const [Users, setUsers] = useState([]);
@@ -66,6 +67,14 @@ function MyBets() {
                       </h1>
                       <motion.div initial={{x:1500}} animate={{x:0}} transition={{type:'spring', delay:0.2, stiffness:75, duration:1.5}}>
                       <MyLastsBets></MyLastsBets>
+                      </motion.div>
+                      </div>
+                      <div style={{marginBottom:'15%'}}>
+                      <h1 style={{ fontSize: "50px", marginTop: "15%" }}>
+                      📑Your Monthly Bets
+                      </h1>
+                      <motion.div initial={{x:1500}} animate={{x:0}} transition={{type:'spring', delay:0.2, stiffness:75, duration:1.5}}>
+                      <MyMonthlyBets  setmonthlyId={setmonthlyId}></MyMonthlyBets>
                       </motion.div>
                       </div>
                     </div>

@@ -1,18 +1,16 @@
-import React from 'react'
-import { motion } from "framer-motion"
-import Bitcoin_Outline from '../../images/Bitcoin _Outline.svg'
+import React from "react";
+import { motion } from "framer-motion";
+import Bitcoin_Outline from "../../images/Bitcoin _Outline.svg";
 import { Fade } from "react-awesome-reveal";
-import CancelImg from "../../images/cancelImg.svg"
-import "./Cancel.css"
+import CancelImg from "../../images/cancelImg.svg";
+import "./Cancel.css";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../features/userSlice'
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+import { Link } from "react-router-dom";
 function Cancel() {
-
   const user = useSelector(selectUser);
- 
 
   //Obtener las apuestas
   const betLotery = () => {
@@ -22,11 +20,13 @@ function Cancel() {
         querySnapshot.forEach((element) => {
           var data = element.data();
           var id = element.id;
-          setBets((bets) => [...bets,  {
-            data: data,
-            id: id,
-          }]);
-        
+          setBets((bets) => [
+            ...bets,
+            {
+              data: data,
+              id: id,
+            },
+          ]);
         });
       });
   };
@@ -41,8 +41,7 @@ function Cancel() {
         db.collection("bets")
           .doc(bet.id)
           .delete()
-          .then(function () {
-          })
+          .then(function () {})
           .catch(function (error) {
             console.error("Error writing Value: ", error);
           });
@@ -56,45 +55,40 @@ function Cancel() {
     betLotery();
   }, []);
   //Aca que se borre el documento de firebase
-//   db.collection("bets").doc(user.email).delete().then(() => {
-//     console.log("Document successfully deleted!");
-// }).catch((error) => {
-//     console.error("Error removing document: ", error);
-// });
-
+  //   db.collection("bets").doc(user.email).delete().then(() => {
+  //     console.log("Document successfully deleted!");
+  // }).catch((error) => {
+  //     console.error("Error removing document: ", error);
+  // });
 
   return (
     <div>
-        <Fade>
+      <Fade>
         <div className="homeScreen__bottomm">
-          <motion.div
-            className="homeScreen__bottomLeftt">
-            <h1 style={{color:"firebrick"}}>You cancel the payment</h1>
+          <motion.div className="homeScreen__bottomLeftt">
+            <h1 style={{ color: "firebrick" }}>You cancel the payment</h1>
             <p>
               The Starbucks Foundation awarded grants to over 400 nonprofits
               serving communities of color. Recipients were nominated by
               Starbucks partners (employees).
             </p>
-            <p>Track your bet 👉 <a href=""> here</a> 👈</p>
-            <button>Menu</button>
+            <Link to="/menu">
+              <button>Menu</button>
+            </Link>
           </motion.div>
           <div className="homeScreen__bottomRight">
-
             <motion.img
-              animate={{ y: 25}}
+              animate={{ y: 25 }}
               initial={{ y: -30 }}
               transition={{ yoyo: Infinity, duration: 2 }}
-             
               src={CancelImg}
               alt="Image of bitcoin"
             />
-
           </div>
         </div>
       </Fade>
-
     </div>
-  )
+  );
 }
 
 export default Cancel;

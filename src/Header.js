@@ -39,12 +39,12 @@ function Header({ menuPage }) {
         <Link className="header__link">
           <motion.div animate={{ y: 0 }}
             initial={{ y:-100}}
-            transition={{ type: "spring", duration: 0.5, stiffness: 150 }} whileHover={{ scale: 1.2 }}> Rewards</motion.div>
+            transition={{ type: "spring", duration: 0.5, stiffness: 150 }} whileHover={{ scale: 1.2 }}> Account</motion.div>
         </Link>
         <Link className="header__link">
           <motion.div animate={{ y: 0 }}
             initial={{ y:-100}}
-            transition={{ type: "spring", duration: 0.8, stiffness: 150 }} whileHover={{ scale: 1.2 }}> Gift Cards</motion.div>
+            transition={{ type: "spring", duration: 0.8, stiffness: 150 }} whileHover={{ scale: 1.2 }}> My Bets</motion.div>
         </Link>
       </div>
       <div className="header__right">

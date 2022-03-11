@@ -19,7 +19,9 @@ export default function FormInvestingCoin({ setCoin, bet }) {
     <div className="Total">
       {/*       Para comprobar si esta logueado
       {!user ? <Redirect to="/account/signin"/> : <></>} */}
-      <div className="FormInvesting_card">
+      <motion.div    transition={{type:'spring', duration:2}}
+            initial={{ x:100, opacity:0 }}
+            animate={{ x: 0, opacity:1 }}  className="FormInvesting_card">
         <h3>In what Coin do you wanna make this bet <h3 style={{display:'flex', fontSize:'15px', color:'gray'}}>- Info</h3></h3>
         <div style={{ marginTop: "5%" }}>
           {coins.map((coin) => {
@@ -52,7 +54,7 @@ export default function FormInvestingCoin({ setCoin, bet }) {
           </motion.button>
           </Link>
         )}
-      </div>
+      </motion.div>
      
     </div>
   );

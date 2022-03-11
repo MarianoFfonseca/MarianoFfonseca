@@ -54,7 +54,9 @@ export default function FormInvestingBet({bet, setCoinBet}) {
 
   return (
     <div className="Total">
-      <div className="FormInvesting_card">
+      <motion.div  transition={{type:'spring', duration:2}}
+            initial={{ x:100, opacity:0 }}
+            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
         <h3>
           What is gonna be the price for you?{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -81,7 +83,7 @@ export default function FormInvestingBet({bet, setCoinBet}) {
             </motion.button>
           </Link>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

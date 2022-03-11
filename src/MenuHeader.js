@@ -9,20 +9,16 @@ function MenuHeader() {
     <div className='menuHeader'>
       <div className='menuHeader__links'>
         <Link
-          className={`${index === 0 && 'menuHeader__link--active'}`}
-          onClick={() => setIndex(0)}
+          className='menuHeader__link'
         >
           Principal page
         </Link>
         <Link
-          to='/menu/featured'
-          className={`${index === 1 && 'menuHeader__link--active'}`}
-          onClick={() => setIndex(1)}
+          to='/HowInvest'
+          className='menuHeader__link'
         >
-          Featured
+          More information
         </Link>
-        <Link>Previous Orders</Link>
-        <Link>Favorite Products</Link>
       </div>
     </div>
   )

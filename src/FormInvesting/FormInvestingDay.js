@@ -1,14 +1,6 @@
 import * as React from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormLabel from "@mui/material/FormLabel";
-import Button from "@mui/material/Button";
 import "./FormInvestingDay.css";
 import { motion } from "framer-motion";
-import FormInvestingMoney from "./FormInvestingMoney";
 import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
@@ -37,7 +29,9 @@ export default function FormInvestingDay({ bet, setDay }) {
 
   return (
     <div className="Total">
-      <div className="FormInvesting_card">
+      <motion.div  transition={{type:'spring', duration:2}}
+            initial={{ x:100, opacity:0 }}
+            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
         <h3>
           In what Day do you wanna make this bet{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -79,7 +73,7 @@ export default function FormInvestingDay({ bet, setDay }) {
             </motion.button>
           </Link>
         )}
-      </div>
+      </motion.div>
      
     </div>
   );
