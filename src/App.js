@@ -38,13 +38,25 @@ import SuccesMonthly from "./MonthlyBet/SuccesMonthly";
 import CancelMonthly from "./MonthlyBet/CancelMonthly";
 import PremadeBet from "./PremadeBet/PremadeBet";
 import ForSetBet from "./About/myBets/MyMonthlyBet/ForSetBet";
+import PersonalBets from "./PersonalBets/PersonalBets";
+import CreatePersonalBet from "./PersonalBets/CreateBet/CreatePersonalBet";
+import CreatePersonalBetFinal from "./PersonalBets/CreateBet/CreatePersonalBetFinal";
 function App() {
-  function Stap() {
-    setLoad(true);
-  }
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  //A normal bet
   const [bet, setBet] = useState({ Coin: "", Money: "", CoinBet: "", Day: "" });
+  //A social bet
+  const [socialBet, setSocialBet] = useState({
+    Title: "",
+    Description: "",
+    ImgUrl: "",
+    MaxPeapol: "",
+    Topic: "",
+    State: "",
+  });
+
+  //more
   const [monthlyB, setmonthlyB] = useState("fullYear");
   const [monthlyId, setmonthlyId] = useState(null);
   const setmonthlyBB = (x) => {
@@ -77,17 +89,16 @@ function App() {
       });
   };
   const [fPremadeBet, setfPremadeBet] = useState([]);
-  const Mine = fPremadeBet[0]
-  console.log(Mine)
 
   useEffect(() => {
     getPremadeBet();
   }, []);
 
   const [profile, setProfile] = useState([]);
+
   const [load, setLoad] = useState(false);
   useEffect(() => {
-    Stap();
+    setLoad(true);
     setProfile(getAuth());
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
@@ -135,13 +146,59 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/personalBets">
+              {!user ? (
+                <Redirect to="/personalBets" />
+              ) : (
+                <>
+                  <Header />
+                  <PersonalBets
+                    load={load}
+                    profile={profile}
+                    setCoin={setCoin}
+                    bet={bet}
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/CreatePersonalBet">
+              {!user ? (
+                <Redirect to="/CreatePersonalBet" />
+              ) : (
+                <>
+                  <Header />
+                  <CreatePersonalBet
+                    socialBet={socialBet}
+                    setSocialBet={setSocialBet}
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/CreatePersonalBetFinal">
+              {!user ? (
+                <Redirect to="/CreatePersonalBetFinal" />
+              ) : (
+                <>
+                  <Header />
+                  <CreatePersonalBetFinal
+                    socialBet={socialBet}
+                    setSocialBet={setSocialBet}
+                  />
+                </>
+              )}
+            </Route>
             <Route exact path="/formCoin">
               {!user ? (
                 <Redirect to="/formCoin" />
               ) : (
                 <>
                   <Header />
-                  <FormInvestingCoin setCoin={setCoin} bet={bet} />
+                  <FormInvestingCoin
+                    load={load}
+                    profile={profile}
+                    setCoin={setCoin}
+                    bet={bet}
+                  />
                 </>
               )}
             </Route>
@@ -191,7 +248,13 @@ function App() {
               ) : (
                 <>
                   <Header />
-                  <ForSetBet monthlyId={monthlyId} setBet={setBet} setCoinBet={setCoinBet} setDay={setDay} bet={bet} />
+                  <ForSetBet
+                    monthlyId={monthlyId}
+                    setBet={setBet}
+                    setCoinBet={setCoinBet}
+                    setDay={setDay}
+                    bet={bet}
+                  />
                 </>
               )}
             </Route>
@@ -209,7 +272,7 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <MyBets  setmonthlyId={setmonthlyId} />
+                  <MyBets setmonthlyId={setmonthlyId} />
                 </>
               )}
             </Route>
@@ -278,7 +341,11 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <PremadeBet setBet={setBet} bet={bet} fPremadeBet={fPremadeBet}/>
+                  <PremadeBet
+                    setBet={setBet}
+                    bet={bet}
+                    fPremadeBet={fPremadeBet}
+                  />
                 </>
               )}
             </Route>
@@ -297,7 +364,7 @@ function App() {
                 <Redirect to="/SuccesMonthly" />
               ) : (
                 <>
-                  <Header  />
+                  <Header />
                   <SuccesMonthly monthlyB={monthlyB} />
                 </>
               )}
@@ -307,7 +374,7 @@ function App() {
                 <Redirect to="/CancelMonthly" />
               ) : (
                 <>
-                  <Header  />
+                  <Header />
                   <CancelMonthly monthlyB={monthlyB} />
                 </>
               )}

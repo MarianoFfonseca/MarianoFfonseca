@@ -49,7 +49,7 @@ export default function FirstChart(props) {
     ],
   };
   return (
-    <div style={{marginLeft:'10%', position: "relative", height: "80%", width: "80%" }}>
+    <div  style={{marginLeft:'10%', position: "relative", height: "80%", width: "80%" }}>
       <Pie data={data} />
     </div>
   );

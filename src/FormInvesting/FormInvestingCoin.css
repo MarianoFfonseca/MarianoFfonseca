@@ -1,13 +1,16 @@
 .Total {
-background-color: black;
+background-color: #BA00A1;
 position: fixed;
 width: 100%;
 height: 100%;
 }
 .FormInvesting_card {
+    padding: 4%;
+    border-radius: 15px;
+    position: absolute;
+    background-color: #8C0079;
     color: white;
-    position:relative;
-    margin-left: 35%;
+    margin-left: 31%;
     margin-top: 10%;
     
 }

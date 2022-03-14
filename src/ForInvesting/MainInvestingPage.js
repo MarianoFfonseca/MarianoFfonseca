@@ -56,7 +56,7 @@ export default function MainInvestingPage() {
       initial={{ y: 1000}}
       transition={{ type: "spring", delay:0.7, duration: 1.5 }} 
       
-      className="card3">
+      className="card3 StyleCards">
           <div className="left3">
             <img  src={undraw_real} alt="" />
           </div>
@@ -79,7 +79,7 @@ export default function MainInvestingPage() {
             </Link>
           </div>
         </motion.div>
-      <motion.div className="card3">
+      <motion.div className="card3 StyleCards">
           <div className="rigth4">
             <h1>Monthly lotery investing 🗓</h1>
             <p>

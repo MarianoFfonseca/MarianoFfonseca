@@ -10,7 +10,7 @@ function Train() {
   return (
     <div>
       <div className="menuScreen">
-        <MenuHeader />
+
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
@@ -18,7 +18,7 @@ function Train() {
           <div className="menuScreen__right">
             <h1>🤓Train Yoursel</h1>
             <div>
-              <motion.div className="train_card3">
+              <motion.div initial={{x:500, opacity:0}} animate={{x:0, opacity:1}} transition={{ type:"spring", stiffness:75}} className="train_card3 StyleCards">
                 <div className="train_rigth4">
                   <h1>Monthly lotery investing 🗓</h1>
                   <p>
@@ -45,7 +45,7 @@ function Train() {
                   <img className="trian_img" src={undraw_online} alt="" />
                 </div>
               </motion.div>
-              <motion.div className="train_card3" >
+              <motion.div initial={{x:500, opacity:0}} animate={{x:0, opacity:1}} transition={{ delay:0.5, type:"spring", stiffness:75}} className="train_card3 StyleCards" >
                 <div className="left4 secondOne">
                   <img className="trian_img" src={undraw_online_learning} alt="" />
                 </div>
@@ -72,7 +72,7 @@ function Train() {
                   </motion.button>
                 </div>
               </motion.div>
-              <motion.div style={{marginBottom:'7%'}} className="train_card3">
+              <motion.div style={{marginBottom:'7%'}} className="train_card3 StyleCards">
                 <div className="train_rigth4">
                   <h1>Monthly lotery investing 🗓</h1>
                   <p>

@@ -6,7 +6,7 @@ import db from "../firebase";
 import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
-
+import { Link } from "react-router-dom";
 function CancelMonthly() {
 
   const user = useSelector(selectUser);
@@ -62,18 +62,20 @@ function CancelMonthly() {
 
 
   return (
-    <div>
+    <div className='Total'>
         <Fade>
         <div className="homeScreen__bottomm">
           <motion.div
             className="homeScreen__bottomLeftt">
-            <h1 style={{color:"firebrick"}}>You cancel the payment</h1>
+            <h1 style={{color:"red"}}>You cancel the payment</h1>
             <p>
               The Starbucks Foundation awarded grants to over 400 nonprofits
               serving communities of color. Recipients were nominated by
               Starbucks partners (employees).
             </p>
-            <button>Menu</button>
+            <Link to="/menu">
+              <button>Menu</button>
+            </Link>
           </motion.div>
           <div className="homeScreen__bottomRight">
 

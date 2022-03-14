@@ -24,7 +24,7 @@ function MonthlyBet({setmonthlyBB}) {
   return (
     <div>
       <div className="menuScreen">
-        <MenuHeader />
+        
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
@@ -32,7 +32,7 @@ function MonthlyBet({setmonthlyBB}) {
           <div className="menuScreen__right">
             <h1>💫Monthly Bet</h1>
             <div className="menuScreen__category">
-              <motion.div initial={{x:1000}} animate={{x:0}} transition={{duration:0.8, type:'spring', stiffness:75}} className="train_card3">
+              <motion.div initial={{x:1000}} animate={{x:0}} transition={{duration:0.8, type:'spring', stiffness:75}} className="train_card3 StyleCards">
                 <div className="train_rigth4">
                   <h1>Monthly lotery investing 🗓</h1>
                   <p>

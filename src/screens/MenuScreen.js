@@ -14,13 +14,13 @@ function MenuScreen() {
   console.log(auth);
   return (
     <div className="menuScreen">
-      <MenuHeader />
+      
       <div className="menuScreen__container">
         <div className="menuScreen__left">
           <MenuList />
         </div>
         <div className="menuScreen__right">
-          <h1>🏠 Main page</h1>
+          <h1 style={{color:'#fff'}}>🏠 Main page</h1>
           <div className="menuScreen__category">
             
               <MainInvestingPage></MainInvestingPage>

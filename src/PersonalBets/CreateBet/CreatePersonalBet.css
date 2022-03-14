@@ -1,0 +1,50 @@
+.cpersonal_container{
+    border-radius: 15px;
+    background-color: #8C0079;
+    width: 55%;
+    padding: 5%;
+    height: 50%;
+    margin-left: 15%;
+    margin-top: 5%;
+    
+
+}
+.cpersonal_container > h1 {
+    color:#FFC0E1;
+    margin-bottom: 2%;
+}
+
+
+.cpersonal_container > div > input {
+    padding: 1%;
+    display: flex;
+    border-radius: 15px;
+    font-size: 20px
+}
+.cpersonal_container > div > div > input {
+    padding: 1%;
+    display: flex;
+    border-radius: 15px;
+    font-size: 20px
+}
+.cpersonal_button {
+    margin-top: 5%;
+}
+
+.cpersonal_small {
+    margin-top: 2%;
+    padding: 0.5%;
+    font-size: 15px;
+}
+.cpersonal_img {
+    display: flex;
+}
+.cpersonal_description {
+    font-size: 20px;
+    border-radius: 15px;
+    margin-top: 2%;
+    text-align: left;
+    padding: 2%;
+    width: 50%;
+    height: 100px;
+}

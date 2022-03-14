@@ -3,14 +3,14 @@
   position: fixed;
   width: 100%;
   min-height: 100%;
-  background-color: #000;
+  background-color: #BA00A1;
 }
 
 .forset_container {
   border: solid;
   border-radius: 30px;
   border-width: 1px;
-  border-color: white;
+  border-color: #8C0079;
   margin-top: 5%;
   margin-left: 23%;
 width: 50%;
@@ -20,5 +20,5 @@ height: auto;
 }
 .forset_container > div > input {
     margin-top: 2%;
-    margin-bottom: 5%;
+    margin-bottom: 5%;  
 }

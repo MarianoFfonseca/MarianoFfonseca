@@ -64,7 +64,7 @@ export default function FormInvestingBet({bet, setCoinBet}) {
           </p>
         </h3>
         <div style={{ marginTop: "5%" }}>
-         <input style={{padding:'1%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} type="number" onChange={((e)=>{setCoinBet(e.target.value)})} name="" id="" />
+         <input style={{padding:'2%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} type="number" onChange={((e)=>{setCoinBet(e.target.value)})} name="" id="" />
         </div>
         {bet.CoinBet && (
           <Link to="/ReviewBet">

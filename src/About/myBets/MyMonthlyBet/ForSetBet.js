@@ -82,7 +82,7 @@ function ForSetBet({setCoinBet, setDay, bet, setBet, monthlyId}) {
       console.log(bet)
   return (
     <div className="forset_total">
-      <div className="forset_container">
+      <div className="forset_container StyleCards">
         <h1>Select details of the bet</h1>
        
         <div style={{ marginTop: "5%" }}>
@@ -107,7 +107,7 @@ function ForSetBet({setCoinBet, setDay, bet, setBet, monthlyId}) {
           })}</div>
         </div>
         <div>
-        <h2>Select the day  of the bet</h2>
+        <h2>Select the price of the coin</h2>
           <input placeholder="Select the coin value" style={{padding:'1%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} onChange={((e)=>{setCoinBet(e.target.value)})} type="number" />
         </div>
         <Link to='/about/MyBets'> <button style={{color:'white'}} onClick={EasyFirebase} >Create the bet</button></Link>

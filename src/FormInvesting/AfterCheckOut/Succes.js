@@ -100,9 +100,9 @@ function Succes() {
     betLotery();
   }, []);
   return (
-    <div>
+    <div className="Total">
       <Fade>
-        <div className="homeScreen__bottomm">
+        <div  className="homeScreen__bottomm  ">
           <motion.div className="homeScreen__bottomLeftt">
             <h1>The payment was made successfully</h1>
             <p>
@@ -111,9 +111,9 @@ function Succes() {
               Starbucks partners (employees).
             </p>
             <p>
-              Track your bet 👉 <Link to='/about/Mybets'> here</Link> 👈
+              Track your bet 👉 <Link to='/about/Mybets' style={{color:'white'}}> here</Link> 👈
             </p>
-            <button>Menu</button>
+            <Link to='/menu' style={{color:'white'}}><button>Menu</button></Link>
           </motion.div>
           <div className="homeScreen__bottomRight">
             <motion.img

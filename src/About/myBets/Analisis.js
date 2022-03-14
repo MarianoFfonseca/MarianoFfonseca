@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Button } from "@mui/material";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 function Analisis() {
   const user = useSelector(selectUser);
@@ -67,12 +67,11 @@ function Analisis() {
 
   return (
     <div className="menuScreen">
-      <MenuHeader />
       <div className="menuScreen__container">
         <div className="menuScreen__left">
           <MenuList></MenuList>
         </div>
-        <div style={{width:'100%'}}>
+        <div style={{ width: "100%", minHeight: "100vh" }}>
           {Users &&
             Users.map((fUsers) => {
               if (fUsers.email === user.email) {
@@ -86,16 +85,18 @@ function Analisis() {
                   return (
                     <div>
                       <h1 style={{ fontSize: "50px" }}>📊Analisis</h1>
-                      
-                      <h3 style={{marginTop:'3%'}}>First select which of yours bets you wanna analise</h3>
+
+                      <h3 style={{ marginTop: "3%" }}>
+                        First select which of yours bets you wanna analise
+                      </h3>
 
                       <div>
                         <FormControl sx={{ m: 1, minWidth: 200 }}>
-                          <InputLabel  id="demo-simple-select-autowidth-label">
+                          <InputLabel style={{}} id="demo-simple-select-autowidth-label">
                             Select a bet
                           </InputLabel>
-                          <Select 
-                          style={{borderRadius:'30px'}}
+                          <Select
+                            style={{ borderRadius: "30px", backgroundColor:'#FFC0E1' }}
                             labelId="demo-simple-select-autowidth-label"
                             id="demo-simple-select-autowidth"
                             value={age}
@@ -123,7 +124,19 @@ function Analisis() {
                         </FormControl>
                       </div>
                       {changed == false && age !== "" ? (
-                        <motion.button initial={{x:-100, opacity:0}} animate={{x:0, opacity:1}} transition={{type:'spring', duration:1, stiffness:100}}  style={{marginLeft:'1%'}} onClick={ChangeToTrue}>Reload</motion.button>
+                        <motion.button
+                          initial={{ x: -100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{
+                            type: "spring",
+                            duration: 1,
+                            stiffness: 100,
+                          }}
+                          style={{ marginLeft: "1%"}}
+                          onClick={ChangeToTrue}
+                        >
+                          Reload
+                        </motion.button>
                       ) : null}
 
                       <Charts

@@ -37,14 +37,14 @@ function Charts(props) {
               <hr />
 
               <div className="charts_container">
-                <div className="charts_card first">
+                <div className="charts_card StyleCards first">
                   <SecondChart
                     AllBets={props.AllBets}
                     SelectedBet={props.SelectedBet}
                     PriceBitcoin={priceB}
                   ></SecondChart>
                 </div>
-                <div className="charts_card second">
+                <div className="charts_card StyleCards second">
                   {" "}
                   <FirstChart
                     AllBets={props.AllBets}

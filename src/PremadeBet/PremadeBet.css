@@ -1,35 +1,33 @@
 .premade_img {
-    
-        margin-bottom: 5%;
-        margin-left: 50px;
-        max-width: 60%;
-        margin-top: -4%;
-
+  margin-bottom: 5%;
+  margin-left: 50px;
+  max-width: 60%;
+  margin-top: -4%;
 }
 
-.premade_title{
-    text-align: center;
+.premade_title {
+  text-align: center;
 }
 .train_rigth4 > li {
-    font-size: 50px;
+  font-size: 50px;
 }
 
-.premade_bottom{
-    text-align: center;
-    margin-top: 2%;
-
+.premade_bottom {
+  text-align: center;
+  margin-top: 2%;
 }
 
 .premade_bottom > p {
-    font-size: 30px;
+  font-size: 30px;
 }
 .premade_bottom > h1 {
-    margin-bottom: 4%;
+  margin-bottom: 4%;
 }
-.premade_button{
-    margin-top: 2%;
-    width: 95%;
-    height:70px;
-    background-color: #FF0084;
-    color: white;
+.premade_button {
+  margin-top: 2%;
+  width: 95%;
+  height: 70px;
+  background-color: #ff0084;
+  border-color: #ff0084;
+  color: white;
 }

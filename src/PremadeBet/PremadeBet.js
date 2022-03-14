@@ -26,19 +26,18 @@ function PremadeBet({ setBet, bet, fPremadeBet}) {
   return (
     <div>
       <div className="menuScreen">
-        <MenuHeader />
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
           </div>
           <div className="menuScreen__right">
-            <h1>💣Pre-made Bet</h1>
+            <h1 className="StyleTitle">💣Pre-made Bet</h1>
             <div className="menuScreen__category">
               <motion.div
                 initial={{ x: 1000 }}
                 animate={{ x: 0 }}
                 transition={{ duration: 0.8, type: "spring", stiffness: 75 }}
-                className="train_card3"
+                className="train_card3 StyleCards"
               >
                 <div className="train_rigth4">
                   <h1>Every week a different recommendation</h1>
@@ -64,7 +63,7 @@ function PremadeBet({ setBet, bet, fPremadeBet}) {
                 initial={{ x: 1000 }}
                 animate={{ x: 0 }}
                 transition={{ duration: 0.8, delay:0.4, type: "spring", stiffness: 75 }}
-                className="train_card3"
+                className="train_card3 StyleCards"
                 style={{display:'block'}}
               >
                 <div style={{marginTop:'5%'}} >

@@ -48,17 +48,17 @@ export default function MyLastsBets() {
     }, []);
 
   return (
-    <div className='mybets_container' component={Paper}>
+    <div className='mybets_container StyleCards' component={Paper}>
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Coin</TableCell>
+            <TableCell style={{color:"#FFC0E1"}}>Coin</TableCell>
           
-            <TableCell align="right">Bet of</TableCell>
-            <TableCell align="right">Day of the bet</TableCell>
-            <TableCell align="right">Price of Coin (bet)</TableCell>
-            <TableCell align="right">Final price of the coin</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell style={{color:"#FFC0E1"}} align="right">Bet of</TableCell>
+            <TableCell style={{color:"#FFC0E1"}} align="right">Day of the bet</TableCell>
+            <TableCell style={{color:"#FFC0E1"}} align="right">Price of Coin (bet)</TableCell>
+            <TableCell style={{color:"#FFC0E1"}} align="right">Final price of the coin</TableCell>
+            <TableCell style={{color:"#FFC0E1"}} align="right">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -81,11 +81,11 @@ export default function MyLastsBets() {
                     <TableCell component="th" scope="row">
                       {bet.Coin}
                     </TableCell>
-                    <TableCell align="right">${bet.Money}</TableCell>
-                    <TableCell align="right">{bet.Day}</TableCell>
-                    <TableCell align="right">{bet.CoinBet}</TableCell>
-                    <TableCell align="right">Final Price</TableCell>
-                    <TableCell align="right">
+                    <TableCell style={{color:"#FFC0E1"}} align="right">${bet.Money}</TableCell>
+                    <TableCell style={{color:"#FFC0E1"}} align="right">{bet.Day}</TableCell>
+                    <TableCell style={{color:"#FFC0E1"}} align="right">{bet.CoinBet}</TableCell>
+                    <TableCell style={{color:"#FFC0E1"}} align="right">Final Price</TableCell>
+                    <TableCell style={{color:"#FFC0E1"}} align="right">
                                   {bet.status}
                                   </TableCell>
                                     </TableRow>

@@ -49,6 +49,25 @@
         "type": "😲 My account",
         "image": "https://globalassets.starbucks.com/assets/833e95732cc849a4b1fe1d315771ae0a.jpg?impolicy=1by1_wide_1242"
       }
-    ]
+    ],
+    "personalBets": [
+      {
+        "path": "/personalBets",
+        "type": "😍PersonalBets",
+        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
+      },{
+        "path": "/HowInvest",
+        "type": "🔎find personal bet",
+        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
+      },{
+        "path": "/HowInvest",
+        "type": "🔨Create personal bet",
+        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
+      
+      },{
+        "path": "/HowInvest",
+        "type": "🔖MyPersonalBets",
+        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
+      }]
   }
 ]

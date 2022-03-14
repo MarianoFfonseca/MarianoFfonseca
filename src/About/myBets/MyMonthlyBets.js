@@ -56,7 +56,7 @@ export default function MyMonthlyBets({setmonthlyId}) {
   return (
     <div
       style={{ textAlign: "center" }}
-      className="mybets_container"
+      className="mybets_container StyleCards"
       component={Paper}
     >
       <h1>Here you can use your monthly bets</h1>
@@ -68,7 +68,7 @@ export default function MyMonthlyBets({setmonthlyId}) {
               <div className="mymonthly_div">
                 <p>You have {x.data.nBets} left</p> 
                 <Link to='/ForSetBet' onClick={()=>setmonthlyId(x.id)}>
-                <motion.button whileHover={{scale:1.2}}>Use one bet</motion.button></Link>
+                <motion.button style={{marginTop:'2%'}} whileHover={{scale:1.2}}>Use one bet</motion.button></Link>
             
               </div>
             );

@@ -1,13 +1,33 @@
 .upContainer {
   display: flex;
 }
+button {
+  color: aliceblue;
+}
+
+/* For general */
+.StyleCards {
+  background-color: #8C0079;
+  border-color: #8C0079;
+  color: #FFC0E1;
+  
+}
+.StyleLi {
+  color: #FFC0E1;
+}
+.StyleTitle {
+  color: #FFC0E1;
+}
+
 
 .card1 {
   width: 45%;
   margin-right: 2%;
   display: flex;
-  border-color: black;
-  border-radius: 40px;
+  background-color: #8C0079;
+  
+  border-color: #8C0079;
+  border-radius: 15px;
   border-style: solid;
   border-width: 1px;
   padding-top: 2%;
@@ -19,8 +39,7 @@
   margin-right: 2%;
   margin-top: 2%;
   display: flex;
-  border-color: black;
-  border-radius: 40px;
+  border-radius: 15px;
   border-style: solid;
   border-width: 1px;
   padding-top: 2%;
@@ -74,7 +93,8 @@ button {
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
-  color: #000;
+  color: #FFC0E1;
+  border-color: #FFC0E1;
   font-weight: 600;
   outline: none;
   font-size: medium;

@@ -98,7 +98,7 @@ function SuccesMonthly() {
     betLotery();
   }, []);
   return (
-    <div>
+    <div className='Total'>
       <Fade>
         <div className="homeScreen__bottomm">
           <motion.div className="homeScreen__bottomLeftt">
@@ -111,7 +111,9 @@ function SuccesMonthly() {
             <p>
               Track your bet 👉 <Link to='/about/Mybets'> here</Link> 👈
             </p>
-            <button>Menu</button>
+            <Link to="/menu">
+              <button>Menu</button>
+            </Link>
           </motion.div>
           <div className="homeScreen__bottomRight">
             <motion.img

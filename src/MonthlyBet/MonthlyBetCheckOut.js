@@ -124,7 +124,7 @@ export default function MonthlyBetCheckOut({ monthlyB }) {
 
   return (
     <div className="Total">
-      <div className="FormInvesting_card">
+      <div className="FormInvesting_card ">
         <h3>
           Review your bet before check out{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>

@@ -62,11 +62,11 @@ function Cancel() {
   // });
 
   return (
-    <div>
+    <div className="Total">
       <Fade>
         <div className="homeScreen__bottomm">
           <motion.div className="homeScreen__bottomLeftt">
-            <h1 style={{ color: "firebrick" }}>You cancel the payment</h1>
+            <h1 style={{ color: "red" }}>You cancel the payment</h1>
             <p>
               The Starbucks Foundation awarded grants to over 400 nonprofits
               serving communities of color. Recipients were nominated by

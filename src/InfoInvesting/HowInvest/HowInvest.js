@@ -25,7 +25,7 @@ function HowInvest() {
 
   return (
     <div className="menuScreen">
-      <MenuHeader />
+      
       <div className="menuScreen__container">
         <div className="menuScreen__left">
           <MenuList></MenuList>

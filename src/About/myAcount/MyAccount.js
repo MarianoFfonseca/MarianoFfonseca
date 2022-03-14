@@ -73,7 +73,7 @@ function MyAccount() {
     <div>
       {/* onClick={() => {navigator.clipboard.writeText(x.uid) alert("copied!")}} */}
       <div className="menuScreen">
-        <MenuHeader />
+        
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
@@ -92,9 +92,9 @@ function MyAccount() {
                             animate={{ y: 0 }}
                             initial={{ y: 1000 }}
                             transition={{ type: "spring", duration: 1.5 }}
-                            className="myaccount_card1"
+                            className="myaccount_card1 StyleCards"
                           >
-                            <div className="myaccount_cardup responsive">
+                            <div className="myaccount_cardup  responsive">
                               <div style={{ width: "50%" }}>
                                 <p>📜Name:</p>
                                 <motion.h1
@@ -172,7 +172,7 @@ function MyAccount() {
                           >
                             🔧Change
                           </motion.h1>
-                          <div className="myaccount_card2">
+                          <div className="myaccount_card2 StyleCards">
                             <div>
                               <p>~ You can change your password</p>
                               <motion.button

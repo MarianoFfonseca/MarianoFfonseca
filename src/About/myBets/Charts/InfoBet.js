@@ -50,10 +50,10 @@ export default function InfoBet(props) {
           animate={{ y: 0 }}
           initial={{ y: 1000 }}
           transition={{ type: "spring", duration: 1.5 }}
-          className="myaccount_card1"
+          className="myaccount_card1 StyleCards"
         >
           <div style={{marginLeft:'7%'}}>
-          <div className="myaccount_cardup responsive">
+          <div className="myaccount_cardup responsive ">
             <div style={{ width: "50%" }}>
               <h3>🙍‍♂️Users:</h3>
               <motion.h1

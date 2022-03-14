@@ -34,7 +34,7 @@ function MyBets({setmonthlyId}) {
 
   return (
     <div className="menuScreen">
-      <MenuHeader />
+      
       <div className="menuScreen__container">
         <div className="menuScreen__left">
           <MenuList />
@@ -71,7 +71,7 @@ function MyBets({setmonthlyId}) {
                       </div>
                       <div style={{marginBottom:'15%'}}>
                       <h1 style={{ fontSize: "50px", marginTop: "15%" }}>
-                      📑Your Monthly Bets
+                      😳Your Monthly Bets
                       </h1>
                       <motion.div initial={{x:1500}} animate={{x:0}} transition={{type:'spring', delay:0.2, stiffness:75, duration:1.5}}>
                       <MyMonthlyBets  setmonthlyId={setmonthlyId}></MyMonthlyBets>
