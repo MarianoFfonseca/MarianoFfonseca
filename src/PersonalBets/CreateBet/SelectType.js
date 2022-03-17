@@ -1,19 +1,14 @@
 import * as React from "react";
-import "./FormInvestingCoin.css";
+import "../../FormInvesting/FormInvestingCoin.css";
 import { motion } from "framer-motion";
 import {
   Link
 } from "react-router-dom";
 
-  
+export default function SelectType({ setSocialBet, socialBet }) {
+ console.log(socialBet)
 
-
-export default function FormInvestingCoin({ profile, load, setCoin, bet }) {
- 
-  const [value, setValue] = React.useState("Etherum");
-  const [Doit, setDoit] = React.useState(false);
-  const coins = ["Etherum", "Bitcoin"];
-  console.log(profile.currentUser, 'aki')
+  const coins = ["Private", "Public"];
   return (
     <div className="Total"> 
      
@@ -24,14 +19,15 @@ export default function FormInvestingCoin({ profile, load, setCoin, bet }) {
         className="FormInvesting_card"
       >
         <h3>
-          In what Coin do you wanna make this bet{" "}
+          How you want this bet?
           <h3 style={{ display: "flex", fontSize: "15px", color: "gray" }}>
             - Info
           </h3>
         </h3>
-        <div style={{ marginTop: "5%" }}>
+        <div style={{ marginTop: "10%" }}>
           {coins.map((coin) => {
-            let spanClass = bet.Coin === coin ? "active" : "";
+            let spanClass = socialBet.State === coin ? "active" : "";
+            let State = coin;
             return (
               <motion.li
                 whileHover={{
@@ -40,15 +36,15 @@ export default function FormInvestingCoin({ profile, load, setCoin, bet }) {
                 }}
                 className="li"
                 key={coin}
-                onClick={() => setCoin(coin)}
+                onClick={()=>setSocialBet({...socialBet, State})}
               >
                 <span className={spanClass}>{coin}</span>
               </motion.li>
             );
           })}
         </div>
-        {bet.Coin && (
-          <Link to="/formDay">
+      
+          <Link to="/CreatePersonalBet">
             <motion.button
               transition={{ type: "spring" }}
               initial={{ x: "-1000px" }}
@@ -63,7 +59,7 @@ export default function FormInvestingCoin({ profile, load, setCoin, bet }) {
               Next Question
             </motion.button>
           </Link>
-        )}
+      
       </motion.div>
     </div>
   );

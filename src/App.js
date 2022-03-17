@@ -41,11 +41,22 @@ import ForSetBet from "./About/myBets/MyMonthlyBet/ForSetBet";
 import PersonalBets from "./PersonalBets/PersonalBets";
 import CreatePersonalBet from "./PersonalBets/CreateBet/CreatePersonalBet";
 import CreatePersonalBetFinal from "./PersonalBets/CreateBet/CreatePersonalBetFinal";
+import GetCryptoValues from "./GetCryptoValues";
+import CreateOptions from "./PersonalBets/CreateBet/CreateOptions";
+import AfterSocialBet from "./PersonalBets/CreateBet/After/AfterSocialBet";
+import DetailsSocial from "./PersonalBets/CreateBet/After/DetailsSocial";
+import firebase from "firebase/compat/app";
+import { motion } from "framer-motion";
+import SelectType from "./PersonalBets/CreateBet/SelectType";
+import SuccesOver from "./PersonalBets/CreateBet/After/SuccesOver";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   //A normal bet
   const [bet, setBet] = useState({ Coin: "", Money: "", CoinBet: "", Day: "" });
+  const d = new Date();
+    
+  const f = d.toDateString();
   //A social bet
   const [socialBet, setSocialBet] = useState({
     Title: "",
@@ -53,8 +64,21 @@ function App() {
     ImgUrl: "",
     MaxPeapol: "",
     Topic: "",
-    State: "",
+    State: "Public",
+    Price: "Free",
+    NOptions: "2",
+    Password: "",
+    FinalDay: f,
   });
+
+  const [socialOptions, setSocialOptions] = useState({
+    NOptions: socialBet.NOptions,
+    Option1: "",
+    Option2: "",
+    Option3: "",
+    Option4: "",
+  });
+  console.log(socialOptions);
 
   //more
   const [monthlyB, setmonthlyB] = useState("fullYear");
@@ -62,8 +86,7 @@ function App() {
   const setmonthlyBB = (x) => {
     setmonthlyB(x);
   };
-  console.log(monthlyB);
-  console.log(bet);
+
   const setCoin = (Coin) => {
     setBet({ ...bet, Coin });
   };
@@ -94,12 +117,9 @@ function App() {
     getPremadeBet();
   }, []);
 
-  const [profile, setProfile] = useState([]);
-
   const [load, setLoad] = useState(false);
   useEffect(() => {
     setLoad(true);
-    setProfile(getAuth());
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         // User is signed in
@@ -116,10 +136,21 @@ function App() {
       }
     });
   }, [dispatch]);
-  console.log(profile.currentUser);
+  const profile = getAuth();
+  //For comprube
+  const [is, setIs] = useState("Nothing");
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setIs("Si");
+    } else {
+      setIs("No");
+    }
+  });
+
   return (
     <div className="app">
-      {load === true ? (
+      <GetCryptoValues />
+      {is !== "Nothing" ? (
         <Router>
           <Switch>
             <Route exact path="/">
@@ -130,25 +161,25 @@ function App() {
               </Fade>
             </Route>
             <Route exact path="/account/signin">
-              {user ? <Redirect to="/menu" /> : <LoginScreen />}
+              {is === "Si" ? <Redirect to="/menu" /> : <LoginScreen />}
             </Route>
             <Route exact path="/account/create">
-              {user ? <Redirect to="/menu" /> : <SignupScreen />}
+              {is === "Si" ? <Redirect to="/menu" /> : <SignupScreen />}
             </Route>
             {/* For the menu */}
             <Route exact path="/menu">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header menuPage />
-                  <MenuScreen />
+                  <MenuScreen load={load} />
                 </>
               )}
             </Route>
             <Route exact path="/personalBets">
-              {!user ? (
-                <Redirect to="/personalBets" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -161,9 +192,32 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/SuccesOver">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <SuccesOver/>
+                </>
+              )}
+            </Route>
+            <Route exact path="/SelectType">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <SelectType
+                    socialBet={socialBet}
+                    setSocialBet={setSocialBet}
+                  />
+                </>
+              )}
+            </Route>
             <Route exact path="/CreatePersonalBet">
-              {!user ? (
-                <Redirect to="/CreatePersonalBet" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -174,22 +228,57 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/CreateOptions">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <CreateOptions
+                    socialBet={socialBet}
+                    socialOptions={socialOptions}
+                    setSocialOptions={setSocialOptions}
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/MySocialBets">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <AfterSocialBet/>
+                </>
+              )}
+            </Route>
+            <Route path="/MySocialBets/details/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <DetailsSocial user={user} />
+                </>
+              )}
+            </Route>
             <Route exact path="/CreatePersonalBetFinal">
-              {!user ? (
-                <Redirect to="/CreatePersonalBetFinal" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
                   <CreatePersonalBetFinal
                     socialBet={socialBet}
                     setSocialBet={setSocialBet}
+                    socialOptions={socialOptions}
                   />
                 </>
               )}
             </Route>
             <Route exact path="/formCoin">
-              {!user ? (
-                <Redirect to="/formCoin" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -203,8 +292,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/formDay">
-              {!user ? (
-                <Redirect to="/formDay" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -213,8 +302,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/formMoney">
-              {!user ? (
-                <Redirect to="/formMoney" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -223,8 +312,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/formCoinBet">
-              {!user ? (
-                <Redirect to="/formCoinBet" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -233,8 +322,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/ReviewBet">
-              {!user ? (
-                <Redirect to="/ReviewBet" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -243,8 +332,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/ForSetBet">
-              {!user ? (
-                <Redirect to="/ForSetBet" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -259,15 +348,27 @@ function App() {
               )}
             </Route>
             <Route exact path="/cancel">
-              <Header />
-              <Cancel />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <Cancel />
+                </>
+              )}
             </Route>
             <Route exact path="/succes">
-              <Header />
-              <Succes />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <Succes />
+                </>
+              )}
             </Route>
             <Route exact path="/about/Mybets">
-              {profile.currentUser === null ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -277,7 +378,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/about/Analisis">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -287,7 +388,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/about/MyAccount">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -297,8 +398,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/VerifyEmail">
-              {!user ? (
-                <Redirect to="/VerifyEmail" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <VerifyEmail />
@@ -306,7 +407,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/Train">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -316,7 +417,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/HowInvest">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -326,7 +427,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/MonthlyBet">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -336,7 +437,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/PremadeBet">
-              {!user ? (
+              {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
@@ -350,8 +451,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/MonthlyBetCheckOut">
-              {!user ? (
-                <Redirect to="/MonthlyBetCheckOut" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header menuPage />
@@ -360,8 +461,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/SuccesMonthly">
-              {!user ? (
-                <Redirect to="/SuccesMonthly" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -370,8 +471,8 @@ function App() {
               )}
             </Route>
             <Route exact path="/CancelMonthly">
-              {!user ? (
-                <Redirect to="/CancelMonthly" />
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
@@ -390,7 +491,26 @@ function App() {
           </Switch>
         </Router>
       ) : (
-        <p>Loading</p>
+        <div className="ForLoading">
+          <motion.h3
+            style={{ color: "white" }}
+           
+            transition={{ yoyo: Infinity, duration: 2 }}
+            className="ImgLoading"
+          >
+            Loading{" "}
+            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity }}>
+              .{" "}
+            </motion.p>
+            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity, delay:0.4 }}>
+              .{" "}
+            </motion.p>
+            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity, delay:0.8 }}>
+              .{" "}
+            </motion.p>
+           
+          </motion.h3>
+        </div>
       )}
     </div>
   );

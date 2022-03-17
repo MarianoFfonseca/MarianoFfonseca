@@ -2,10 +2,9 @@ import React from "react";
 import "./CreatePersonalBet.css";
 import {motion} from 'framer-motion'
 import {Link} from 'react-router-dom'
+import { duration } from "@material-ui/core";
 
 function CreatePersonalBet({ setSocialBet, socialBet }) {
-
-
 
     const changeTitle = (e) => {
     const Title = e.target.value;
@@ -31,8 +30,12 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
   };
   return (
     <div className="Total">
-      <div className="cpersonal_container">
-        <h1>Create your personal bet</h1>
+      <motion.div
+      initial={{x:1000, scale:0}}
+      animate={{x:0, scale:1}}
+      transition={{duration:1, type:'spring', stiffness:100}}
+      className="cpersonal_container">
+        <h1>Basic information of the bet!</h1>
         <div className="cpersonal_div">
           <div style={{ display: "flex" }}>
             <input
@@ -40,13 +43,7 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
               type="text"
               placeholder="Bets title"
             />
-            <input
-              onChange={changeImgUrl}
-              style={{ marginLeft: "5%" }}
-              className="cpersonal_img"
-              type="text"
-              placeholder="Bets image url"
-            />
+            
           </div>
           <textarea
             onChange={changeDescription}
@@ -78,6 +75,11 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
             <motion.button 
             initial={{x:-10, opacity:0}}
             animate={{x:0, opacity:1}}
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+              boxShadow: "0px 0px 8px #fff",
+            }}
             className="cpersonal_button">
               Next page
             </motion.button></Link>
@@ -85,7 +87,7 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
             <></>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

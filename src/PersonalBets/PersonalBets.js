@@ -22,11 +22,11 @@ function PersonalBets() {
                 style={{ textAlign: "center", marginTop: "2%" }}
                 className="upContainer"
               >
-                <Link to="/CreatePersonalBet" className="card1" style={{color:'#FFC0E1'}}>
+                <Link to="/SelectType" className="card1" style={{color:'#FFC0E1'}}>
                   {" "}
                   <motion.div
-                    animate={{ x: 0 }}
-                    initial={{ x: 1000 }}
+                    animate={{ x: 0, opacity:1 }}
+                    initial={{ x: 20, opacity:0 }}
                     transition={{ type: "spring", duration: 1.5 }}
                   >
                     <motion.div whileHover={{ scale: 1.1, cursor: "pointer" }}>
@@ -43,10 +43,10 @@ function PersonalBets() {
                     </motion.div>
                   </motion.div>
                 </Link>
-                <Link to="/CreatePersonalBet" className="card1" style={{color:'#FFC0E1'}}>
+                <Link to="/SelectType" className="card1" style={{color:'#FFC0E1'}}>
                 <motion.div
-                  animate={{ x: 0 }}
-                  initial={{ x: 1000 }}
+                  animate={{ x: 0, opacity:1 }}
+                  initial={{ x: 20, opacity:0 }}
                   transition={{ type: "spring", duration: 1.2, delay: 0.5 }}
                
                 >

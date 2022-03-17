@@ -3,7 +3,6 @@ import FirstChart from "./Charts/FirstChart";
 import InfoBet from "./Charts/InfoBet";
 import SecondChart from "./Charts/SecondChart";
 import { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
 import "./Charts.css";
 function Charts(props) {
   const [priceB, setPriceB] = useState(null);
@@ -15,6 +14,22 @@ function Charts(props) {
       .then((data) => {
         setPriceB(data.USD.last);
         setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      fetch("https://api.coinpaprika.com/v1/tickers/btc-bitcoin")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.quotes.USD.price)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      fetch("https://api.coinpaprika.com/v1/tickers/eth-ethereum")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.quotes.USD.price)
       })
       .catch((error) => {
         console.log(error);

@@ -102,7 +102,6 @@ export default function ReviewBet({bet}) {
   const redirectToCheckOut = async (e) => {
     e.preventDefault();
     EasyFirebase()
-    console.log("redirect");
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
     console.log("Stripe checkout error", error);
@@ -110,7 +109,6 @@ export default function ReviewBet({bet}) {
   const redirectToCheckOut5 = async (e) => {
     e.preventDefault();
     EasyFirebase()
-    console.log("redirect");
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions5);
     console.log("Stripe checkout error", error);
@@ -118,7 +116,6 @@ export default function ReviewBet({bet}) {
   const redirectToCheckOut20 = async (e) => {
     e.preventDefault();
     EasyFirebase()
-    console.log("redirect");
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions20);
     console.log("Stripe checkout error", error);

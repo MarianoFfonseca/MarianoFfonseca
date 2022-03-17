@@ -1,0 +1,19 @@
+.individual_div{
+    background-color: #FF0084;
+    width: 80%;
+    height: auto;
+    padding: 2%;
+    border-radius: 5px;
+    margin-top: 2%;
+}
+.individual_div > div> p {
+    margin-top: 2%;
+}
+.individual_div > div > div {
+    margin-top: 2%;
+display: flex;
+}
+.two{
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
