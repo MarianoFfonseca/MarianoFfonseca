@@ -25,7 +25,7 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/formCoin'>
-            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               Lets Start
             </motion.button></Link>
           </div>
@@ -44,7 +44,7 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/PremadeBet'>
-            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               Learn more
             </motion.button></Link>
           </div>
@@ -68,12 +68,12 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/about/MyBets'>
-            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               Track
             </motion.button>
             </Link>
             <Link to='/about/Analisis'>
-            <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button style={{marginLeft:30}} whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               Analize
             </motion.button>
             </Link>
@@ -87,11 +87,11 @@ export default function MainInvestingPage() {
             Architecto, vel nam autem laudantium enim ad assumenda reprehenderit ipsa veritatis consequuntur laborum iusto, aliquam itaque at? Facere laborum voluptates necessitatibus blanditiis a saepe vitae qui sequi! Placeat, dolores commodi! 
             </p>
             <Link to='/MonthlyBet'>
-            <motion.button whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               See plans
             </motion.button></Link>
             <Link to='/MonthlyBet'>
-            <motion.button style={{marginLeft:30}} whileHover={{ scale: 1.2, originX:0 }}>
+            <motion.button style={{marginLeft:30}} whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
               More info
             </motion.button></Link>
           </div>

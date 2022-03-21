@@ -5,13 +5,11 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
 import db from "../../../firebase";
 import Individual from "./Individual";
-import SuccesOver from "./SuccesOver";
 function AfterSocialBet() {
   const user = useSelector(selectUser);
   const [socialBets, setSocialBets] = useState([]);
   const [socialOptions, setSocialOptions] = useState([]);
   const [usersBet, setUsersBet] = useState([]);
-
   const betLotery = () => {
     db.collection("socialBets")
       .get()
@@ -45,10 +43,8 @@ function AfterSocialBet() {
         return <Individual socialBet={socialBet} />;
       }
     });
-
     return final;
   };
-
   useEffect(() => {
     betLotery();
   }, []);
@@ -63,9 +59,8 @@ function AfterSocialBet() {
           <div className="menuScreen__right">
             <h1 style={{ color: "#fff" }}>🔖 My Social Bets</h1>
             <div className="menuScreen__category">
-             
-              {socialBets &&
-                socialBets.map((socialBet) => ForIndividual2(socialBet))}
+                  {socialBets &&
+                    socialBets.map((socialBet) => ForIndividual2(socialBet))}
             </div>
           </div>
         </div>

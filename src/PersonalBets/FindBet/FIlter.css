@@ -1,0 +1,47 @@
+.filter_card {
+    position: absolute;
+    background-color: #f2f2f2;
+    width: auto;
+    color: gray;
+    padding: 10%;
+    margin-top: 10%;
+    border-radius: 5px;
+}
+.filter_container>div {
+    margin-top: 5%;
+}
+.filter_container > div > div > input {
+    outline: none;
+    border: none;
+    margin-top: 5%;
+    max-width: 100%;
+    height: 5vh;
+}
+.filter_state > div > button {
+    width: 100%;
+    margin-top: 6%;
+    color: blueviolet;
+    border-color: blueviolet;
+}
+.filter_state > div > button:hover {
+    color: white;
+    background-color: blueviolet;
+    border-color: white;
+}
+.filter_date {
+    width:95%;
+    height: 5vh;
+}
+.filter_button {
+    margin-top: 5%;
+    width: 100%;
+    color: blueviolet;
+    border-color: blueviolet;
+}
+.filter_button:hover {
+    color: white;
+    background-color: blueviolet;
+}
+.seleccionado {
+    background-color: greenyellow;
+}

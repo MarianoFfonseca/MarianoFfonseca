@@ -39,6 +39,7 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
         <div className="cpersonal_div">
           <div style={{ display: "flex" }}>
             <input
+            className='cpersonal_title'
               onChange={changeTitle}
               type="text"
               placeholder="Bets title"

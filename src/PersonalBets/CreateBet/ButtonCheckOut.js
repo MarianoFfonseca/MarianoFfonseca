@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import db from "../../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
-function ButtonCheckOut({ Price, socialBet, socialOptions }) {
+function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
   const unique_id = uuid();
   const user = useSelector(selectUser);
   const FirebaseEasy = () => {
+    setUidPersonal(unique_id)
     const d = new Date(socialBet.FinalDay);
     const f = d.toDateString();
     db.collection("socialBets")
@@ -23,13 +23,16 @@ function ButtonCheckOut({ Price, socialBet, socialOptions }) {
         MaxPeapol: socialBet.MaxPeapol,
         Topic: socialBet.Topic,
         State: socialBet.State,
+        Coin: socialBet.Coin,
         Price: socialBet.Price,
         NOptions: socialBet.NOptions,
         Password: socialBet.Password,
         userUid: user.uid,
+        userEmail:user.email,
         usersInBet: [user.email],
         FinalDay: f,
         id: unique_id,
+        payment: false
       })
       .then(function () {
         console.log("Value successfully written!");
@@ -153,7 +156,7 @@ function ButtonCheckOut({ Price, socialBet, socialOptions }) {
   const ButtonForCheckOut = () => {
     if (Price === "Free") {
       return (
-        <Link to="/MySocialBets">
+        <Link to="/succesOver">
           <motion.button
             whileHover={{
               scale: 1.2,

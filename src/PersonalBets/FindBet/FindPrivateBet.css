@@ -1,0 +1,33 @@
+.findprivateCard {
+    border-radius: 5px;
+    position: absolute;
+    background-color: aliceblue;
+    width: 50%;
+    height:auto;
+    margin-top: 5%;
+    margin-left: 23%;
+    padding: 3%;
+    box-shadow: 4px 4px 15px #000;
+}
+
+.findprivateCard > input{
+    display: block;
+    outline: none;
+    border: solid;
+    border-width: 1px;
+    border-color: #000;
+    font-size: 40px;
+    margin-top: 2%;
+    border-radius: 5px;
+    padding: 1%;
+}
+.findprivateCard > button {
+    margin-top: 2%;
+    color: blueviolet;
+    border-color: blueviolet;
+}
+.findprivateCard > button:hover {
+    background-color: blueviolet;
+    color: white;
+    border-color: white;
+}

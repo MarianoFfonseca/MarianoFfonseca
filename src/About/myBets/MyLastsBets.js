@@ -26,7 +26,6 @@ export default function MyLastsBets() {
 
   //User
   const user = useSelector(selectUser);
-  console.log(user)
     //Obtener las apuestas
     const betLotery = () => {
       db.collection("bets")
@@ -41,7 +40,6 @@ export default function MyLastsBets() {
     };
   
     const [bets, setBets] = useState([]);
-    console.log(bets)
 
     useEffect(() => {
       betLotery();

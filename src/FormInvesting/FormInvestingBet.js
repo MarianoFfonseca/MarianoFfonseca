@@ -1,13 +1,13 @@
 import * as React from "react";
 import "./FormInvestingBet.css";
 import { motion } from "framer-motion";
-import ReviewBet from "./ReviewBet"
+import ReviewBet from "./ReviewBet";
 import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
 
-export default function FormInvestingBet({bet, setCoinBet}) {
+export default function FormInvestingBet({ bet, setCoinBet }) {
   const optionsLotery = () => {
     db.collection("optionsLoteryMoney")
       .get()
@@ -25,9 +25,6 @@ export default function FormInvestingBet({bet, setCoinBet}) {
   const [error, setError] = React.useState(false);
   const [Doit, setDoit] = React.useState(false);
   const [helperText, setHelperText] = React.useState("Chose...");
-  
-
-
 
   useEffect(() => {
     optionsLotery();
@@ -54,9 +51,12 @@ export default function FormInvestingBet({bet, setCoinBet}) {
 
   return (
     <div className="Total">
-      <motion.div  transition={{type:'spring', duration:2}}
-            initial={{ x:100, opacity:0 }}
-            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
+      <motion.div
+        transition={{ type: "spring", duration: 2 }}
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="FormInvesting_card"
+      >
         <h3>
           What is gonna be the price for you?{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -64,7 +64,23 @@ export default function FormInvestingBet({bet, setCoinBet}) {
           </p>
         </h3>
         <div style={{ marginTop: "5%" }}>
-         <input style={{padding:'2%', borderRadius:'20px', fontSize:'130%', marginBottom:'5%'}} type="number" onChange={((e)=>{setCoinBet(e.target.value)})} name="" id="" />
+          <input
+            style={{
+              padding: "2%",
+              borderRadius: "5px",
+              outline:'none',
+              border:'none',
+              fontSize: "130%",
+              marginBottom: "5%",
+            }}
+            type="number"
+            onChange={(e) => {
+              setCoinBet(e.target.value);
+            }}
+            placeholder='Value of the coin'
+            name=""
+            id=""
+          />
         </div>
         {bet.CoinBet && (
           <Link to="/ReviewBet">

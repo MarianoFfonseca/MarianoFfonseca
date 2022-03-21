@@ -15,36 +15,45 @@
 }
 
 
-.cpersonal_container > div > input {
-    padding: 1%;
-    display: flex;
-    border-radius: 15px;
-    font-size: 20px
-}
+
 .cpersonal_container > div > div > input {
     padding: 1%;
     display: flex;
-    border-radius: 15px;
-    font-size: 20px
+    outline: none;
+    font-size: 20px;
+    border-color:#FFC0E1;
 }
 .cpersonal_button {
     margin-top: 5%;
 }
 
 .cpersonal_small {
+    outline: none;
+    border: none;
     margin-top: 2%;
+    border-radius: 5px;
+    width: 50%;
     padding: 0.5%;
-    font-size: 15px;
+    font-size: 5px;
 }
 .cpersonal_img {
     display: flex;
 }
+.cpersonal_title {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
 .cpersonal_description {
+    outline: none;
+    border: none;
+    
     font-size: 20px;
-    border-radius: 15px;
+    border-radius: 5px;
     margin-top: 2%;
     text-align: left;
     padding: 2%;
-    width: 50%;
+    width: 100%;
     height: 100px;
 }

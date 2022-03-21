@@ -49,22 +49,28 @@ import firebase from "firebase/compat/app";
 import { motion } from "framer-motion";
 import SelectType from "./PersonalBets/CreateBet/SelectType";
 import SuccesOver from "./PersonalBets/CreateBet/After/SuccesOver";
+import FindBetPage from "./PersonalBets/FindBet/FindBetPage";
+import GlobalSerch from "./PersonalBets/FindBet/GlobalSerch";
+import FindPrivateBet from "./PersonalBets/FindBet/FindPrivateBet";
+import DescriptionBet from "./PersonalBets/FindBet/DescriptionBet.js";
+import ForPrivatesPassword from "./PersonalBets/FindBet/ForPrivatesPassword/ForPrivatesPassword";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   //A normal bet
   const [bet, setBet] = useState({ Coin: "", Money: "", CoinBet: "", Day: "" });
   const d = new Date();
-    
   const f = d.toDateString();
   //A social bet
+  const [uidPersonal, setUidPersonal] = useState();
   const [socialBet, setSocialBet] = useState({
     Title: "",
     Description: "",
     ImgUrl: "",
     MaxPeapol: "",
     Topic: "",
-    State: "Public",
+    Coin: "Bitcoin",
+    State: "Private",
     Price: "Free",
     NOptions: "2",
     Password: "",
@@ -78,8 +84,26 @@ function App() {
     Option3: "",
     Option4: "",
   });
-  console.log(socialOptions);
+  //For all socialBets
+  const ForAllSocialBets = () => {
+    db.collection("socialBets")
+      .get()
+      .then((querySnapshot) => {
+        // Loop through the data and store
+        // it in array to display
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setAllSocialBets((allSocialBets) => [...allSocialBets, data]);
+        });
+      });
+  };
+  const [allSocialBets, setAllSocialBets] = useState([]);
+  const [canJoin, setCanJoin] = useState(false);
+  const [canJoinBet, setCanJoinBet] = useState('');
+  console.log(canJoin)
+  console.log(canJoinBet)
 
+  console.log(canJoin.can)
   //more
   const [monthlyB, setmonthlyB] = useState("fullYear");
   const [monthlyId, setmonthlyId] = useState(null);
@@ -115,6 +139,7 @@ function App() {
 
   useEffect(() => {
     getPremadeBet();
+    ForAllSocialBets();
   }, []);
 
   const [load, setLoad] = useState(false);
@@ -192,13 +217,73 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/ForPrivatesPassword/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <ForPrivatesPassword
+                    setCanJoin={setCanJoin}
+                    canJoin={canJoin}
+                    allSocialBets={allSocialBets}
+                    setCanJoinBet={setCanJoinBet}
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/DescriptionBet/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <DescriptionBet
+                    allSocialBets={allSocialBets}
+                    canJoin={canJoin}
+                    canJoinBet={canJoinBet}
+
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/FindPrivateBet">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <FindPrivateBet setCanJoin={setCanJoin} setCanJoinBet={setCanJoinBet} />
+                </>
+              )}
+            </Route>
             <Route exact path="/SuccesOver">
               {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
                 <>
                   <Header />
-                  <SuccesOver/>
+                  <SuccesOver uidPersonal={uidPersonal} />
+                </>
+              )}
+            </Route>
+            <Route exact path="/GlobalSerch">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <GlobalSerch />
+                </>
+              )}
+            </Route>
+            <Route exact path="/FindBetPage">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <FindBetPage />
                 </>
               )}
             </Route>
@@ -238,6 +323,7 @@ function App() {
                     socialBet={socialBet}
                     socialOptions={socialOptions}
                     setSocialOptions={setSocialOptions}
+                    setUidPersonal={setUidPersonal}
                   />
                 </>
               )}
@@ -248,7 +334,7 @@ function App() {
               ) : (
                 <>
                   <Header />
-                  <AfterSocialBet/>
+                  <AfterSocialBet />
                 </>
               )}
             </Route>
@@ -272,6 +358,7 @@ function App() {
                     socialBet={socialBet}
                     setSocialBet={setSocialBet}
                     socialOptions={socialOptions}
+                    setUidPersonal={setUidPersonal}
                   />
                 </>
               )}
@@ -494,7 +581,6 @@ function App() {
         <div className="ForLoading">
           <motion.h3
             style={{ color: "white" }}
-           
             transition={{ yoyo: Infinity, duration: 2 }}
             className="ImgLoading"
           >
@@ -502,13 +588,18 @@ function App() {
             <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity }}>
               .{" "}
             </motion.p>
-            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity, delay:0.4 }}>
+            <motion.p
+              animate={{ y: [-30, 0] }}
+              transition={{ yoyo: Infinity, delay: 0.4 }}
+            >
               .{" "}
             </motion.p>
-            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity, delay:0.8 }}>
+            <motion.p
+              animate={{ y: [-30, 0] }}
+              transition={{ yoyo: Infinity, delay: 0.8 }}
+            >
               .{" "}
             </motion.p>
-           
           </motion.h3>
         </div>
       )}

@@ -1,0 +1,84 @@
+.global_global{
+    margin-top: 2%;
+    width: 100%;
+}
+.bgg {
+    background-color: blueviolet;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    position: absolute;
+}
+.global_global > h1 {
+    text-align: center;
+    font-size: 70px;
+    color: #f2f2f2;
+}
+.global_global > input {
+    font-size: 70px;
+    width: 70%;
+    margin-left: 16%;
+    margin-top: 2%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 1%;
+}
+
+.global_type {
+    margin-top: 1%;
+    border-radius: 5px;
+    width: 72%;
+    height: 5vh;
+    margin-left: 16%;
+    display: flex;
+    background-color: white;
+    align-items: center;
+}
+.global_type > li {
+    margin-left: 20%;
+    margin-top: 2%;
+    opacity: 0.7;
+}
+.global_type > li:checked {
+    border-bottom: 1px solid black;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.global_type > li:hover {
+    border-bottom: 1px solid black;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.global_filter {
+    color: white;
+    position: absolute;
+    margin-left: 3%;
+    margin-top: 7%;
+    
+}
+.global_continer {
+    width: 69%;
+    margin-left: 16%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+.result_card {
+    margin-top: 3%;
+    width: 100%;
+    height: auto;
+    padding: 2%;
+    border-radius: 5px;
+    background-color: white;
+}
+.result_card > div, p {
+    margin-top: 2%;
+}
+.result_short > div {
+    margin-left: 5%;
+}
+.result_card > button {
+    margin-top: 2%;
+    color: #000;
+}
+#active {
+    border-bottom: 1px solid black;
+}

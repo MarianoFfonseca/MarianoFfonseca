@@ -13,7 +13,6 @@ export default function FormInvestingCoin({ profile, load, setCoin, bet }) {
   const [value, setValue] = React.useState("Etherum");
   const [Doit, setDoit] = React.useState(false);
   const coins = ["Etherum", "Bitcoin"];
-  console.log(profile.currentUser, 'aki')
   return (
     <div className="Total"> 
      

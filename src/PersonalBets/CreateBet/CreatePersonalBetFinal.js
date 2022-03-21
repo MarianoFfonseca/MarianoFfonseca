@@ -7,20 +7,36 @@ import { Link } from "react-router-dom";
 import ButtonCheckOut from "./ButtonCheckOut";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-function CreatePersonalBetFinal({ setSocialBet, socialBet, socialOptions }) {
+function CreatePersonalBetFinal({ setSocialBet, socialBet, socialOptions, setUidPersonal }) {
   let spanClass = "private" === socialBet.State ? "active" : "";
   let spanClass2 = "public" === socialBet.State ? "active" : "";
   let Price = socialBet.Price;
-  const [error, setError] = useState(false);
-  const [mError, setmError] = useState("");
+  const [error, setError] = useState(true);
+  const [Dayerror, setDayError] = useState(true);
+  const [mError, setmError] = useState("The password need to have 7 characters");
+  const [mDayError, setmDayError] = useState("The date need to me more");
   const [startDate, setStartDate] = useState(new Date());
 
   const changeFinalDay = (date) => {
+    var today = new Date()
+  var betToday = new Date(date)
+  // Pass to numbers
+  var numberBetToday = betToday.getTime()
+  var numberToday = today.getTime()
+  if(numberBetToday < numberToday) {
+    setDayError(true)
+    setmDayError('The date need to me more')
+  }
+  else {
+    setDayError(false)
+    setmDayError('')
+  }
+  
     const FinalDay = date;
     setStartDate(FinalDay);
     setSocialBet({ ...socialBet, FinalDay });
   };
-
+  console.log(Dayerror)
   const changeLDay = (e) => {
     const LDay = e.target.value;
     setSocialBet({ ...socialBet, LDay });
@@ -60,7 +76,7 @@ function CreatePersonalBetFinal({ setSocialBet, socialBet, socialOptions }) {
   const ComprobarBotton = () => {
     if (socialBet.State === "Private") {
       if (
-        error === false &&
+        error === false &&  Dayerror === false &&
         socialBet.NOptions &&
         socialBet.Password
       ) {
@@ -78,17 +94,18 @@ function CreatePersonalBetFinal({ setSocialBet, socialBet, socialOptions }) {
       } else {
         <></>;
       }
-    } else {
+    } else if(socialBet.State === "Public") {
       if (
-        error === false
+         Dayerror === false
       ) {
-        return <ButtonCheckOut Price={Price} socialBet={socialBet} socialOptions={socialOptions}  />;
+        return <ButtonCheckOut setUidPersonal={setUidPersonal} Price={Price} socialBet={socialBet} socialOptions={socialOptions}  />;
       } else {
         <></>;
       }
     }
   };
-
+  //Get days
+  
   return (
     <div className="Total">
       <motion.div 
@@ -168,14 +185,17 @@ function CreatePersonalBetFinal({ setSocialBet, socialBet, socialOptions }) {
             )}
           </form>
           <div className="cpersonal_next">
-            {error === true ? (
+            {error === true || Dayerror === true ? (
               <motion.p
                 initial={{ x: -20, opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 animate={{ x: 0, opacity: 1 }}
-                style={{ color: "red" }}
+                style={{ color: "orange", marginTop:'2%' }}
               >
                 {mError}
+                <p>
+                {mDayError}
+                </p>
               </motion.p>
             ) : (
               <></>

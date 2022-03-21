@@ -32,7 +32,7 @@ function PersonalBets() {
                     <motion.div whileHover={{ scale: 1.1, cursor: "pointer" }}>
                       <div className="rigth" style={{ marginLeft: "12%" }}>
                         <h1 style={{ marginBottom: "4%", marginTop: "-2%" }}>
-                          Create yor social bet
+                        🔨Create yor social bet
                         </h1>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -43,7 +43,7 @@ function PersonalBets() {
                     </motion.div>
                   </motion.div>
                 </Link>
-                <Link to="/SelectType" className="card1" style={{color:'#FFC0E1'}}>
+                <Link to="/FindBetPage" className="card1" style={{color:'#FFC0E1'}}>
                 <motion.div
                   animate={{ x: 0, opacity:1 }}
                   initial={{ x: 20, opacity:0 }}
@@ -53,7 +53,7 @@ function PersonalBets() {
                   <motion.div whileHover={{ scale: 1.1, cursor: "pointer" }}>
                     <div className="rigth2" style={{ marginLeft: "14%" }}>
                       <h1 style={{ marginBottom: "4%", marginTop: "-2%" }}>
-                        Find yor social bet
+                      🔎Find yor social bet
                       </h1>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit
