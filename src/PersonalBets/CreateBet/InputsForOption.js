@@ -8,4 +8,4 @@ function InputsForOption({Texto, changeOption}) {
   )
 }
 
-export default InputsForOption
+export default InputsForOption;

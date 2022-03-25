@@ -57,6 +57,7 @@ function GlobalSerch() {
                   ) {
                     return (
                       <motion.div
+                      key={element.id}
                         initial={{ x: 200, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: 200, opacity: 0 }}
@@ -160,8 +161,8 @@ function GlobalSerch() {
           )}
         </div>
         <h1>Serch for bets!</h1>
-        <input onChange={handleChange} type="text" placeholder="Serch..." />
-        <div className="global_type">
+        <motion.input initial={{x:1000}} animate={{x:0}} transition={{type:'spring', stiffness:50, duration:1}} onChange={handleChange} type="text" placeholder="Serch..." />
+        <motion.div  initial={{x:1000}} animate={{x:0}} transition={{type:'spring', stiffness:50, delay:0.5, duration:1}} className="global_type">
           <motion.li id={SpanClassName1} onClick={() => setCoin("Bitcoin")}>
             bitcoin
           </motion.li>
@@ -178,7 +179,7 @@ function GlobalSerch() {
           ) : (
             <></>
           )}
-        </div>
+        </motion.div>
         <div className="global_continer">
           {ForResults()}
           {text !== "" && first === false ? (

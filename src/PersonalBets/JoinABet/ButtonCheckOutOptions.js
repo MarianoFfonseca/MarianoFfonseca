@@ -7,63 +7,11 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
-function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
+function ButtonCheckOutOptions({ Price, documentId, selectedOption }) {
   const unique_id = uuid();
   const user = useSelector(selectUser);
   const Redireccion = '/SuccesOver/' + unique_id
   const fRedireccion = window.location.origin + Redireccion
-  const FirebaseEasy = () => {
-    setUidPersonal(unique_id)
-    console.log('here')
-    const d = new Date(socialBet.FinalDay);
-    const f = d.toDateString();
-    db.collection("socialBets")
-      .doc(unique_id)
-      .set({
-        Title: socialBet.Title,
-        Description: socialBet.Description,
-        ImgUrl: socialBet.ImgUrl,
-        MaxPeapol: socialBet.MaxPeapol,
-        Topic: socialBet.Topic,
-        State: socialBet.State,
-        Coin: socialBet.Coin,
-        Price: socialBet.Price,
-        NOptions: socialBet.NOptions,
-        Password: socialBet.Password,
-        userUid: user.uid,
-        userEmail:user.email,
-        usersInBet: [user.email],
-        FinalDay: f,
-        id: unique_id,
-        payment: false
-      })
-      .then(function () {
-        console.log("Value successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing Value: ", error);
-      });
-    db.collection("socialOptions")
-      .doc(unique_id)
-      .set({
-        NOptions: socialBet.NOptions,
-        Option1: socialOptions.Option1,
-        Option2: socialOptions.Option2,
-        Option3: socialOptions.Option3,
-        Option4: socialOptions.Option4,
-        State: socialBet.State,
-        Price: socialBet.Price,
-        userUid: user.uid,
-        id: unique_id,
-      })
-      .then(function () {
-        console.log("Value successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing Value: ", error);
-      });
-  };
-
   let stripePromise;
   const getStripe = () => {
     if (!stripePromise) {
@@ -96,7 +44,7 @@ function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
   const checkoutOptions5 = {
     lineItems: [price5],
     mode: "payment",
-    successUrl:`${fRedireccion}`,
+    successUrl: `${fRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const checkoutOptions10 = {
@@ -125,58 +73,86 @@ function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
   };
   const redirectToCheckOut5 = async (e) => {
     e.preventDefault();
-    FirebaseEasy();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions5);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut10 = async (e) => {
     e.preventDefault();
-    FirebaseEasy();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions10);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut50 = async (e) => {
     e.preventDefault();
-    FirebaseEasy();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions50);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut100 = async (e) => {
     e.preventDefault();
-    FirebaseEasy();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions100);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut250 = async (e) => {
     e.preventDefault();
-    FirebaseEasy();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions250);
     console.log("Stripe checkout error", error);
   };
+
+  const FirebaseEasy = () => {
+    db.collection("individualSocialBet")
+      .doc(unique_id)
+      .set({
+      userUid:user.uid,
+      selectedOption: selectedOption,
+      betId: documentId
+      })
+      .then(function () {
+        console.log("Value successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing Value: ", error);
+      });
+   db.collection("socialBets")
+      .doc(documentId)
+      .get()
+      .then(
+        (x)=> {
+          const usersInBet =  x.data().usersInBet;
+          const email = user.email
+          const newArray = usersInBet.push(email)
+
+          db.collection("socialBets")
+          .doc(documentId)
+          .update({
+           usersInBet : usersInBet
+            })
+          
+        }
+      )
+  };
+
   const ButtonForCheckOut = () => {
+    console.log(Price)
     if (Price === "Free") {
       return (
-        <Link to="/succesOver">
+        <Link to='/SuccesIndividual'>
           <motion.button
-            whileHover={{
-              scale: 1.2,
-              originX: 0,
-              boxShadow: "0px 0px 8px #fff",
-            }}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            className="button"
             onClick={FirebaseEasy}
-            style={{ marginTop: "4%" }}
           >
-            Create bet !
+            Make bet !
           </motion.button>
         </Link>
       );
     } else {
       if (Price === "5") {
+       
         return (
           <button onClick={redirectToCheckOut5} style={{ marginTop: "4%" }}>
             Check out
@@ -216,4 +192,4 @@ function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
   return <div>{ButtonForCheckOut()}</div>;
 }
 
-export default ButtonCheckOut;
+export default ButtonCheckOutOptions;

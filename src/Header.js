@@ -10,6 +10,8 @@ import { selectUser } from "./features/userSlice";
 import { motion } from "framer-motion";
 import LogoutButton from "./LogoutButton";
 import modernLoteryLogo from './images/modernLoteryLogo.png'
+import modernLoteryLogoBlanco from './images/modernLoteryLogoBlanco.png'
+
 function Header({ menuPage }) {
   const user = useSelector(selectUser);
 
@@ -24,9 +26,7 @@ function Header({ menuPage }) {
             whileHover={{ rotate:360, duration:5}}
           >
             <img
-            src={modernLoteryLogo}
-              // src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
-               alt=""
+            src={modernLoteryLogoBlanco}    alt=""
             />
           </motion.div>
         </Link>
@@ -36,12 +36,12 @@ function Header({ menuPage }) {
             initial={{ y:-100}}
             transition={{duration: 0.3, type: "spring", stiffness: 150 }} whileHover={{ scale: 1.2 }}> Menu</motion.div>
         </Link>
-        <Link className="header__link">
+        <Link to='/' className="header__link">
           <motion.div animate={{ y: 0 }}
             initial={{ y:-100}}
             transition={{ type: "spring", duration: 0.5, stiffness: 150 }} whileHover={{ scale: 1.2 }}> Account</motion.div>
         </Link>
-        <Link className="header__link">
+        <Link to='/' className="header__link">
           <motion.div animate={{ y: 0 }}
             initial={{ y:-100}}
             transition={{ type: "spring", duration: 0.8, stiffness: 150 }} whileHover={{ scale: 1.2 }}> My Bets</motion.div>

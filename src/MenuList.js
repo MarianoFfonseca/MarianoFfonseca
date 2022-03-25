@@ -5,7 +5,6 @@ import menuList from "./menuList.json";
 import { motion } from "framer-motion";
 function MenuList() {
   const [open, setOpen] = useState("");
-  console.log(open);
   return (
     <div className="menuList">
       <div className="menuList__container">
@@ -16,6 +15,7 @@ function MenuList() {
               {menuList.map((menuListCategory) =>
                 menuListCategory.drinks.map((menuListItem) => (
                   <motion.div
+                      key={menuListItem.type}
                     whileHover={{
                       scale: 1.4,
                       originX: 0,

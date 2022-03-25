@@ -25,7 +25,7 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/formCoin'>
-            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button whileHover={{boxShadow: '2px 6px #888888'}}>
               Lets Start
             </motion.button></Link>
           </div>
@@ -44,7 +44,7 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/PremadeBet'>
-            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button whileHover={{  boxShadow: '2px 6px #888888'}}>
               Learn more
             </motion.button></Link>
           </div>
@@ -68,12 +68,12 @@ export default function MainInvestingPage() {
               blanditiis 
             </p>
             <Link to='/about/MyBets'>
-            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button whileHover={{boxShadow: '2px 6px #888888'}}>
               Track
             </motion.button>
             </Link>
             <Link to='/about/Analisis'>
-            <motion.button style={{marginLeft:30}} whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button style={{marginLeft:30}} whileHover={{ boxShadow: '2px 6px #888888'}}>
               Analize
             </motion.button>
             </Link>

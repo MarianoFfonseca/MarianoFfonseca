@@ -54,6 +54,9 @@ import GlobalSerch from "./PersonalBets/FindBet/GlobalSerch";
 import FindPrivateBet from "./PersonalBets/FindBet/FindPrivateBet";
 import DescriptionBet from "./PersonalBets/FindBet/DescriptionBet.js";
 import ForPrivatesPassword from "./PersonalBets/FindBet/ForPrivatesPassword/ForPrivatesPassword";
+import SelectOptionsBet from "./PersonalBets/JoinABet/SelectOptionsBet";
+import SuccesIndividual from './PersonalBets/JoinABet/SuccesIndividual'
+import SuccesIndivudualPayment from "./PersonalBets/JoinABet/SuccesIndividualPayment";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -99,11 +102,11 @@ function App() {
   };
   const [allSocialBets, setAllSocialBets] = useState([]);
   const [canJoin, setCanJoin] = useState(false);
-  const [canJoinBet, setCanJoinBet] = useState('');
-  console.log(canJoin)
-  console.log(canJoinBet)
+  const [canJoinBet, setCanJoinBet] = useState("");
+  const [selectedSocialOption, setSelectedSocialOptions] = useState("");
+  const [selectedCoinSocialBet, setSelectedCoinSocialBet] = useState();
+  const [individualBetPrice, setIndividualBetPrice] = useState('')
 
-  console.log(canJoin.can)
   //more
   const [monthlyB, setmonthlyB] = useState("fullYear");
   const [monthlyId, setmonthlyId] = useState(null);
@@ -202,6 +205,47 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/SuccesIndivudualPayment/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header menuPage />
+                  <SuccesIndivudualPayment
+                   selectedSocialOption={selectedSocialOption}
+                   selectedCoinSocialBet={selectedCoinSocialBet}
+                   user={user}/>
+                </>
+              )}
+            </Route>
+            <Route exact path="/SuccesIndividual">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header menuPage />
+                  <SuccesIndividual/>
+                </>
+              )}
+            </Route>
+            <Route exact path="/SelectOptionsBet/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <SelectOptionsBet
+                  setIndividualBetPrice={setIndividualBetPrice}
+                    setSelectedCoinSocialBet={setSelectedCoinSocialBet}
+                    selectedCoinSocialBet={selectedCoinSocialBet}
+                    canJoin={canJoin}
+                    canJoinBet={canJoinBet}
+                    setSelectedSocialOptions={setSelectedSocialOptions}
+                    selectedSocialOption={selectedSocialOption}
+                  />
+                </>
+              )}
+            </Route>
             <Route exact path="/personalBets">
               {is === "No" ? (
                 <Redirect to="/account/signin" />
@@ -239,10 +283,10 @@ function App() {
                 <>
                   <Header />
                   <DescriptionBet
+                  user={user}
                     allSocialBets={allSocialBets}
                     canJoin={canJoin}
                     canJoinBet={canJoinBet}
-
                   />
                 </>
               )}
@@ -253,11 +297,14 @@ function App() {
               ) : (
                 <>
                   <Header />
-                  <FindPrivateBet setCanJoin={setCanJoin} setCanJoinBet={setCanJoinBet} />
+                  <FindPrivateBet
+                    setCanJoin={setCanJoin}
+                    setCanJoinBet={setCanJoinBet}
+                  />
                 </>
               )}
             </Route>
-            <Route exact path="/SuccesOver">
+            <Route exact path="/SuccesOver/:id">
               {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (

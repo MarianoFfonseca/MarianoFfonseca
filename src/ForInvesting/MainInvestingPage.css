@@ -7,10 +7,12 @@ button {
 
 /* For general */
 .StyleCards {
-  background-color: #8C0079;
-  border-color: #8C0079;
-  color: #FFC0E1;
-  
+  background-color: #F0F8FF;
+  border-color: #F0F8FF;
+  box-shadow: 10px 10px 10px #000;
+}
+.StyleCards > div > h3 {
+  color: black;
 }
 .StyleLi {
   color: #FFC0E1;
@@ -18,19 +20,45 @@ button {
 .StyleTitle {
   color: #FFC0E1;
 }
-
-
+h3 {color: black;}
+p {color: #656565;}
+button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: inherit;
+  background: none;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 7px 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: white;
+  background-color: purple;
+  border-color: white;
+  font-weight: 600;
+  outline: none;
+  font-size: medium;
+}
 .card1 {
   width: 45%;
   margin-right: 2%;
   display: flex;
-  background-color: #8C0079;
-  border-color: #8C0079;
+  background-color: #F0F8FF;
+  border-color: #F0F8FF;
   border-radius: 5px;
   border-style: solid;
   border-width: 1px;
   padding-top: 2%;
   padding: 10px;
+  box-shadow: 10px 10px 10px #000;
+}
+.card > div > h3 {
+  color: black;
 }
 .card3 {
   width: 94%;
@@ -77,27 +105,7 @@ button {
   max-width: 70%;
   margin-top: 4%;
 }
-button {
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: inherit;
-  background: none;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  padding: 7px 16px;
-  line-height: 1.2;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  color: white;
-  border-color: white;
-  font-weight: 600;
-  outline: none;
-  font-size: medium;
-}
+
 
 
 .rigth {

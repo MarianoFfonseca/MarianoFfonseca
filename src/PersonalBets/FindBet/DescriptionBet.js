@@ -1,37 +1,50 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./DescriptionBet.css";
 import { motion } from "framer-motion";
-import {useParams} from 'react-router'
-import {Redirect } from 'react-router-dom'
-function DescriptionBet({allSocialBets, canJoin,canJoinBet}) {
-    const {id} = useParams()
+import { useParams } from "react-router";
+import { Redirect, Link } from "react-router-dom";
 
-    function ifPrivate(){
-      const f = allSocialBets.map(
-            (x)=>{
-                if(x.id === id) {
-                    if(x.State === 'Private' && canJoin === false) {
-                       var redireccion = '/ForPrivatesPassword/' + id
-                        return <Redirect to={redireccion}></Redirect>
-                    }
-                    else if (x.State === 'Private' && canJoin === true && canJoinBet !== x.id ) {
-                        var redireccion = '/ForPrivatesPassword/' + id
-                        return <Redirect to={redireccion}></Redirect>
-                    }
-                    else if (x.State === 'Public') {
-                        console.log('publica or can join')
-                    }
-                }
+function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
+  const { id } = useParams();
+  const redirecionOpciones = "/SelectOptionsBet/" + id;
+  function ifPrivate() {
+    const f = allSocialBets.map((x) => {
+      if (x.id === id) {
+        if (x.State === "Private" && canJoin === false ) {
+          var redireccion = "/ForPrivatesPassword/" + id;
+          return <Redirect to={redireccion}></Redirect>;
+        }else if (x.State === "Private" && canJoin === true && canJoinBet === x.id){ 
+          const IfIDid = x.usersInBet.map((y) => {
+            if (y === user.email) {
+              const Reddireccion = '/MySocialBets/details/' + id
+              return <Redirect to={Reddireccion}></Redirect>
             }
-        )
-        return f;
-    }
-   
-
+          });
+          return IfIDid;
+        } else if (x.State === "Public") {
+          
+          const IfIDid = x.usersInBet.map((y) => {
+            if (y === user.email) {
+              const Reddireccion = '/MySocialBets/details/' + id
+              return <Redirect to={Reddireccion}></Redirect>
+            }
+          });
+          return IfIDid;
+        }
+        
+      }
+    });
+    return f;
+  }
   return (
     <div className="bgg">
-        {ifPrivate()}
-      <div className="descriptionCard">
+      {ifPrivate()}
+      <motion.div
+        initial={{ x: 1000 }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", stiffness: 50, duration: 1 }}
+        className="descriptionCard"
+      >
         <div className="descriptionContainer">
           <h1>Descipcion de mariano</h1>
           <p>
@@ -41,21 +54,29 @@ function DescriptionBet({allSocialBets, canJoin,canJoinBet}) {
             vero reprehenderit ut?
           </p>
           <p>created by : marianofonseca</p>
-          <motion.button
-            whileHover={{
+          <Link to={redirecionOpciones}>
+            {" "}
+            <motion.button
+              className="descriptionButton"
+              whileHover={{
                 color: "white",
+                borderColor: "white",
                 backgroundColor: "purple",
                 boxShadow: "2px 6px #888888",
               }}
-          >Select options for the bet
-          </motion.button>
+            >
+              Select options for the bet
+            </motion.button>
+          </Link>
           <motion.button
-          style={{marginLeft:'4%'}}
-          whileHover={{
-            color: "white",
-            backgroundColor: "purple",
-            boxShadow: "2px 6px #888888",
-          }}
+            style={{ marginLeft: "4%" }}
+            className="descriptionButton"
+            whileHover={{
+              color: "white",
+              borderColor: "white",
+              backgroundColor: "purple",
+              boxShadow: "2px 6px #888888",
+            }}
           >
             Contact the author
           </motion.button>
@@ -69,7 +90,7 @@ function DescriptionBet({allSocialBets, canJoin,canJoinBet}) {
           <p>Day of the bet: 15/10/2022</p>
           <p>State of the bet: Private</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

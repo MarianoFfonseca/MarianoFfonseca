@@ -42,7 +42,7 @@ function DetailsSocial({user}) {
 
   const ForDetail = (x) => {
       if(x.id === id) {
-          return <p>{x.data.Title}</p>
+          return <p key={x.id}>{x.data.Title}</p>
       }
   }
 

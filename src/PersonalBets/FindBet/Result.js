@@ -4,10 +4,12 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { FaCalendarDay } from "react-icons/fa";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 function Result({ element, setFirst }) {
   useEffect(() => {
     setFirst(true);
   }, []);
+  const redireccion = "/DescriptionBet/" + element.id;
   return (
     <div className="result_card">
       <div style={{ marginTop: "0%" }} className="upPart">
@@ -33,7 +35,9 @@ function Result({ element, setFirst }) {
           <span> {element.State}</span>
         </div>
       </div>
-      <button>Join</button>
+      <Link className="result_button" to={redireccion}>
+        <button className="result_button" style={{color:'black'}}>Join</button>
+      </Link>
     </div>
   );
 }
