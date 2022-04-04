@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 function ButtonCheckOutOptions({ Price, documentId, selectedOption }) {
   const unique_id = uuid();
   const user = useSelector(selectUser);
-  const Redireccion = '/SuccesOver/' + unique_id
-  const fRedireccion = window.location.origin + Redireccion
+  const PaymentRedirection = '/SuccesIndivudualPayment/' + documentId;
+  const fPaymentRedireccion = window.location.origin + PaymentRedirection
   let stripePromise;
   const getStripe = () => {
     if (!stripePromise) {
@@ -44,31 +45,31 @@ function ButtonCheckOutOptions({ Price, documentId, selectedOption }) {
   const checkoutOptions5 = {
     lineItems: [price5],
     mode: "payment",
-    successUrl: `${fRedireccion}`,
+    successUrl: `${fPaymentRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const checkoutOptions10 = {
     lineItems: [price10],
     mode: "payment",
-    successUrl: `${fRedireccion}`,
+    successUrl: `${fPaymentRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const checkoutOptions50 = {
     lineItems: [price50],
     mode: "payment",
-    successUrl: `${fRedireccion}`,
+    successUrl: `${fPaymentRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const checkoutOptions100 = {
     lineItems: [price100],
     mode: "payment",
-    successUrl: `${fRedireccion}`,
+    successUrl: `${fPaymentRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const checkoutOptions250 = {
     lineItems: [price250],
     mode: "payment",
-    successUrl: `${fRedireccion}`,
+    successUrl: `${fPaymentRedireccion}`,
     cancelUrl: `${window.location.origin}/personalBets`,
   };
   const redirectToCheckOut5 = async (e) => {

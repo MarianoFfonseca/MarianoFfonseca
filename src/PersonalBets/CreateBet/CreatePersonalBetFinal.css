@@ -1,33 +1,43 @@
-
+input {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
 .li {
   cursor: pointer;
-  color: #ff80c2;
+  color: #C6C6C6;
 }
 .cpersonal_form > li span.active {
   font-weight: bold;
 }
 .li span.active::before {
   content: ">";
-  color: #ff80c2;
   position: relative;
   top: -2px;
   margin-right: 6px;
   transform: scale(0.8, 1);
   display: inline-block;
 }
-
-
-
-.cpersonal_depend > input {
-    display: block;
-    font-size: 20px;
-    margin-top: 3%;
-    padding: 1%;
-    border-radius: 5px;
+.cpersonal_days {
+  display:  block;
 }
-.cpersonal_depend > div {
-    display: flex;
+.cpersonal_container input {
+  padding: 1%;
+  display: flex;
+  outline: none;
+  font-size: 20px;
+  border-color:#C6C6C6;
 }
+
+.cpersonal_types {
+  display: flex;
+}
+.cpersonal_types > div {
+  width: 50%;
+}
+
+
+
 .cpersonal_depend > div > input {
     width: 15%;
     margin-left: 4%;    
@@ -35,9 +45,14 @@
     border-radius: 5px;
     font-size: 20px;
 }
+.cpersonal_depend > div > div > select {
+    width: 100%;  
+    font-size: 20px;
+    padding: 1%;
+    border-radius: 5px;
+}
 .cpersonal_depend > select {
-    margin-top: 2%;
-    width: 30%;
+    width: 100%;  
     font-size: 20px;
     padding: 1%;
     border-radius: 5px;
@@ -47,6 +62,6 @@
 .DatePiker{
     padding: 1%;
     font-size: 20px;
-    width: 30%;
+    width: 100%;
     text-align: center;
 }

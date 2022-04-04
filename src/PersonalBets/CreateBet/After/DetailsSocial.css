@@ -1,0 +1,63 @@
+.details_card1 {
+    background-color: #303030;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    box-shadow: 10px 10px 10px #000;
+}
+.details_card3 {
+    background-color: #303030;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 5px;
+    text-align: left;
+    color: black;
+    box-shadow: 10px 10px 10px #000;
+}
+
+.details_card2{
+    display:  flex;
+    margin: 2%;
+}
+.details_card2 > div{
+    background-color: #303030;
+    width: 50%;
+    height: autox;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 10px 10px 10px #000;
+    padding: 2%;
+}
+
+.details_subcard1{
+    background-color: #303030;
+}
+
+.details_subcard2{ 
+    background-color: #303030;
+    margin-left: 1%;
+    align-items: center;
+}
+.details_forLink {
+    margin-top: 2%;
+    height: 5vh ;
+    display: flex;
+}
+.details_forLink > input, button {
+    max-height: 5vh;
+    background-color: #C6C6C6;
+    color: white;
+}
+.details_forLink > input {
+    color: white;
+    width: 100%;
+}
+
+
+
+.details_icons {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

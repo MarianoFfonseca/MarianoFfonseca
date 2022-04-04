@@ -87,11 +87,11 @@ export default function MainInvestingPage() {
             Architecto, vel nam autem laudantium enim ad assumenda reprehenderit ipsa veritatis consequuntur laborum iusto, aliquam itaque at? Facere laborum voluptates necessitatibus blanditiis a saepe vitae qui sequi! Placeat, dolores commodi! 
             </p>
             <Link to='/MonthlyBet'>
-            <motion.button whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button whileHover={{ boxShadow: '2px 6px #888888'}}>
               See plans
             </motion.button></Link>
             <Link to='/MonthlyBet'>
-            <motion.button style={{marginLeft:30}} whileHover={{ color:'purple', backgroundColor:'white', boxShadow: '2px 6px #888888'}}>
+            <motion.button style={{marginLeft:30}} whileHover={{ boxShadow: '2px 6px #888888'}}>
               More info
             </motion.button></Link>
           </div>

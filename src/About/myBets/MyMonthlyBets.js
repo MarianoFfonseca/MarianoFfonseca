@@ -47,7 +47,7 @@ export default function MyMonthlyBets({setmonthlyId}) {
   const [monthly_bets, setMonthly_bets] = useState([]);
   const [opened, setOpened] = useState(false)
   const [users, setUsers] = useState([]);
-  console.log(monthly_bets);
+
   useEffect(() => {
     betLotery();
     Users();
@@ -62,7 +62,7 @@ export default function MyMonthlyBets({setmonthlyId}) {
       <h1>Here you can use your monthly bets</h1>
       {monthly_bets &&
         monthly_bets.map((x) => {
-          console.log(x.id, user);
+          
           if (x.data.userUid === user.uid) {
             return (
               <div className="mymonthly_div">

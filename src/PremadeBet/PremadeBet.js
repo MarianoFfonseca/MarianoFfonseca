@@ -9,8 +9,13 @@ import undraw_augmented from "../images/undraw_augmented.svg";
 import {Link} from 'react-router-dom'
 import db from "../firebase";
 import { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
 function PremadeBet({ setBet, bet, fPremadeBet}) {
+
+  if(!setBet || !bet || !fPremadeBet[0]) {
+    return <Redirect to='/menu' />
+  }
 
   const ForSetCoin = () => {
     const Mine = fPremadeBet[0]

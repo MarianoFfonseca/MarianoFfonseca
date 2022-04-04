@@ -9,8 +9,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 import { motion } from "framer-motion";
 import LogoutButton from "./LogoutButton";
-import modernLoteryLogo from './images/modernLoteryLogo.png'
-import modernLoteryLogoBlanco from './images/modernLoteryLogoBlanco.png'
+import modernLoteryLogo from "./images/modernLoteryLogo.png";
+import modernLoteryLogoBlanco from "./images/modernLoteryLogoBlanco.png";
 
 function Header({ menuPage }) {
   const user = useSelector(selectUser);
@@ -21,30 +21,46 @@ function Header({ menuPage }) {
         <Link className="header__logo" to="/">
           <motion.div
             animate={{ x: 0 }}
-            initial={{ x:-100}}
+            initial={{ x: -100 }}
             transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
-            whileHover={{ rotate:360, duration:5}}
+            whileHover={{ rotate: 360, duration: 5 }}
           >
-            <img
-            src={modernLoteryLogoBlanco}    alt=""
-            />
+            <img src={modernLoteryLogoBlanco} alt="" />
           </motion.div>
         </Link>
 
         <Link to="/menu" className="header__link">
-          <motion.div    animate={{ y: 0 }}
-            initial={{ y:-100}}
-            transition={{duration: 0.3, type: "spring", stiffness: 150 }} whileHover={{ scale: 1.2 }}> Menu</motion.div>
+          <motion.div
+            animate={{ y: 0 }}
+            initial={{ y: -100 }}
+            transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
+            whileHover={{ scale: 1.2 }}
+          >
+            {" "}
+            Menu
+          </motion.div>
         </Link>
-        <Link to='/' className="header__link">
-          <motion.div animate={{ y: 0 }}
-            initial={{ y:-100}}
-            transition={{ type: "spring", duration: 0.5, stiffness: 150 }} whileHover={{ scale: 1.2 }}> Account</motion.div>
+        <Link to="/" className="header__link">
+          <motion.div
+            animate={{ y: 0 }}
+            initial={{ y: -100 }}
+            transition={{ type: "spring", duration: 0.5, stiffness: 150 }}
+            whileHover={{ scale: 1.2 }}
+          >
+            {" "}
+            Account
+          </motion.div>
         </Link>
-        <Link to='/' className="header__link">
-          <motion.div animate={{ y: 0 }}
-            initial={{ y:-100}}
-            transition={{ type: "spring", duration: 0.8, stiffness: 150 }} whileHover={{ scale: 1.2 }}> My Bets</motion.div>
+        <Link to="/" className="header__link">
+          <motion.div
+            animate={{ y: 0 }}
+            initial={{ y: -100 }}
+            transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
+            whileHover={{ scale: 1.2 }}
+          >
+            {" "}
+            My Bets
+          </motion.div>
         </Link>
       </div>
       <div className="header__right">
@@ -52,21 +68,42 @@ function Header({ menuPage }) {
         {!user ? (
           <>
             <Link to="/account/signin">
-              <motion.div animate={{ x: 0 }} initial={{ x:200}}
-            transition={{ type: "spring" , stiffness: 50 }} whileHover={{ scale: 1.5 }}>
-              <SignInButton />
+              <motion.div
+                animate={{ x: 0 }}
+                initial={{ x: 200 }}
+                transition={{ type: "spring", stiffness: 50 }}
+                whileHover={{ scale: 1.5 }}
+              >
+                <SignInButton />
               </motion.div>
             </Link>
             <Link to="/account/create">
-              <motion.div animate={{ x: 0 }} initial={{ x:200}}
-            transition={{ type: "spring", duration: 0.8, stiffness: 50 }} whileHover={{ scale: 1.5 }}>
-              <SignUpButton /></motion.div>
+              <motion.div
+                animate={{ x: 0 }}
+                initial={{ x: 200 }}
+                transition={{ type: "spring", duration: 0.8, stiffness: 50 }}
+                whileHover={{ scale: 1.5 }}
+              >
+                <SignUpButton />
+              </motion.div>
             </Link>
           </>
         ) : (
           <div className="header__logout">
-            {menuPage ? <motion.div animate={{ x: 0 }} initial={{ x:200}}
-            transition={{ type: "spring", duration: 0.8, stiffness: 50 }} whileHover={{scale:1.2}}><LogoutButton /></motion.div>:<motion.div whileHover={{scale:1.2}}><Link to="/menu">Main Page</Link> </motion.div>}
+            {menuPage ? (
+              <motion.div
+                animate={{ x: 0 }}
+                initial={{ x: 200 }}
+                transition={{ type: "spring", duration: 0.8, stiffness: 50 }}
+                whileHover={{ scale: 1.2 }}
+              >
+                <LogoutButton />
+              </motion.div>
+            ) : (
+              <motion.div whileHover={{ scale: 1.2 }}>
+                <Link to="/menu">Main Page</Link>{" "}
+              </motion.div>
+            )}
           </div>
         )}
       </div>

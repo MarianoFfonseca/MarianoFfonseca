@@ -3,7 +3,7 @@
     width: 100%;
 }
 .bgg {
-    background-color: blueviolet;
+    background: linear-gradient(120deg,#000, #3A3A3A);
     width: 100%;
     height: auto;
     min-height: 100vh;
@@ -67,7 +67,7 @@
     height: auto;
     padding: 2%;
     border-radius: 5px;
-    background-color: white;
+    background-color: #3A3A3A;
 }
 .result_card > div, p {
     margin-top: 2%;
@@ -77,7 +77,7 @@
 }
 .result_button {
     margin-top: 2%;
-    color: #000;
+    color: #fff;
 }
 #active {
     border-bottom: 1px solid black;

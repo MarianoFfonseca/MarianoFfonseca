@@ -1,5 +1,5 @@
 .footerSecondary {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #303030;
   width: 100%;
   padding: 30px;
   padding-bottom: 60px;
@@ -22,6 +22,7 @@
 
 .footerSecondary__left > div> a {
   font-size: large;
+  color: #C6C6C6;
 }
 
 .footerSecondary__right {
@@ -30,7 +31,7 @@
 }
 
 .footerSecondary__right >div>  a {
-  color: rgba(0, 0, 0, 0.87);
+  color:#C6C6C6;
   font-weight: 600;
 }
 

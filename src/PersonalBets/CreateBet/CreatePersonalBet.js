@@ -78,8 +78,7 @@ function CreatePersonalBet({ setSocialBet, socialBet }) {
             animate={{x:0, opacity:1}}
             whileHover={{
               scale: 1.2,
-              originX: 0,
-              boxShadow: "0px 0px 8px #fff",
+              originX: 0
             }}
             className="cpersonal_button">
               Next page

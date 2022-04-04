@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 * {
   margin: 0;
 }
-input {font-family: "Fredoka";}
+input, textarea {font-family: 'Secular One'}
+h1 {
+  font-weight: 500px;
+}
 body {
   margin: 0;
-  font-family: "Fredoka";
+  font-family: 'Varela Round';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;

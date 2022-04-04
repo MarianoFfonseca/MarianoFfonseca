@@ -7,14 +7,16 @@
   max-width: 500px;
   height: 700px;
   margin-bottom: 20px;
+  background-color: #303030;
 }
 
 .signupForm__container {
+ 
   padding: 56px;
 }
 
 .signupForm__section {
-  color: rgba(0, 0, 0, 0.87);
+  color: #C6C6C6;
   font-size: 19px;
   margin-bottom: 8px;
 }
@@ -29,6 +31,8 @@
 }
 
 .signupForm__input {
+  color: #C6C6C6;
+ 
   width: 100%;
 }
 
@@ -40,7 +44,7 @@
   display: block;
   margin-bottom: 15px;
   text-decoration: underline;
-  color: #00653e;
+  color: #C6C6C6;
   font-weight: 600;
   font-size: 15px;
 }
@@ -58,7 +62,7 @@
 }
 
 .signupForm__error > .MuiSvgIcon-root {
-  color: #e75b52;
+  color: #C6C6C6;
 }
 
 .signupForm__reportIcon {
@@ -70,7 +74,7 @@
 
 .signupForm__visibilityIcon {
   cursor: pointer;
-  color: grey;
+  color: #C6C6C6;
   position: absolute;
   right: 10%;
   top: 0;
@@ -78,13 +82,13 @@
 }
 
 .signupForm__rewards {
-  color: rgba(0, 0, 0, 0.56);
+  color: #C6C6C6;
   font-size: 14px;
   margin: 24px 0;
 }
 
 .signupForm__span {
-  color: rgba(0, 0, 0, 0.87);
+  color: #C6C6C6;
   font-weight: 600;
   line-height: 1.5;
 }

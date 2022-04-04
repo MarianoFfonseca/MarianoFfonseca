@@ -1,7 +1,7 @@
 import React from "react";
 import InputsForOption from "./InputsForOption";
 import ButtonCheckOut from "./ButtonCheckOut";
-function CreateOptions({ socialOptions, setSocialOptions, socialBet, setUidPersonal }) {
+function CreateOptions({ socialOptions, setSocialOptions, socialBet, setUidPersonal, setCreatedBet }) {
   let numero = socialBet.NOptions;
   let Price = socialBet.Price;
 const changeOption1 = (e) => {
@@ -57,7 +57,7 @@ const changeOption4 = (e) => {
         <h1>Create the options</h1>
         <div className="cpersonal_div">
             {createOption()}
-            <ButtonCheckOut  Price={Price} socialBet={socialBet} socialOptions={socialOptions} setUidPersonal={setUidPersonal}/>
+            <ButtonCheckOut setCreatedBet={setCreatedBet}  Price={Price} socialBet={socialBet} socialOptions={socialOptions} setUidPersonal={setUidPersonal}/>
             <p style={{marginTop:'2%', color:'gray'}}>You just need to pay what the value of your bet is!</p>
         </div>
       </div>

@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
 import db from "../../../firebase";
 import Individual from "./Individual";
-function AfterSocialBet() {
+import toast, { Toaster } from 'react-hot-toast';
+function AfterSocialBet({createdBet, setCreatedBet}) {
   const user = useSelector(selectUser);
   const [socialBets, setSocialBets] = useState([]);
   const [socialOptions, setSocialOptions] = useState([]);
@@ -37,6 +38,12 @@ function AfterSocialBet() {
       });
   };
 
+
+  const alerta = () => {
+    toast.success('Bet created!', {duration: 6000,})
+    setCreatedBet(false)
+  }
+
   const ForIndividual2 = (socialBet) => {
     const final = socialBet.data.usersInBet.map((x) => {
       if (x === user.email) {
@@ -47,10 +54,15 @@ function AfterSocialBet() {
   };
   useEffect(() => {
     betLotery();
+    if(createdBet === true) {
+      alerta()
+    }
+
   }, []);
 
   return (
     <div>
+      <Toaster/>
       <div className="menuScreen less">
         <div className="menuScreen__container less2">
           <div className="menuScreen__left">

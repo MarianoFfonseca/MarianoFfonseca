@@ -12,6 +12,7 @@ import db from "../../firebase";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Mybets.css";
+import DetectWinner from "../../Sistems/DetectWinner";
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -52,6 +53,9 @@ export default function MyBetsMain() {
   }
 
   const [bets, setBets] = useState([]);
+// For winners
+  DetectWinner(bets)
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -64,13 +68,13 @@ export default function MyBetsMain() {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{color:"#FFC0E1"}}>Coin</TableCell>
+            <TableCell style={{color:"#FFF"}}>Coin</TableCell>
 
-            <TableCell style={{color:"#FFC0E1"}} align="right">Bet of</TableCell>
-            <TableCell style={{color:"#FFC0E1"}} align="right">Day of the bet</TableCell>
-            <TableCell style={{color:"#FFC0E1"}} align="right">Day submitted</TableCell>
-            <TableCell style={{color:"#FFC0E1"}} align="right">Price of Coin (bet)</TableCell>
-            <TableCell style={{color:"#FFC0E1"}} align="right">id#</TableCell>
+            <TableCell style={{color:"#FFF"}} align="right">Bet of</TableCell>
+            <TableCell style={{color:"#FFF"}} align="right">Day of the bet</TableCell>
+            <TableCell style={{color:"#FFF"}} align="right">Day submitted</TableCell>
+            <TableCell style={{color:"#FFF"}} align="right">Price of Coin (bet)</TableCell>
+            <TableCell style={{color:"#FFF"}} align="right">id#</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -80,11 +84,11 @@ export default function MyBetsMain() {
               var today = new Date()
               var fbetDay = betDay.getTime()
               var fToday = today.getTime()
-              console.log('Estoy aca')
+         
               if(fToday < fbetDay){
-                console.log(bet.data.userEmail, user.email)
+            
               if (bet.data.userEmail === user.email && bet.data.payment === true) {
-                console.log('here2')
+             
                 return (
                   <TableRow
                  
@@ -95,14 +99,14 @@ export default function MyBetsMain() {
                       },
                     }}
                   >
-                    <TableCell  style={{color:"#FFC0E1"}} component="th" scope="row">
+                    <TableCell  style={{color:"#FFF"}} component="th" scope="row">
                       {bet.data.Coin}
                     </TableCell>
-                    <TableCell style={{color:"#FFC0E1"}} align="right">${bet.data.Money}</TableCell>
-                    <TableCell style={{color:"#FFC0E1"}} align="right">{bet.data.Day}</TableCell>
-                    <TableCell style={{color:"#FFC0E1"}} align="right">No yet</TableCell>
-                    <TableCell style={{color:"#FFC0E1"}} align="right">{bet.data.CoinBet}</TableCell>
-                    <TableCell style={{color:"#FFC0E1"}} align="right">
+                    <TableCell style={{color:"#FFF"}} align="right">${bet.data.Money}</TableCell>
+                    <TableCell style={{color:"#FFF"}} align="right">{bet.data.Day}</TableCell>
+                    <TableCell style={{color:"#FFF"}} align="right">No yet</TableCell>
+                    <TableCell style={{color:"#FFF"}} align="right">{bet.data.CoinBet}</TableCell>
+                    <TableCell style={{color:"#FFF"}} align="right">
                       {bet.id[0]}
                       {bet.id[1]}
                       {bet.id[2]}

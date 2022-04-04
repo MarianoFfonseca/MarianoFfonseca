@@ -13,22 +13,7 @@ import { Redirect } from "react-router-dom";
 import firebase from 'firebase/compat/app';
 function MenuScreen() {
 
-  //Solucionnnnnnnnnnnnnnnnnnnn
-  // const [is, setIs] = useState('Nothing')
-  // firebase.auth().onAuthStateChanged(function(user) {
-  //   if (user) {
-  //     setIs('Si')
-  //   } else {
-  //     setIs('No')
-  //   }
-  //   });
-  //   console.log(is)
-   
-  //   if(is !== 'Nothing') {
-  //     if (is === 'No') {
-  //       return <Redirect to='/'></Redirect>
-  //     }
-  //   }
+
 
   
   return (
@@ -38,7 +23,7 @@ function MenuScreen() {
           <MenuList />
         </div>
         <div className="menuScreen__right">
-          <h1 style={{ color: "#fff" }}>🏠 Main page</h1>
+          <h1>Main page</h1>
           <div className="menuScreen__category">
     
             <MainInvestingPage></MainInvestingPage>

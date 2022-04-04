@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
-function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
+function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal, setCreatedBet }) {
   const unique_id = uuid();
   const user = useSelector(selectUser);
   const Redireccion = '/SuccesOver/' + unique_id
@@ -35,7 +35,61 @@ function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
         usersInBet: [user.email],
         FinalDay: f,
         id: unique_id,
+        LastDay: socialBet.LastDay,
         payment: false
+      })
+      .then(function () {
+        console.log("Value successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing Value: ", error);
+      });
+    db.collection("socialOptions")
+      .doc(unique_id)
+      .set({
+        NOptions: socialBet.NOptions,
+        Option1: socialOptions.Option1,
+        Option2: socialOptions.Option2,
+        Option3: socialOptions.Option3,
+        Option4: socialOptions.Option4,
+        State: socialBet.State,
+        Price: socialBet.Price,
+        userUid: user.uid,
+        id: unique_id,
+      })
+      .then(function () {
+        console.log("Value successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing Value: ", error);
+      });
+  };
+  const FirebaseEasy2 = () => {
+    setCreatedBet(true)
+    setUidPersonal(unique_id)
+    console.log('here')
+    const d = new Date(socialBet.FinalDay);
+    const f = d.toDateString();
+    db.collection("socialBets")
+      .doc(unique_id)
+      .set({
+        Title: socialBet.Title,
+        Description: socialBet.Description,
+        ImgUrl: socialBet.ImgUrl,
+        MaxPeapol: socialBet.MaxPeapol,
+        Topic: socialBet.Topic,
+        State: socialBet.State,
+        Coin: socialBet.Coin,
+        Price: socialBet.Price,
+        NOptions: socialBet.NOptions,
+        Password: socialBet.Password,
+        userUid: user.uid,
+        userEmail:user.email,
+        usersInBet: [user.email],
+        FinalDay: f,
+        id: unique_id,
+        LastDay: socialBet.LastDay,
+        payment: true
       })
       .then(function () {
         console.log("Value successfully written!");
@@ -161,14 +215,14 @@ function ButtonCheckOut({ Price, socialBet, socialOptions, setUidPersonal }) {
   const ButtonForCheckOut = () => {
     if (Price === "Free") {
       return (
-        <Link to="/succesOver">
+        <Link to="/MySocialBets">
           <motion.button
             whileHover={{
               scale: 1.2,
               originX: 0,
               boxShadow: "0px 0px 8px #fff",
             }}
-            onClick={FirebaseEasy}
+            onClick={FirebaseEasy2}
             style={{ marginTop: "4%" }}
           >
             Create bet !

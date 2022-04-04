@@ -172,13 +172,9 @@ export default function SelectOptionsBet({
                 )}
                 <div style={{ marginTop: "5%" }}>
                   {selectedSocialOption !== "" ? (
-                    <motion.button
-                      initial={{ x: -100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      className="button"
-                    >
-                      Check out
-                    </motion.button>
+                  <>
+                  {Button(x.Price, selectedSocialOption)}
+                  </>
                   ) : (
                     ""
                   )}

@@ -18,6 +18,9 @@ function VerifyEmail() {
       }
     }
   }
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <motion.div
@@ -27,6 +30,7 @@ function VerifyEmail() {
     >
       We sent an email to your email! Verify this for continue!
       <p>Refresh the page when you are done!</p>
+      <button onClick={refreshPage} style={{marginTop:'2%'}}>Refresh</button>
     </motion.div>
   );
 }

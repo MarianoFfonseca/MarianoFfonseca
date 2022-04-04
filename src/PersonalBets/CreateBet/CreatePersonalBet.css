@@ -1,8 +1,8 @@
 .cpersonal_container{
-    border-radius: 15px;
-    background-color: #8C0079;
+    border-radius: 5px;
+    background-color: #303030;
     max-width: 40%;
-    padding: 5%;
+    padding: 2%;
     height: auto;
     margin-left: 22%;
     margin-top: 5%;
@@ -10,7 +10,7 @@
 
 }
 .cpersonal_container > h1 {
-    color:#FFC0E1;
+    color:#C6C6C6;
     margin-bottom: 2%;
 }
 
@@ -21,7 +21,7 @@
     display: flex;
     outline: none;
     font-size: 20px;
-    border-color:#FFC0E1;
+    border-color:#C6C6C6;
 }
 .cpersonal_button {
     margin-top: 5%;
@@ -48,12 +48,11 @@
 .cpersonal_description {
     outline: none;
     border: none;
-    
     font-size: 20px;
     border-radius: 5px;
     margin-top: 2%;
     text-align: left;
     padding: 2%;
-    width: 100%;
+    width: 95%;
     height: 100px;
 }

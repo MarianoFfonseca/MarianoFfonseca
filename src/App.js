@@ -55,9 +55,16 @@ import FindPrivateBet from "./PersonalBets/FindBet/FindPrivateBet";
 import DescriptionBet from "./PersonalBets/FindBet/DescriptionBet.js";
 import ForPrivatesPassword from "./PersonalBets/FindBet/ForPrivatesPassword/ForPrivatesPassword";
 import SelectOptionsBet from "./PersonalBets/JoinABet/SelectOptionsBet";
-import SuccesIndividual from './PersonalBets/JoinABet/SuccesIndividual'
+import SuccesIndividual from "./PersonalBets/JoinABet/SuccesIndividual";
 import SuccesIndivudualPayment from "./PersonalBets/JoinABet/SuccesIndividualPayment";
+import DetectWinner from './Sistems/DetectWinner'
+import GetMoneyBet from './ForGetMoney/GetMoneyBet'
+
 function App() {
+  // Detect Winner
+  DetectWinner()
+
+
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   //A normal bet
@@ -78,6 +85,7 @@ function App() {
     NOptions: "2",
     Password: "",
     FinalDay: f,
+    LastDay: f,
   });
 
   const [socialOptions, setSocialOptions] = useState({
@@ -105,7 +113,8 @@ function App() {
   const [canJoinBet, setCanJoinBet] = useState("");
   const [selectedSocialOption, setSelectedSocialOptions] = useState("");
   const [selectedCoinSocialBet, setSelectedCoinSocialBet] = useState();
-  const [individualBetPrice, setIndividualBetPrice] = useState('')
+  const [individualBetPrice, setIndividualBetPrice] = useState("");
+  const [createdBet, setCreatedBet] = useState(false);
 
   //more
   const [monthlyB, setmonthlyB] = useState("fullYear");
@@ -184,9 +193,6 @@ function App() {
             <Route exact path="/">
               <Header />
               <HomeScreen />
-              <Fade>
-                <Footer />
-              </Fade>
             </Route>
             <Route exact path="/account/signin">
               {is === "Si" ? <Redirect to="/menu" /> : <LoginScreen />}
@@ -205,6 +211,16 @@ function App() {
                 </>
               )}
             </Route>
+            <Route exact path="/GetMoneyBet/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header menuPage />
+                  <GetMoneyBet/>
+                </>
+              )}
+            </Route>
             <Route exact path="/SuccesIndivudualPayment/:id">
               {is === "No" ? (
                 <Redirect to="/account/signin" />
@@ -212,9 +228,10 @@ function App() {
                 <>
                   <Header menuPage />
                   <SuccesIndivudualPayment
-                   selectedSocialOption={selectedSocialOption}
-                   selectedCoinSocialBet={selectedCoinSocialBet}
-                   user={user}/>
+                    selectedSocialOption={selectedSocialOption}
+                    selectedCoinSocialBet={selectedCoinSocialBet}
+                    user={user}
+                  />
                 </>
               )}
             </Route>
@@ -224,7 +241,7 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <SuccesIndividual/>
+                  <SuccesIndividual />
                 </>
               )}
             </Route>
@@ -235,7 +252,7 @@ function App() {
                 <>
                   <Header />
                   <SelectOptionsBet
-                  setIndividualBetPrice={setIndividualBetPrice}
+                    setIndividualBetPrice={setIndividualBetPrice}
                     setSelectedCoinSocialBet={setSelectedCoinSocialBet}
                     selectedCoinSocialBet={selectedCoinSocialBet}
                     canJoin={canJoin}
@@ -283,7 +300,7 @@ function App() {
                 <>
                   <Header />
                   <DescriptionBet
-                  user={user}
+                    user={user}
                     allSocialBets={allSocialBets}
                     canJoin={canJoin}
                     canJoinBet={canJoinBet}
@@ -367,6 +384,7 @@ function App() {
                 <>
                   <Header />
                   <CreateOptions
+                    setCreatedBet={setCreatedBet}
                     socialBet={socialBet}
                     socialOptions={socialOptions}
                     setSocialOptions={setSocialOptions}
@@ -381,7 +399,10 @@ function App() {
               ) : (
                 <>
                   <Header />
-                  <AfterSocialBet />
+                  <AfterSocialBet
+                    createdBet={createdBet}
+                    setCreatedBet={setCreatedBet}
+                  />
                 </>
               )}
             </Route>
@@ -402,6 +423,7 @@ function App() {
                 <>
                   <Header />
                   <CreatePersonalBetFinal
+                    setCreatedBet={setCreatedBet}
                     socialBet={socialBet}
                     setSocialBet={setSocialBet}
                     socialOptions={socialOptions}

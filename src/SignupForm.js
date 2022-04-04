@@ -72,9 +72,9 @@ function SignupForm() {
               label="First name"
               type="text"
               InputLabelProps={{
-                style: { color: "rgba(0,0,0,.56)" },
+                style: { color: "#C6C6C6" },
               }}
-              InputProps={{ style: { fontWeight: "800" } }}
+              InputProps={{ style: { fontWeight: "800",color: "#C6C6C6" } }}
               className="signupForm__input"
               inputRef={register({ required: true })}
             />
@@ -96,9 +96,9 @@ function SignupForm() {
               label="Last name"
               type="text"
               InputLabelProps={{
-                style: { color: "rgba(0,0,0,.56)" },
+                style: { color: "#C6C6C6" },
               }}
-              InputProps={{ style: { fontWeight: "800" } }}
+              InputProps={{ style: { fontWeight: "800", color: "#C6C6C6" } }}
               className="signupForm__input"
               inputRef={register({ required: true })}
             />
@@ -120,9 +120,9 @@ function SignupForm() {
               label="Email Address"
               type="email"
               InputLabelProps={{
-                style: { color: "rgba(0,0,0,.56)" },
+                style: { color: "#C6C6C6", backgroundColor:'transparent' },
               }}
-              InputProps={{ style: { fontWeight: "800" } }}
+              InputProps={{ style: { fontWeight: "800",color: "#C6C6C6" } }}
               className="signupForm__input"
               inputRef={register({ required: true })}
             />
@@ -144,9 +144,9 @@ function SignupForm() {
               label="Password"
               type={passwordShown ? "text" : "password"}
               InputLabelProps={{
-                style: { color: "rgba(0,0,0,.56)" },
+                style: { color: "#C6C6C6" },
               }}
-              InputProps={{ style: { fontWeight: "800" } }}
+              InputProps={{ style: { fontWeight: "800", color: "#C6C6C6" } }}
               className="signupForm__input"
               inputRef={register({ required: true })}
             />

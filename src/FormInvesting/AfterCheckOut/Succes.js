@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom'
 function Succes() {
   //User
   const user = useSelector(selectUser);
-
+  
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")

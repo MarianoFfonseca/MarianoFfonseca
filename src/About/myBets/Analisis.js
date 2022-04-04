@@ -96,7 +96,7 @@ function Analisis() {
                             Select a bet
                           </InputLabel>
                           <Select
-                            style={{ borderRadius: "30px", backgroundColor:'#FFC0E1' }}
+                            style={{ borderRadius: "30px", backgroundColor:'aliceblue' }}
                             labelId="demo-simple-select-autowidth-label"
                             id="demo-simple-select-autowidth"
                             value={age}

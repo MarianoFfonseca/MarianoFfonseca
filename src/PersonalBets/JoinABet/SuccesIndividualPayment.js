@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import db from "../../firebase";
 import { v4 as uuid } from "uuid";
 import {useParams} from 'react-router'
-function SuccesIndivudualPayment( {user, selectedCoinSocialBet, selectedSocialOption} ) {
+import { getAuth } from "firebase/auth";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
+function SuccesIndivudualPayment({user, selectedCoinSocialBet, selectedSocialOption}) {
     const {id} = useParams();
     const unique_id = uuid();
     const selectedOption = selectedCoinSocialBet === '' ? selectedSocialOption : selectedCoinSocialBet;
@@ -12,8 +14,8 @@ function SuccesIndivudualPayment( {user, selectedCoinSocialBet, selectedSocialOp
         db.collection("individualSocialBet")
           .doc(unique_id)
           .set({
-          userUid:user.uid,
-          selectedOption: selectedOption,
+          userUid:'user.id',
+          // selectedOption: selectedOption,
           betId: id
           })
           .then(function () {
@@ -22,28 +24,39 @@ function SuccesIndivudualPayment( {user, selectedCoinSocialBet, selectedSocialOp
           .catch(function (error) {
             console.error("Error writing Value: ", error);
           });
-       db.collection("socialBets")
+      db.collection("socialBets")
           .doc(id)
           .get()
           .then(
             (x)=> {
-              const usersInBet =  x.data().usersInBet;
-              const email = user.email
-              const newArray = usersInBet.push(email)
-    
-              db.collection("socialBets")
-              .doc(id)
-              .update({
-               usersInBet : usersInBet
-                })
-              
+               const usersInBet =  x.data().usersInBet;
+               const profile = getAuth()
+               const email = profile.currentUser.email;
+           
+                console.log('hola')
+                const newArray = usersInBet.push(email)
+                db.collection("socialBets")
+                .doc(id)
+                .update({
+                 usersInBet : usersInBet
+                  })
+                  .then(function () {
+                    console.log("Value successfully written! 222");
+                  })
+                  .catch(function (error) {
+                    console.error("Error writing Value: ", error);
+                  });
+               
+               
+
             }
           )
       };
-
-    useEffect(()=> {
-    
-    }, [])
+     useEffect(
+       ()=> {
+        FirebaseEasy();
+       }, []
+     ) 
   return (
     <div className="Total">
       <motion.div

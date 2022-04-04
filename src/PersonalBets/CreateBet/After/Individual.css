@@ -1,10 +1,11 @@
 .individual_div{
-    background-color: #FF0084;
+    background-color: #303030;
     width: 80%;
     height: auto;
     padding: 2%;
     border-radius: 5px;
     margin-top: 2%;
+    box-shadow: 10px 10px 10px #000;
 }
 .individual_div > div> p {
     margin-top: 2%;

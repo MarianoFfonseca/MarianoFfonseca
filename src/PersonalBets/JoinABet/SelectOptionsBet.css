@@ -2,7 +2,7 @@
     padding: 4%;
     border-radius: 5px;
     position: absolute;
-    background-color: aliceblue;
+    background-color: #303030;
     box-shadow: 4px 4px 8px #000;
     color: #000;
     margin-left: 31%;
@@ -22,7 +22,7 @@
   }
 span.active::before{
     content: '>';
-    color: #000;
+    color: #c6c6c6;
     position: relative;
     top: -2px;
     margin-right: 6px;
@@ -30,14 +30,10 @@ span.active::before{
     display: inline-block;
   }
 
-.button { 
-    color: #000;
-    border-color: #000;
-}
+
 .button:hover { 
     color: #fff;
     border-color: #fff;
-    background-color: purple;
     box-shadow: 4px 6px #888888;
     transition-duration: 500ms;
 }

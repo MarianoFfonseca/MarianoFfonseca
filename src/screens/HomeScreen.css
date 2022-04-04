@@ -1,7 +1,7 @@
 .homeScreen {
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: transparent;
 }
 .homeScreen__top {
   background-color: #14213D;
@@ -52,7 +52,8 @@
   gap: 60px;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: transparent;
+  min-height: 65vh;
 }
 
 .homeScreen__bottomLeft {
@@ -164,3 +165,49 @@
     flex-direction: column;
   }
 }
+
+/* Listo */
+.custom-shape-divider-bottom-1648319121 {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1648319121 svg {
+  position: relative;
+  display: block;
+  width: calc(110% + 1.3px);
+  height: 96px;
+}
+
+.custom-shape-divider-bottom-1648319121 .shape-fill {
+  fill: #F0EBE0;
+}
+
+/* Probar */
+.custom-shape-divider-bottom-1648319243 {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1648319243 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 64px;
+}
+
+.custom-shape-divider-bottom-1648319243 .shape-fill {
+  fill: #F0EBE0;
+}
+
+

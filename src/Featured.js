@@ -16,7 +16,9 @@ function Featured({
   animation
 }) {
   return (
+    <div>
     <div className='featured' style={{ background }}>
+              
       <motion.div 
       animate={{x:30}}
       initial={{ x:-30}}
@@ -39,6 +41,9 @@ function Featured({
          transition={{yoyo: Infinity, duration: 2}}
         src={image} alt='' />
       </div>
+      
+    </div>
+    
     </div>
   )
 }

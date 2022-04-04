@@ -19,24 +19,24 @@ function Result({ element, setFirst }) {
       <p>{element.Description}</p>
       <div className="result_short" style={{ display: "flex" }}>
         <div style={{ display: "flex", marginLeft: "0%" }}>
-          <BsFillPersonFill size={20} />
+        🙋
           <span>{element.usersInBet.length}</span>
         </div>
         <div style={{ display: "flex" }}>
-          <FaMoneyBillAlt size={20} />
+       {element.Price === 'Free' ? <>🆓</> : <>💸</>} 
           <span> ${element.Price}</span>
         </div>
         <div style={{ display: "flex" }}>
-          <FaCalendarDay size={20} />
+        📆
           <span> {element.FinalDay}</span>
         </div>
         <div style={{ display: "flex" }}>
-          <RiGitRepositoryPrivateLine size={20} />
+        {element.State === 'Private' ? <>🔒</> : <>🔓</>}
           <span> {element.State}</span>
         </div>
       </div>
       <Link className="result_button" to={redireccion}>
-        <button className="result_button" style={{color:'black'}}>Join</button>
+        <button className="result_button" style={{color:'wheat'}}>Join</button>
       </Link>
     </div>
   );

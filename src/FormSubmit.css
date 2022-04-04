@@ -2,8 +2,9 @@
   position: relative;
   font-family: inherit;
   display: inline-block;
+  height: auto;
   z-index: 1;
-  padding: 18px 24px;
+  padding: 3px 24px;
   background: #BA00A1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.24), 0 8px 12px rgba(0, 0, 0, 0.14);
   border: 0;
@@ -11,7 +12,6 @@
   color: #fff;
   font-size: 19px;
   font-weight: 700;
-  line-height: 1.2;
   overflow: hidden;
   text-align: center;
   text-decoration: none;

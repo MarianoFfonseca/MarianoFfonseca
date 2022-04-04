@@ -5,14 +5,13 @@
   align-items: center;
   padding-left: 40px;
   padding-right: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.06),
-    0 0 2px #00000012;
-  z-index: 2;
-  background-color: black;
+   z-index: 2;
+  border: none;
+
 }
 
 .header__menuPage {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 95%;
@@ -78,7 +77,7 @@
   }
   .header__menuPage {
     position: inherit;
-    background-color: black
+    background-color: none
     ;
   }
   .header__logout {

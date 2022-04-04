@@ -15,7 +15,7 @@
   .homeScreen__bottomLeftt {
     padding: 5%;
     border-radius: 15px;
-    background-color: #8C0079;
+    background-color: transparent;
     text-align: left;
     display: flex;
     flex-direction: column;

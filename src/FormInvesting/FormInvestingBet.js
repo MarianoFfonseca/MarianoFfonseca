@@ -91,7 +91,6 @@ export default function FormInvestingBet({ bet, setCoinBet }) {
               whileHover={{
                 scale: 1.2,
                 originX: 0,
-                boxShadow: "0px 0px 8px #fff",
               }}
               style={{ color: "white" }}
             >

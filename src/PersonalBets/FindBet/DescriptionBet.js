@@ -3,10 +3,13 @@ import "./DescriptionBet.css";
 import { motion } from "framer-motion";
 import { useParams } from "react-router";
 import { Redirect, Link } from "react-router-dom";
+import db from "../../firebase";
 
 function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
   const { id } = useParams();
   const redirecionOpciones = "/SelectOptionsBet/" + id;
+ 
+ /// Check if it is private
   function ifPrivate() {
     const f = allSocialBets.map((x) => {
       if (x.id === id) {
@@ -36,6 +39,29 @@ function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
     });
     return f;
   }
+
+  // For get the bet
+  const [thisBet, setThisBet] = useState([])
+
+  function Get() {
+    db.collection('socialBets')
+    .doc(id)
+    .get()
+    .then(
+   (x)=>{
+        const data = x.data()
+        setThisBet(data)
+      }
+    )
+  }
+  useEffect(
+    ()=> {
+      Get()
+    }, []
+  )
+    //Numero de usuarios
+  const Nuser = thisBet.usersInBet ?  thisBet.usersInBet.length : null;
+
   return (
     <div className="bgg">
       {ifPrivate()}
@@ -46,22 +72,16 @@ function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
         className="descriptionCard"
       >
         <div className="descriptionContainer">
-          <h1>Descipcion de mariano</h1>
+          <h1>{thisBet.Title}</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum
-            nulla exercitationem asperiores, autem dicta quod non eum magni
-            sapiente! Unde quis neque pariatur nisi asperiores, deleniti soluta
-            vero reprehenderit ut?
+          {thisBet.Description}
           </p>
-          <p>created by : marianofonseca</p>
+          <p>created by : {thisBet.userEmail}</p>
           <Link to={redirecionOpciones}>
             {" "}
             <motion.button
               className="descriptionButton"
               whileHover={{
-                color: "white",
-                borderColor: "white",
-                backgroundColor: "purple",
                 boxShadow: "2px 6px #888888",
               }}
             >
@@ -72,9 +92,6 @@ function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
             style={{ marginLeft: "4%" }}
             className="descriptionButton"
             whileHover={{
-              color: "white",
-              borderColor: "white",
-              backgroundColor: "purple",
               boxShadow: "2px 6px #888888",
             }}
           >
@@ -84,11 +101,17 @@ function DescriptionBet({ allSocialBets, canJoin, canJoinBet, user }) {
         <hr style={{ marginTop: "2%" }} />
         <div className="descriptionContainer2">
           <h3>Extra information</h3>
-          <p>Users in the bet: 5 </p>
-          <p>Price of the bet: Free</p>
+          <p>Users in the bet:  {Nuser}</p>
+          <p>Price of the bet: ${thisBet.Price}</p>
           <p>Last day to join: 10/10/2022 </p>
-          <p>Day of the bet: 15/10/2022</p>
-          <p>State of the bet: Private</p>
+          <p>Day of the bet: {thisBet.FinalDay}</p>
+          <p>State of the bet: {thisBet.State}</p>
+          {thisBet.State === 'Public' ?
+           <>
+           <p>Coin of the bet:  {thisBet.Coin}</p>
+          </> : <>
+          <p>Topic of the bet: {thisBet.Topic}</p>
+          </>}
         </div>
       </motion.div>
     </div>

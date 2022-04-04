@@ -89,7 +89,7 @@ export default function ReviewBet({bet}) {
         CoinBet: bet.CoinBet,
         payment: false,
         userEmail: user.email,
-        status : 'Lose'
+        status : 'none'
       })
       .then(function () {
         console.log("Value successfully written!");
@@ -166,8 +166,7 @@ export default function ReviewBet({bet}) {
               animate={{ x: 0 }}
               whileHover={{
                 scale: 1.2,
-                originX: 0,
-                boxShadow: "0px 0px 8px #fff",
+                originX: 0
               }}
               style={{ color: "white" }}
             >
@@ -181,7 +180,6 @@ export default function ReviewBet({bet}) {
               whileHover={{
                 scale: 1.2,
                 originX: 0,
-                boxShadow: "0px 0px 8px #fff",
               }}
               style={{ color: "white" }}
             >
@@ -195,7 +193,6 @@ export default function ReviewBet({bet}) {
               whileHover={{
                 scale: 1.2,
                 originX: 0,
-                boxShadow: "0px 0px 8px #fff",
               }}
               style={{ color: "white" }}
             >
