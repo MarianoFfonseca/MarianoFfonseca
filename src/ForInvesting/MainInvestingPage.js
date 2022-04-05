@@ -49,7 +49,7 @@ export default function MainInvestingPage() {
             </motion.button></Link>
           </div>
         </motion.div>
-        
+
       </div>
       <motion.div
       animate={{ y: 0 }}
@@ -99,6 +99,12 @@ export default function MainInvestingPage() {
             <img  src={undraw_calendar} alt="" />
           </div>
         </motion.div>
+
+        <div className="lastOne">
+          <div className="item one">1</div>
+          <div  className="item twoo">2</div>
+        </div>
+    
     </div>
   );
 }

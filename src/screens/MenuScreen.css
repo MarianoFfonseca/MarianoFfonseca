@@ -9,6 +9,7 @@
 .menuScreen__container {
 
   padding-left: 42px;
+  padding-right: 42px;
   margin-top: 101px;
   display: flex;
   gap: 50px;

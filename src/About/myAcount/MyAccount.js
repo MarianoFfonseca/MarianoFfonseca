@@ -4,10 +4,13 @@ import { selectUser } from "../../features/userSlice";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import MenuHeader from "../../MenuHeader";
+import { injected } from "../../Wallet/Connectors";
 import MenuList from "../../MenuList";
 import "./MyAccount.css";
 import { motion } from "framer-motion";
+import MetaMask from "../../images/MetaMask.png";
+import { useWeb3React } from "@web3-react/core";
+import toast, { Toaster } from 'react-hot-toast';
 function MyAccount() {
   const HandleChangeName = (e) => {
     setName(e.target.value);
@@ -66,6 +69,32 @@ function MyAccount() {
       });
   };
 
+  async function connect(e) {
+    e.preventDefault()
+    try {
+      await activate(injected);
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+  async function disconnect(e) {
+    e.preventDefault()
+    try {
+      deactivate()
+    } catch (ex) {
+      console.log(ex)
+    }
+  }
+  const { active, account, library, connector, activate, deactivate } =
+    useWeb3React();
+
+    useEffect(()=>{
+      console.log('cambio', active)
+      if(active === true) {
+        toast.success('Successfully connected!')
+      }
+    },[active])
+
   useEffect(() => {
     FUsers();
   }, []);
@@ -73,7 +102,7 @@ function MyAccount() {
     <div>
       {/* onClick={() => {navigator.clipboard.writeText(x.uid) alert("copied!")}} */}
       <div className="menuScreen">
-        
+      <Toaster />
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
@@ -158,6 +187,33 @@ function MyAccount() {
                               </div>
                             </div>
                           </motion.div>
+                          <div className="addMetamask">
+                            <div className="account_1">
+                              <h1>Connect Metamask With ModernLotery</h1>
+                              <p>
+                                Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Nam, possimus. Praesentium
+                                deleniti temporibus quam odit! Aliquam quia
+                                distinctio non unde totam culpa dolorum? Ut
+                                perferendis explicabo odio quidem quam quas?
+                              </p>
+                             
+                              {active ? (
+                                <div style={{marginTop:'5%'}}>
+                                  Connected with <b>{account}</b>
+                                  <button style={{display:'block', marginTop:'2%'}} onClick={disconnect}>Disconnect</button>
+                                </div>
+                              ) : (
+                                <button onClick={connect}>
+                                Conect Metamask Here
+                              </button>
+                              )}
+                            </div>
+                            <div className="account_2">
+                              <img src={MetaMask} alt="" />
+                            </div>
+                          </div>
+
                           {/* Aca es el segundo */}
 
                           <motion.h1

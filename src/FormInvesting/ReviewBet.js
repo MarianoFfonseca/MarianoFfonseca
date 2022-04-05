@@ -13,7 +13,10 @@ import { loadStripe } from "@stripe/stripe-js";
 
 //StripePromise
 
-export default function ReviewBet({bet}) {
+import CheckOutButton from "../CheckOut/CheckOutButton";
+import { Redirect } from "react-router-dom";
+
+export default function ReviewBet({ bet }) {
   let stripePromise;
   const getStripe = () => {
     if (!stripePromise) {
@@ -25,9 +28,8 @@ export default function ReviewBet({bet}) {
   };
   //For the user
   const [bets, setBets] = useState([]);
-  const [Mybets, setMyBets] = useState([]);
   const user = useSelector(selectUser);
-  console.log(bet.Money)
+  console.log(bet.Money);
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")
@@ -89,7 +91,7 @@ export default function ReviewBet({bet}) {
         CoinBet: bet.CoinBet,
         payment: false,
         userEmail: user.email,
-        status : 'none'
+        status: "none",
       })
       .then(function () {
         console.log("Value successfully written!");
@@ -97,25 +99,25 @@ export default function ReviewBet({bet}) {
       .catch(function (error) {
         console.error("Error writing Value: ", error);
       });
-  }
+  };
 
   const redirectToCheckOut = async (e) => {
     e.preventDefault();
-    EasyFirebase()
+    EasyFirebase();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut5 = async (e) => {
     e.preventDefault();
-    EasyFirebase()
+    EasyFirebase();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions5);
     console.log("Stripe checkout error", error);
   };
   const redirectToCheckOut20 = async (e) => {
     e.preventDefault();
-    EasyFirebase()
+    EasyFirebase();
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions20);
     console.log("Stripe checkout error", error);
@@ -138,14 +140,16 @@ export default function ReviewBet({bet}) {
   useEffect(() => {
     optionsLotery();
   }, []);
-
-
-
+  
   return (
     <div className="Total">
-      <motion.div  transition={{type:'spring', duration:2}}
-            initial={{ x:100, opacity:0 }}
-            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
+  
+      <motion.div
+        transition={{ type: "spring", duration: 2 }}
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="FormInvesting_card"
+      >
         <h3>
           Review your bet before check out{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -158,49 +162,11 @@ export default function ReviewBet({bet}) {
           <li>- {bet.Day}</li>
           <li>- {bet.CoinBet}</li>
         </div>
-       
-         {bet.Money === '2' ? <motion.button
-              transition={{ type: "spring" }}
-              onClick={redirectToCheckOut}
-              initial={{ x: "-1000px" }}
-              animate={{ x: 0 }}
-              whileHover={{
-                scale: 1.2,
-                originX: 0
-              }}
-              style={{ color: "white" }}
-            >
-              Go Check Out
-            </motion.button> : null}
-         {bet.Money === '5' ? <motion.button
-              transition={{ type: "spring" }}
-              onClick={redirectToCheckOut5}
-              initial={{ x: "-1000px" }}
-              animate={{ x: 0 }}
-              whileHover={{
-                scale: 1.2,
-                originX: 0,
-              }}
-              style={{ color: "white" }}
-            >
-              Go Check Out
-            </motion.button> : null}
-         {bet.Money === '20' ? <motion.button
-              transition={{ type: "spring" }}
-              onClick={redirectToCheckOut20}
-              initial={{ x: "-1000px" }}
-              animate={{ x: 0 }}
-              whileHover={{
-                scale: 1.2,
-                originX: 0,
-              }}
-              style={{ color: "white" }}
-            >
-              Go Check Out
-            </motion.button> : null}
-            
-          
-        
+        <CheckOutButton
+          price={"0.01"}
+          bet={bet}
+          user={user}
+        ></CheckOutButton>
       </motion.div>
     </div>
   );

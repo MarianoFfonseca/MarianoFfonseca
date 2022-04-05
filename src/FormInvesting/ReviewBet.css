@@ -8,7 +8,7 @@
     margin-left: 27%;
     max-width: 600px;
     margin-top: 7%;
-    padding: 20px;
+    padding: 20px 0px;
     align-items: center;
     position: absolute;
     background: #fff;
@@ -16,7 +16,6 @@
 }
 .reviewBetText {
     text-align: center;
-    padding: 5%;
 }
 .reviewBetText > div  {
     margin-top: 5%;

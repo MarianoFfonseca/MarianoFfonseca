@@ -18,8 +18,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
     "babel-plugin-macros": "^3.1.0",
     "chart.js": "^3.7.1",
+    "ethers": "^5.6.2",
     "faker": "^6.6.6",
     "firebase": "^9.6.8",
     "framer-motion": "^3.2.2-rc.1",
@@ -38,7 +41,8 @@
     "react-scripts": "4.0.1",
     "recharts": "^2.1.9",
     "uuidv4": "^6.2.12",
-    "victory": "^36.3.0"
+    "victory": "^36.3.0",
+    "web3": "^1.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

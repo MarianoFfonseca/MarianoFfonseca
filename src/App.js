@@ -59,6 +59,12 @@ import SuccesIndividual from "./PersonalBets/JoinABet/SuccesIndividual";
 import SuccesIndivudualPayment from "./PersonalBets/JoinABet/SuccesIndividualPayment";
 import DetectWinner from './Sistems/DetectWinner'
 import GetMoneyBet from './ForGetMoney/GetMoneyBet'
+import Web3 from 'web3'
+import {Web3ReactProvider} from '@web3-react/core'
+
+function getLibrary(provider){
+  return new Web3(provider)
+}
 
 function App() {
   // Detect Winner
@@ -185,6 +191,7 @@ function App() {
   });
 
   return (
+    <Web3ReactProvider getLibrary={getLibrary}>
     <div className="app">
       <GetCryptoValues />
       {is !== "Nothing" ? (
@@ -673,6 +680,7 @@ function App() {
         </div>
       )}
     </div>
+    </Web3ReactProvider>
   );
 }
 
