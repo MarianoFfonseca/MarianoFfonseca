@@ -70,7 +70,13 @@ function CheckOutAward() {
         })
         .then(() => setReady('true'))
         .catch((err) => console.log(err));
+    db.collection('bets')
+    .doc(bet.id)
+    .update({
+        status:'reclamed'
+    })
     }
+
   };
 
   useEffect(() => {
@@ -88,7 +94,7 @@ function CheckOutAward() {
            Thanks you so much for participate in the bet!
           </p>{" "}
           <p style={{marginTop:'2%'}}>Congratulations!</p>
-          <b>ModernLotery</b>
+          <p><b>ModernLotery</b></p>
           <button style={{marginTop:'2%'}} onClick={() => {
               toast.dismiss(t.id)
               setReady('ready2')
@@ -98,7 +104,7 @@ function CheckOutAward() {
     }
   }, [ready]);
 
-  let ForR = ready === 'ready2' ? <Redirect to='/menu'/> : <></>;
+  const ForR = ready === 'ready2' ? <Redirect to='/about/MyBets'/> : <></>;
 
   return (
     <div style={{ minHeight: "90vh" }}>

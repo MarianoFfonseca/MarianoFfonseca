@@ -104,19 +104,19 @@ export default function MyLastsBets() {
                         <TableCell component="th" scope="row">
                           {bet.Coin}
                         </TableCell>
-                        <TableCell style={{ color: "#FFF" }} align="right">
+                        <TableCell style={{ color: "#303030" }} align="right">
                           ${bet.Money}
                         </TableCell>
-                        <TableCell style={{ color: "#FFF" }} align="right">
+                        <TableCell style={{ color: "#303030" }} align="right">
                           {bet.Day}
                         </TableCell>
-                        <TableCell style={{ color: "#FFF" }} align="right">
+                        <TableCell style={{ color: "#303030" }} align="right">
                           {bet.CoinBet}
                         </TableCell>
-                        <TableCell style={{ color: "#FFF" }} align="right">
+                        <TableCell style={{ color: "#303030" }} align="right">
                           Final Price
                         </TableCell>
-                        <TableCell style={{ color: "#FFF" }} align="right">
+                        <TableCell style={{ color: "#303030" }} align="right">
                           {bet.status}
                         </TableCell>
                       </TableRow>
@@ -141,11 +141,37 @@ export default function MyLastsBets() {
                         <TableCell component="th" scope="row">
                           {bet.Coin}
                         </TableCell>
-                        <TableCell align="right">${bet.Money}</TableCell>
-                        <TableCell align="right">{bet.Day}</TableCell>
-                        <TableCell align="right">{bet.CoinBet}</TableCell>
-                        <TableCell align="right">Final Price</TableCell>
-                        <TableCell align="right">{bet.status}</TableCell>
+                        <TableCell  style={{ color: "#303030" }} align="right">{bet.Money}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.Day}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.CoinBet}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">Final Price</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.status}</TableCell>
+                      </TableRow>
+                    );
+                  }
+                  else if(bet.status === 'reclamed'){
+                    return (
+                      <TableRow
+                        style={{
+                          borderColor: "none",
+                          border: "solid",
+                          borderRadius: "30px",
+                          backgroundColor: "#ff7e33",
+                          borderWidth: "1px"
+                        }}
+                        key={bet.userEmail}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {bet.Coin}
+                        </TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">${bet.Money}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.Day}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.CoinBet}</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">Final Price</TableCell>
+                        <TableCell style={{color:'#303030'}} align="right">{bet.status}</TableCell>
                       </TableRow>
                     );
                   }

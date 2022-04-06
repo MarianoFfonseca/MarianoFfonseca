@@ -3,27 +3,39 @@ import { ethers } from "ethers";
 import toast, { Toaster } from 'react-hot-toast';
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import {injected} from '../Wallet/Connectors'
 import db from "../firebase";
-
+console.log(window.ethereum)
 const startPayment = async ({ setError, setTxs, setPay, ether, addr }) => {
   try {
     if (!window.ethereum)
       throw new Error("No crypto wallet found. Please install it.");
 
-    await window.ethereum.send("eth_requestAccounts");
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    ethers.utils.getAddress(addr);
-    const tx = await signer.sendTransaction({
-      to: addr,
-      value: ethers.utils.parseEther(ether)
-    });
-    console.log({ ether, addr });
-    console.log("tx", tx);
-    setTxs(tx)
-    setPay(true)
+    if(window.ethereum.chainId === '0x1'){
+      await window.ethereum.send("eth_requestAccounts");
+    
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      ethers.utils.getAddress(addr);
+      const tx = await signer.sendTransaction({
+        to: addr,
+        value: ethers.utils.parseEther(ether)
+      });
+      console.log({ ether, addr });
+      console.log("tx", tx);
+      setTxs(tx)
+      setPay(true)
+    }
+    else if(window.ethereum.chainId !== '0x1'){setError('Select the principal etherum red');}
+  
+
   } catch (err) {
-    setError(err.message);
+    console.log(err.code)
+    if(err.code === 'INSUFFICIENT_FUNDS' ) 
+      {setError('Insuficient funds');}
+    else {
+      setError('Error to connect Metamask');
+    }
   }
 };
 
@@ -100,7 +112,7 @@ function CheckOut({ price, bet, user }) {
       <button onClick={handleSubmit}>Pay</button>
       <Toaster></Toaster>
       {Redireccion}
-      {error ? <b style={{display:'block', marginTop:'3%', color:'rgb(255, 133, 133)'}}>Error to connect Metamask</b>:<></>}
+      {error ? <b style={{display:'block', marginTop:'3%', color:'rgb(255, 133, 133)'}}>{error}</b>:<></>}
     </div>
   );
 }
