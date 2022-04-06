@@ -11,6 +11,7 @@ import { selectUser } from "../../features/userSlice";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
 import DetectWinner from "../../Sistems/DetectWinner";
+import { Redirect } from "react-router-dom";
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -25,7 +26,7 @@ const rows = [
 
 export default function MyLastsBets() {
   // Detect Winner
-
+  const [pressed, setPres] = useState('false')
   //User
   const user = useSelector(selectUser);
   //Obtener las apuestas
@@ -41,15 +42,20 @@ export default function MyLastsBets() {
   };
 
   const [bets, setBets] = useState([]);
-
   DetectWinner(bets);
+
+
+  
 
   useEffect(() => {
     betLotery();
+    
   }, []);
 
+  const Reddirect = '/CheckOutAward/' + pressed;
   return (
     <div className="mybets_container StyleCards" component={Paper}>
+      {pressed !== 'false' ? <Redirect to={Reddirect}></Redirect> : <></>}
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -126,7 +132,7 @@ export default function MyLastsBets() {
                           borderWidth: "1px",
                           cursor:'pointer'
                         }}
-                        onClick={()=> alert('hola')}
+                        onClick={()=> setPres(bet.id)}
                         key={bet.userEmail}
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },

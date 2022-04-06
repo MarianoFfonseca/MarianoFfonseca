@@ -1,0 +1,36 @@
+.Award_container {
+    width: 100%;
+    justify-items: center;
+    display:grid;
+    margin-top: 5%;
+}
+.Award_card{
+    border-radius: 5px;
+    background-color: #303030;
+    justify-content: center;
+    color: #c6c6c6;
+    padding: 2% 4%;
+    text-align: center;
+    min-width: 70vw;
+    box-shadow:1px 1px 10px #000 ;
+
+}
+
+
+.Award_card > input {
+    min-width: 60%;
+    padding: 1%;
+    font-size: 20px;
+}
+.Award_card > input:focus {
+    box-shadow: 0px 0px 4px #f2f2f2;
+}
+
+
+.Award_card > p {
+    margin-top: 2%;
+}
+
+.Award_card > button {
+    margin-top: 2%;
+}

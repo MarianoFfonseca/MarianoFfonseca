@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
-
+import {FaEthereum} from 'react-icons/fa'
 //StripePromise
 
 import CheckOutButton from "../CheckOut/CheckOutButton";
@@ -157,10 +157,10 @@ export default function ReviewBet({ bet }) {
           </p>
         </h3>
         <div style={{ marginTop: "5%" }}>
-          <li>- {bet.Coin}</li>
-          <li>- ${bet.Money}</li>
-          <li>- {bet.Day}</li>
-          <li>- {bet.CoinBet}</li>
+          <li> - {bet.Coin}</li>
+          <li> -{bet.Money}</li>
+          <li> - {bet.Day}</li>
+          <li> - {bet.CoinBet}</li>
         </div>
         <CheckOutButton
           price={"0.01"}

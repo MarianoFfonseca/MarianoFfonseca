@@ -62,7 +62,7 @@ function CheckOut({ price, bet, user }) {
   
   }
 
-  const id = 'Succes' + finish
+  const id = 'Succes/' + finish
   const Redireccion = finish !== '' ? <Redirect to={id}></Redirect> : <></>
   
   console.log(txs)

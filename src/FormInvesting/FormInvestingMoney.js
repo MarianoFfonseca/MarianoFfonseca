@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import db from "../firebase";
 import { useState, useEffect } from "react";
 
+import {FaEthereum} from 'react-icons/fa'
+
 export default function FormInvestingMoney({bet, setMoney}) {
   const optionsLotery = () => {
     db.collection("optionsLoteryMoney")
@@ -62,7 +64,7 @@ export default function FormInvestingMoney({bet, setMoney}) {
                 key={Money.Key}
                 onClick={() => setMoney(Money.Money)}
               >
-                <span className={spanClass}>$ {Money.Money}</span>
+                <span className={spanClass}><FaEthereum /> {Money.Money}</span>
               </motion.li>
             );
           })}

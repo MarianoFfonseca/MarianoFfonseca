@@ -61,6 +61,7 @@ import DetectWinner from './Sistems/DetectWinner'
 import GetMoneyBet from './ForGetMoney/GetMoneyBet'
 import Web3 from 'web3'
 import {Web3ReactProvider} from '@web3-react/core'
+import CheckOutAward from "./CheckOut/CheckOutAward";
 
 function getLibrary(provider){
   return new Web3(provider)
@@ -266,6 +267,17 @@ function App() {
                     canJoinBet={canJoinBet}
                     setSelectedSocialOptions={setSelectedSocialOptions}
                     selectedSocialOption={selectedSocialOption}
+                  />
+                </>
+              )}
+            </Route>
+            <Route exact path="/CheckOutAward/:id">
+              {is === "No" ? (
+                <Redirect to="/account/signin" />
+              ) : (
+                <>
+                  <Header />
+                  <CheckOutAward
                   />
                 </>
               )}
@@ -520,7 +532,7 @@ function App() {
                 </>
               )}
             </Route>
-            <Route exact path="/succes">
+            <Route exact path="/succes/:id">
               {is === "No" ? (
                 <Redirect to="/account/signin" />
               ) : (
