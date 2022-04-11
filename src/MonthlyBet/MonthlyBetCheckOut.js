@@ -6,124 +6,27 @@ import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import {FaEthereum} from 'react-icons/fa'
 //Stripe js
 import { loadStripe } from "@stripe/stripe-js";
+import CheckOutMonthly from "../CheckOut/CheckOutMonthlyButton";
+import {getAuth} from 'firebase/auth'
 
 //StripePromise
 
-export default function MonthlyBetCheckOut({ monthlyB }) {
-  let stripePromise;
-  const getStripe = () => {
-    if (!stripePromise) {
-      stripePromise = loadStripe(
-        "pk_test_51KW5j3AUHkiFgFqfneVIj0l1wIhb8nIjVlCyeZeXa5weBFuiV4CdH0IwIHKOM01gZNIgwmqKV4RpMqPNnSBWTriI00SrgBIJbE"
-      );
-    }
-    return stripePromise;
-  };
+export default function MonthlyBetCheckOut({ monthlyB, setSucces, succes }) {
+
   //For the user
-  const [bets, setBets] = useState([]);
-  const user = useSelector(selectUser);
-  //Obtener las apuestas
-  const betLotery = () => {
-    db.collection("bets")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((element) => {
-          var data = element.data();
-          setBets((bets) => [...bets, data]);
-        });
-      });
-  };
-  //Filtrar las que hiso el usuario y las que no estan pagadas
 
-  useEffect(() => {
-    betLotery();
-  }, []);
+  const user = getAuth();
 
-  //for get how many bets the user has
+  const price = monthlyB === 'fullYear' ? '0.12' : '0.06'
 
-  const halfYear = {
-    price: "price_1KcDU2AUHkiFgFqf15p6004y",
-    quantity: 1,
-  };
-  const fullYear = {
-    price: "price_1KcDUnAUHkiFgFqfsxjePKB6",
-    quantity: 1,
-  };
 
-  const checkoutOptions = {
-    lineItems: [halfYear],
-    mode: "payment",
-    successUrl: `${window.location.origin}/SuccesMonthly`,
-    cancelUrl: `${window.location.origin}/CancelMonthly`,
-  };
-  const checkoutOptions2 = {
-    lineItems: [fullYear],
-    mode: "payment",
-    successUrl: `${window.location.origin}/SuccesMonthly`,
-    cancelUrl: `${window.location.origin}/CancelMonthly`,
-  };
-  const [nBets, setnBets] = useState(0);
-
-  const FirebaseEasy = () => {
-    const Numero = monthlyB === 'halfYear' ? 6 : 12;
-    db.collection("monthly_bet")
-      .doc()
-      .set({
-        Day: new Date(),
-        Money: monthlyB,
-        payment: false,
-        userUid: user.uid,
-        nBets: Numero
-      })
-      .then(function () {
-        console.log("Value successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing Value: ", error);
-      });
-  };
-
-  const redirectToCheckOut = async (e) => {
-    e.preventDefault();
-    FirebaseEasy();
-    console.log("redirect");
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
-    console.log("Stripe checkout error", error);
-  };
-  const redirectToCheckOut2 = async (e) => {
-    e.preventDefault();
-    FirebaseEasy();
-    console.log("redirect");
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions2);
-    console.log("Stripe checkout error", error);
-  };
-
-  const optionsLotery = () => {
-    db.collection("optionsLoteryMoney")
-      .get()
-      .then((querySnapshot) => {
-        // Loop through the data and store
-        // it in array to display
-        querySnapshot.forEach((element) => {
-          var data = element.data();
-          setOptions((options) => [...options, data]);
-        });
-      });
-  };
-  const [options, setOptions] = useState([]);
-  
-
-  useEffect(() => {
-    optionsLotery();
-  }, []);
 
   return (
     <div className="Total">
+     
       <div className="FormInvesting_card ">
         <h3>
           Review your bet before check out{" "}
@@ -131,39 +34,24 @@ export default function MonthlyBetCheckOut({ monthlyB }) {
             - Info
           </p>
         </h3>
-        <div style={{ marginTop: "5%" }}>
+        <div style={{ marginTop: "10%" }}>
           {monthlyB === "fullYear" ? (
             <div>
-              <li>$10 dollars for 12 months</li>
-              <li>12 bets in total</li>
-              <li>Saving $120 dollars</li>
+              <li >In total 12 bets of 50%</li>
+              <li>Price x bet:  <a style={{textDecorationLine: 'line-through', margin:'0 10px'}}>0.015</a>   <FaEthereum/>0.010 </li>
+              <li>Saving: <FaEthereum style={{marginLeft:'10px'}}/>0.06</li>
             </div>
           ) : (
             <div>
               {" "}
-              <li>$15 dollars for 6 months</li>
-              <li>6 bets total</li>
-              <li>Saving $55 dollars</li>
+              <li style={{textDecorationLine: 'line-through'}}>In total 6 bets of 50%</li>
+              <li>Price x bet:  <a style={{textDecorationLine: 'line-through', margin:'0 10px'}}>0.015</a>   <FaEthereum/>0.012</li>
+              <li>Saving:<FaEthereum style={{marginLeft:'10px'}}/>0.018</li>
             </div>
           )}
         </div>
 
-        <motion.button
-          transition={{ type: "spring" }}
-          onClick={
-            monthlyB === "halfYear" ? redirectToCheckOut : redirectToCheckOut2
-          }
-          initial={{ x: "-1000px" }}
-          animate={{ x: 0 }}
-          whileHover={{
-            scale: 1.2,
-            originX: 0,
-            boxShadow: "0px 0px 8px #fff",
-          }}
-          style={{ color: "white" }}
-        >
-          Go Check Out
-        </motion.button>
+       <CheckOutMonthly price={price} user={user} type={monthlyB} setSucces={setSucces}/>
       </div>
     </div>
   );

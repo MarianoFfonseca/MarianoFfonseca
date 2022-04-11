@@ -29,7 +29,7 @@ export default function ReviewBet({ bet }) {
   //For the user
   const [bets, setBets] = useState([]);
   const user = useSelector(selectUser);
-  console.log(bet.Money);
+  
   //Obtener las apuestas
   const betLotery = () => {
     db.collection("bets")
@@ -49,38 +49,7 @@ export default function ReviewBet({ bet }) {
 
   //for get how many bets the user has
 
-  const item2 = {
-    price: "price_1KW5nqAUHkiFgFqfJQrI1j7V",
-    quantity: 1,
-  };
-  const item5 = {
-    price: "price_1KZyKWAUHkiFgFqfJYgtXSSs",
-    quantity: 1,
-  };
-  const item20 = {
-    price: "price_1KZyNMAUHkiFgFqfjlzPzgZY",
-    quantity: 1,
-  };
-
-  const checkoutOptions = {
-    lineItems: [item2],
-    mode: "payment",
-    successUrl: `${window.location.origin}/succes`,
-    cancelUrl: `${window.location.origin}/cancel`,
-  };
-  const checkoutOptions5 = {
-    lineItems: [item5],
-    mode: "payment",
-    successUrl: `${window.location.origin}/succes`,
-    cancelUrl: `${window.location.origin}/cancel`,
-  };
-  const checkoutOptions20 = {
-    lineItems: [item20],
-    mode: "payment",
-    successUrl: `${window.location.origin}/succes`,
-    cancelUrl: `${window.location.origin}/cancel`,
-  };
-
+ 
   const EasyFirebase = () => {
     db.collection("bets")
       .doc()
@@ -101,27 +70,7 @@ export default function ReviewBet({ bet }) {
       });
   };
 
-  const redirectToCheckOut = async (e) => {
-    e.preventDefault();
-    EasyFirebase();
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
-    console.log("Stripe checkout error", error);
-  };
-  const redirectToCheckOut5 = async (e) => {
-    e.preventDefault();
-    EasyFirebase();
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions5);
-    console.log("Stripe checkout error", error);
-  };
-  const redirectToCheckOut20 = async (e) => {
-    e.preventDefault();
-    EasyFirebase();
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions20);
-    console.log("Stripe checkout error", error);
-  };
+
 
   const optionsLotery = () => {
     db.collection("optionsLoteryMoney")
@@ -140,10 +89,16 @@ export default function ReviewBet({ bet }) {
   useEffect(() => {
     optionsLotery();
   }, []);
-  
+  const Check = () => {
+    if (bet) {
+    if(bet.Coin === '' || bet.Day === '' || bet.Money === '' || bet.CoinBet === ''){
+      return <Redirect to='/FormCoin'></Redirect>
+    }
+    }
+  };
   return (
     <div className="Total">
-  
+  {Check()}
       <motion.div
         transition={{ type: "spring", duration: 2 }}
         initial={{ x: 100, opacity: 0 }}
@@ -163,7 +118,7 @@ export default function ReviewBet({ bet }) {
           <li> - {bet.CoinBet}</li>
         </div>
         <CheckOutButton
-          price={"0.01"}
+          price={bet.Money}
           bet={bet}
           user={user}
         ></CheckOutButton>

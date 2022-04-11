@@ -8,14 +8,14 @@ import { Fade } from "react-awesome-reveal";
 import Bitcoin from "../images/Bitcoin _Monochromatic.svg";
 import { motion } from "framer-motion";
 import undraw_Investing from "../images/undraw_Investing.svg";
-
+import '../Responsive.css'
 import undraw_Bitcoin from "../images/undraw_Bitcoin.svg";
 import undraw_wallet from "../images/undraw_wallet.svg";
 
 function HomeScreen() {
   return (
     <div className="homeScreen">
-      <Fade>
+  
         <div className="homeScreen__bottom">
           <motion.div className="homeScreen__bottomLeft">
             <h4>Investing in our communities 😏</h4>
@@ -28,7 +28,7 @@ function HomeScreen() {
               Learn more
             </motion.button>
           </motion.div>
-          <div className="homeScreen__bottomRight">
+          <div className="homeScreen__bottomRight none">
             <motion.img
               animate={{ y: 25, x: 25 }}
               initial={{ y: -30 }}
@@ -45,7 +45,7 @@ function HomeScreen() {
             />
           </div>
         </div>
-      </Fade>
+    
 
       <div class="custom-shape-divider-bottom-1648319121">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -57,7 +57,7 @@ function HomeScreen() {
 
       <div className="homeScreen__featured">
 
-        <Fade>
+     
 
           <Featured
             title="NICELY NONDAIRY"
@@ -70,8 +70,7 @@ function HomeScreen() {
             className="featured__hoverLight"
           />
          
-        </Fade>
-        <Fade>
+       
           <Featured
             title="PISTACHIO"
             info="Embrace creamy coffee bliss with our new Pistachio Latte and Pistachio Frappuccino® blended beverage."
@@ -83,33 +82,10 @@ function HomeScreen() {
             color="#000"
             className="featured__hoverLight"
           />
-        </Fade>
+        
       </div>
-      <Fade>
+
       
-      </Fade>
-      <Fade className="Borrar">
-        <div className="homeScreen__discover">
-          <Info
-            title="Order and pick up. Easy as that."
-            image="https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-67828.jpg"
-            info="Just open the app, order your favorites, and enjoy contactless pay. From there, choose whichever pickup method is best for you."
-            link="See pickup options"
-            color="#1e3932"
-            background="#d4e9e4"
-            className="info__hoverLight"
-          />
-          <Info
-            title="Coffee delivered. Day made."
-            image="https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-67829.jpg"
-            info="Make everything a little brighter. Enjoy a $0 Delivery Fee* on your first Uber Eats order over $15 through 1/31."
-            link="Order now"
-            color="#1e3932"
-            background="#d4e9e4"
-            className="info__hoverLight"
-          />
-        </div>
-      </Fade>
     </div>
   );
 }

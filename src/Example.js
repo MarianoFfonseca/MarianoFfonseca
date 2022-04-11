@@ -5,6 +5,7 @@ import { useDimensions } from './use-dimensions'
 import { MenuToggle } from './MenuToggle'
 import { Navigation } from './Navigation'
 import "./Example.css"
+import './Responsive.css'
 const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
@@ -14,8 +15,9 @@ const sidebar = {
       restDelta: 2,
     },
   }),
+
   closed: {
-    clipPath: 'circle(30px at 40px 40px)',
+    clipPath: 'circle(0px at 40px 40px)',
     transition: {
       delay: 0.5,
       type: 'spring',
@@ -27,8 +29,10 @@ const sidebar = {
 
 export const Example = () => {
   const [isOpen, toggleOpen] = useCycle(false, true)
+
   const containerRef = useRef(null)
   const { height } = useDimensions(containerRef)
+  const Display = isOpen === false ? 'none' : '';
 
   return (
     <motion.nav
@@ -38,7 +42,9 @@ export const Example = () => {
       ref={containerRef}
     >
       <motion.div className='background' variants={sidebar} />
+      <div className={Display}>
       <Navigation toggle={() => toggleOpen()} />
+      </div>
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
   )

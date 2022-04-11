@@ -37,12 +37,15 @@ const variants2 = {
 export const Navigation = ({ toggle }) => {
   const user = useSelector(selectUser);
   const [showMenuCategories, setShowMenuCategories] = React.useState(false);
+  
+
 
   return (
     <>
       {showMenuCategories ? (
         <motion.ul variants={variants}>
           <MenuLink
+          
             link="Menu"
             goBackIcon
             onClick={() => {
@@ -51,8 +54,8 @@ export const Navigation = ({ toggle }) => {
             width="60%"
           />
           <MenuLink
-            link="All products"
-            path="/menu"
+            link="Main Menu"
+            path='/menu'
             onClick={() => {
               setShowMenuCategories(false);
               toggle();
@@ -60,7 +63,6 @@ export const Navigation = ({ toggle }) => {
           />
           <MenuLink
             link="Featured"
-            path="/menu/featured"
             onClick={() => {
               setShowMenuCategories(false);
               toggle();

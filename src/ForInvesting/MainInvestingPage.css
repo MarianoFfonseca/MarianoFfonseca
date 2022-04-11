@@ -107,7 +107,8 @@ button {
 
 
 .rigth {
-  max-width: 70%;
+  display: grid;
+  align-items: center;
   margin-left: -10%;
   width: auto;
   margin-top: 5%;
@@ -121,7 +122,6 @@ button {
 }
 
 .rigth2 {
-  max-width: 70%;
   margin-left: -5%;
   width: auto;
   margin-top: 5%;
@@ -167,10 +167,11 @@ button {
   .card1 {
     width: auto;
     margin-bottom: 5%;
-    display: block;
+    width: 100%;
   }
-  img{
-    display: none;
+
+  .card1 > p{
+    width: 100%;
   }
   .rigth{
     margin-left: 6%;

@@ -17,6 +17,10 @@
   padding: 2% 4%;
   border-radius: 10px;
 }
+.succes_header > a:hover {
+  text-decoration: underline;
+
+}
 
 .succes_body{
   margin-top: 5%;

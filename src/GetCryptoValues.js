@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 
 function GetCryptoValues() {
+  const [letr, setLet] = useState([]);
+  let letras = ["b", "a", "b", "c", "d"];
+  const result = letr.sort()
+  useEffect(() => {
+    setLet([letras[0]]);
+  }, []);
+  useEffect(() => {
+    if (letr.length >= 1) {
+      letras.map((element) => {
+        const If = letr.some((x) => x === element);
+        if (If === false) {
+          setLet((letr) => [...letr, element]);
+        }
+      });
+    }
+  }, [letr]);
 
-  var numeros = [2,4,6,10]
-  
+  console.log(result, 'soy el resultado')
 
-  return (
-      <div></div>
-  )
+
+
+
+  return <div></div>;
 }
 
-export default GetCryptoValues
+export default GetCryptoValues;

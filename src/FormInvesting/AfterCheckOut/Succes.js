@@ -25,12 +25,14 @@ const [bet, setBet] = useState([])
       toast.success('All perfect!')
   },[])
   if(!bet) return null
+
+  const EtherScan = 'https://ropsten.etherscan.io/tx/' + bet.hash
   return (
     <div className="">
       <Toaster></Toaster>
       <div className="succes_container">
         
-        <div className="succes_header">{bet.hash}</div>
+       <div className="succes_header"> <a style={{color:'#c6c6c6'}} href={EtherScan} target="_blank" >{bet.hash}</a></div>
         <div className="succes_body">
           <h1>Info</h1>
         

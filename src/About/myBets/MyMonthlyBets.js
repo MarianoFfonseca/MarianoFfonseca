@@ -59,11 +59,11 @@ export default function MyMonthlyBets({setmonthlyId}) {
       className="mybets_container StyleCards"
       component={Paper}
     >
-      <h1>Here you can use your monthly bets</h1>
+      <h1>Your monthly bets</h1>
       {monthly_bets &&
         monthly_bets.map((x) => {
           
-          if (x.data.userUid === user.uid) {
+          if (x.data.userUid === user.uid && x.data.nBets > 0) {
             return (
               <div className="mymonthly_div">
                 <p>You have {x.data.nBets} left</p> 
@@ -72,6 +72,11 @@ export default function MyMonthlyBets({setmonthlyId}) {
             
               </div>
             );
+          }
+          else if(x.data.nBets <= 0){
+            db.collection('monthly_bet')
+            .doc(x.id)
+            .delete()
           }
         })}
     </div>

@@ -7,17 +7,25 @@ import undraw_outer from "../images/undraw_outer.svg";
 import undraw_astronaut from '../images/undraw_astronaut.svg'
 import undraw_real from '../images/undraw_real.svg'
 import undraw_calendar from '../images/undraw_calendar.svg'
+
+import './MainInvest.css'
+
 export default function MainInvestingPage() {
   return (
     <div>
+      <div className="upContainer2">
+        <div></div>
+        <div></div>
+      </div>
+{/* Second one  /////////////////////////////////////////////////////////*/} 
       <div className="upContainer">
         <motion.div   animate={{ x: 0 }}
             initial={{ x: 1000}}
-            transition={{ type: "spring", duration: 1.5 }} className="card1">
-          <div className="left">
+            transition={{ type: "spring", duration: 1.5 }} className="card1 cardResp">
+          <div className="left none">
             <img src={undraw_outer} alt="" />
           </div>
-          <div className="rigth">
+          <div className="rigth cardResp">
             <h3>Fast Bet 🔥</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -33,7 +41,7 @@ export default function MainInvestingPage() {
         <motion.div animate={{ x: 0 }}
             initial={{ x: 1000}}
             transition={{ type: "spring", duration: 1.2, delay:0.5 }}  className="card1">
-          <div className="left2">
+          <div className="left2 none">
             <img src={undraw_astronaut} alt="" />
           </div>
           <div className="rigth2">
@@ -57,7 +65,7 @@ export default function MainInvestingPage() {
       transition={{ type: "spring", delay:0.7, duration: 1.5 }} 
       
       className="card3 StyleCards">
-          <div className="left3">
+          <div className="left3 none">
             <img  src={undraw_real} alt="" />
           </div>
           <div className="rigth3">
@@ -99,11 +107,6 @@ export default function MainInvestingPage() {
             <img  src={undraw_calendar} alt="" />
           </div>
         </motion.div>
-
-        <div className="lastOne">
-          <div className="item one">1</div>
-          <div  className="item twoo">2</div>
-        </div>
     
     </div>
   );

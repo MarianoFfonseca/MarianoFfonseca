@@ -62,6 +62,7 @@ import GetMoneyBet from './ForGetMoney/GetMoneyBet'
 import Web3 from 'web3'
 import {Web3ReactProvider} from '@web3-react/core'
 import CheckOutAward from "./CheckOut/CheckOutAward";
+import SmallFooter from "./SmallFooter";
 
 function getLibrary(provider){
   return new Web3(provider)
@@ -191,10 +192,15 @@ function App() {
     }
   });
 
+  const [succes, setSucces] = useState(false)
+  
+
+
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
     <div className="app">
       <GetCryptoValues />
+     
       {is !== "Nothing" ? (
         <Router>
           <Switch>
@@ -513,6 +519,7 @@ function App() {
                 <>
                   <Header />
                   <ForSetBet
+                  setSucces={setSucces}
                     monthlyId={monthlyId}
                     setBet={setBet}
                     setCoinBet={setCoinBet}
@@ -548,7 +555,7 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <MyBets setmonthlyId={setmonthlyId} />
+                  <MyBets setmonthlyId={setmonthlyId} setSucces={setSucces} succes={succes}/>
                 </>
               )}
             </Route>
@@ -631,7 +638,7 @@ function App() {
               ) : (
                 <>
                   <Header menuPage />
-                  <MonthlyBetCheckOut monthlyB={monthlyB} />
+                  <MonthlyBetCheckOut monthlyB={monthlyB} setSucces={setSucces} succes={succes}/>
                 </>
               )}
             </Route>
@@ -691,6 +698,7 @@ function App() {
           </motion.h3>
         </div>
       )}
+       <SmallFooter></SmallFooter>
     </div>
     </Web3ReactProvider>
   );

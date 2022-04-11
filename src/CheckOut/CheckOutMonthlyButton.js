@@ -3,10 +3,8 @@ import { ethers } from "ethers";
 import toast, { Toaster } from 'react-hot-toast';
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import {injected} from '../Wallet/Connectors'
 import db from "../firebase";
-
-const startPayment = async ({ setError, setTxs, setPay, ether, addr }) => {
+const startPayment = async ({ setError, setTxs, setPay, ether, addr}) => {
   try {
     if (!window.ethereum)
       throw new Error("No crypto wallet found. Please install it.");
@@ -22,10 +20,11 @@ const startPayment = async ({ setError, setTxs, setPay, ether, addr }) => {
         to: addr,
         value: ethers.utils.parseEther(ether)
       });
-      console.log({ ether, addr });
-      console.log("tx", tx);
+
       setTxs(tx)
       setPay(true)
+      
+
     }
     else if(window.ethereum.chainId !== '0x1'){setError('Select the principal etherum red');}
   
@@ -41,7 +40,10 @@ const startPayment = async ({ setError, setTxs, setPay, ether, addr }) => {
 };
 
 
-function CheckOut({ price, bet, user }) {
+function CheckOutMonthly({ price, user, type , setSucces}) {
+
+ 
+    
   const [pay, setPay] = useState();
   const [error, setError] = useState();
   const [txs, setTxs] = useState([]);
@@ -50,35 +52,26 @@ function CheckOut({ price, bet, user }) {
   
   const Firebase = () => {
     const unique_id = uuid();
-
-    db.collection('bets')
+    const Nbets = price === '0.012' ? 12 : 6
+    db.collection('monthly_bet')
     .doc(unique_id)
     .set({
-      Coin: bet.Coin,
-      Day: bet.Day,
-      Money: bet.Money,
-      CoinBet: bet.CoinBet,
-      payment: true,
-      userEmail: user.email,
-      status: "none",
-      id:unique_id ,
-      hash: txs.hash,
-      from: txs.from,
+        payment: true,
+        userUid: user.lastNotifiedUid,
+        nBets: Nbets,
+        Money: type
+
     })
     .then(function () {
       setId(unique_id)
-      console.log("Value successfully written!");
+      setSucces(true)
     })
     .catch(function (error) {
       console.error("Error writing Value: ", error);
     });
   
   }
-
-  const id = 'Succes/' + finish
-  const Redireccion = finish !== '' ? <Redirect to={id}></Redirect> : <></>
-  
-  console.log(txs)
+  const Redireccion = finish !== '' ? <Redirect to='/about/MyBets'></Redirect> : <></>
 
   const Myaddr = "0xa52Df09c4Ac4Df42E9abE8DbCc32d43F309E84e3";
 
@@ -88,16 +81,18 @@ function CheckOut({ price, bet, user }) {
     await startPayment({
       setError,
       setTxs,
+      setSucces,
       setPay,
-      ether: price,
+      ether: '0.001',
+      // ether: price,
       addr: Myaddr,
+
     });
   };
 
   useEffect(()=>{
     if(error !== undefined){
       toast.error('Error!')
-      console.log(error, 'soy el error')
     }
 
   },[error])
@@ -118,4 +113,4 @@ function CheckOut({ price, bet, user }) {
   );
 }
 
-export default CheckOut;
+export default CheckOutMonthly;

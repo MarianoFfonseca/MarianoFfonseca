@@ -17,8 +17,29 @@ const DetectWinner = () => {
   const [winner, setWinner] = useState();
   const [infoWinner, setInfoWinner] = useState({});
   //Use effect
+  
+  //Price bitcoin, price etherum
+  const [priceB, setPriceB] = useState(null);
+  const [priceE, setPriceE] = useState(null);
+
   useEffect(() => {
     GetBets();
+    fetch("https://api.coinpaprika.com/v1/tickers/btc-bitcoin")
+      .then((res) => res.json())
+      .then((data) => {
+        setPriceB(data.quotes.USD.price)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      fetch("https://api.coinpaprika.com/v1/tickers/eth-ethereum")
+      .then((res) => res.json())
+      .then((data) => {
+        setPriceE(data.quotes.USD.price)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   //Tengo que obtener todas las apuestas
@@ -82,7 +103,7 @@ const DetectWinner = () => {
 
     bets.map((element) => {
       let bet = element.data;
-      if (betsFinished.Day === bet.Day && bet.status === "none") {
+      if (betsFinished.Day === bet.Day && bet.status === "none" && bet.Coin === betsFinished.Coin) {
         let int = parseInt(element.data.CoinBet, 10);
         setAllBetsFinished((allbetsFinished) => [...allbetsFinished, int]);
         setInfoAllBets((InfoAllBets) => [
@@ -91,11 +112,11 @@ const DetectWinner = () => {
             id: element.id,
             CoinBet: element.data.CoinBet,
             Day: element.data.Day,
+            Coin: element.data.Coin
           },
         ]);
       }
     });
-    
     setGroup(group + 1);
   };
 
@@ -110,10 +131,14 @@ const DetectWinner = () => {
   // Cual es el premio final
 
   const Compare = () => {
-    const coinValue = 44000;
-
     const Test = () => {
       if (allbetsFinished.length !== 0) {
+        const Coin = InfoAllBets[0].Coin === 'Bitcoin' ? priceB : priceE
+        
+        const first2Str = String(Coin).slice(0, 8); // 👉️ '1'
+const coinValue = Number(first2Str);
+   
+       
         var winner = allbetsFinished.reduce(function (prev, curr) {
           return Math.abs(curr - coinValue) < Math.abs(prev - coinValue)
             ? curr
@@ -132,8 +157,6 @@ const DetectWinner = () => {
 
   //Obtener el id de la apuesta del ganador
   const GetWinnerId = () => {
-    console.log(winner, "soy el ganador");
-    console.log(InfoAllBets, 'aqui');
     InfoAllBets &&
       InfoAllBets.map((element) => {
         const CoinBet = parseInt(element.CoinBet, 10);

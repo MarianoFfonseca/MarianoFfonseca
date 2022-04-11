@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded'
 import ChevronLeftRoundedIcon from '@material-ui/icons/ChevronLeftRounded'
 import "./MenuLink.css"
+import { useHistory } from "react-router-dom"
 
 const variants = {
   open: {
@@ -25,9 +26,14 @@ const variants = {
 // const colors = ['#FF008C', '#D309E1', '#9C1AFF', '#7700FF', '#4400FF']
 
 export const MenuLink = ({ link, path, icon, goBackIcon, onClick, width }) => {
+  
+ 
+  const History = useHistory()
+  const To = path ? path : History.location.pathname
+
   return (
     <>
-      <Link className='all' to={path}>
+      <Link className='all' to={To}>
         <motion.li
           style={{ width, color:"white" }}
           onClick={onClick}

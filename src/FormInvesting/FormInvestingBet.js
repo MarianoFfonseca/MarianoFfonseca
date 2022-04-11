@@ -4,16 +4,15 @@ import { motion } from "framer-motion";
 import ReviewBet from "./ReviewBet";
 import { Link } from "react-router-dom";
 //Firebase
+import { Redirect } from "react-router-dom";
 import db from "../firebase";
 import { useState, useEffect } from "react";
 
 export default function FormInvestingBet({ bet, setCoinBet }) {
   const optionsLotery = () => {
-    db.collection("optionsLoteryMoney")
+    db.collection("bets")
       .get()
       .then((querySnapshot) => {
-        // Loop through the data and store
-        // it in array to display
         querySnapshot.forEach((element) => {
           var data = element.data();
           setOptions((options) => [...options, data]);
@@ -21,36 +20,44 @@ export default function FormInvestingBet({ bet, setCoinBet }) {
       });
   };
   const [options, setOptions] = useState([]);
-  const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(false);
-  const [Doit, setDoit] = React.useState(false);
-  const [helperText, setHelperText] = React.useState("Chose...");
+  console.log(options);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     optionsLotery();
   }, []);
 
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-    setHelperText(" ");
-    setError(false);
-  };
+  const handleChange = (e) => {
+    let txt = e.target.value;
+    if (txt.length >= 5) {
+      const h = options.some(
+        (element) =>
+          element.CoinBet === txt &&
+          element.Day === bet.Day &&
+          bet.Coin === element.Coin
+      );
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (value) {
-      setHelperText("Perfect✅");
-      setError(false);
-      setDoit(true);
+      if (h === true) {
+        setError("This bet was already selected");
+      } else if (h === false) {
+        setError("");
+        setCoinBet(e.target.value);
+      }
     } else {
-      setHelperText("Please select an option.");
-      setError(true);
+      setError("The bet need to have 5+ characters");
     }
   };
 
+  const Check = () => {
+    if (bet) {
+      if (bet.Coin === "" || bet.Day === "" || bet.Money === "") {
+        return <Redirect to="/FormCoin"></Redirect>;
+      }
+    }
+  };
   return (
     <div className="Total">
+      {Check()}
       <motion.div
         transition={{ type: "spring", duration: 2 }}
         initial={{ x: 100, opacity: 0 }}
@@ -68,35 +75,39 @@ export default function FormInvestingBet({ bet, setCoinBet }) {
             style={{
               padding: "2%",
               borderRadius: "5px",
-              outline:'none',
-              border:'none',
+              outline: "none",
+              border: "none",
               fontSize: "130%",
               marginBottom: "5%",
             }}
             type="number"
-            onChange={(e) => {
-              setCoinBet(e.target.value);
-            }}
-            placeholder='Value of the coin'
+            onChange={handleChange}
+            placeholder="Value of the coin"
             name=""
             id=""
           />
         </div>
-        {bet.CoinBet && (
-          <Link to="/ReviewBet">
-            <motion.button
-              transition={{ type: "spring" }}
-              initial={{ x: "-1000px" }}
-              animate={{ x: 0 }}
-              whileHover={{
-                scale: 1.2,
-                originX: 0,
-              }}
-              style={{ color: "white" }}
-            >
-              Next Question
-            </motion.button>
-          </Link>
+        {error !== "" ? (
+          <>{error}</>
+        ) : (
+          <>
+            {bet.CoinBet && (
+              <Link to="/ReviewBet">
+                <motion.button
+                  transition={{ type: "spring" }}
+                  initial={{ x: "-1000px" }}
+                  animate={{ x: 0 }}
+                  whileHover={{
+                    scale: 1.2,
+                    originX: 0,
+                  }}
+                  style={{ color: "white" }}
+                >
+                  Next Question
+                </motion.button>
+              </Link>
+            )}
+          </>
         )}
       </motion.div>
     </div>

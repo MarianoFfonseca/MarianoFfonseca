@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
 export default function FormInvestingDay({ bet, setDay }) {
   const optionsLotery = () => {
@@ -25,13 +26,24 @@ export default function FormInvestingDay({ bet, setDay }) {
   useEffect(() => {
     optionsLotery();
   }, []);
-  console.log(bet);
+
+  const Check = () => {
+    if (bet) {
+    if(bet.Coin === ''){
+      return <Redirect to='/FormCoin'></Redirect>
+    }
+    }
+  };
 
   return (
     <div className="Total">
-      <motion.div  transition={{type:'spring', duration:2}}
-            initial={{ x:100, opacity:0 }}
-            animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
+      {Check()}
+      <motion.div
+        transition={{ type: "spring", duration: 2 }}
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="FormInvesting_card"
+      >
         <h3>
           In what Day do you wanna make this bet{" "}
           <p style={{ display: "flex", fontSize: "15px", color: "gray" }}>
@@ -73,7 +85,6 @@ export default function FormInvestingDay({ bet, setDay }) {
           </Link>
         )}
       </motion.div>
-     
     </div>
   );
 }

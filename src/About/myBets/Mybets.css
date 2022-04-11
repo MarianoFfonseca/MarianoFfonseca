@@ -1,7 +1,6 @@
 .mybets_container {
-    border: solid;
-    border-width: 2px;
-    border-radius: 30px;
+    margin-top: 5%;
+    border-radius: 5px;
     padding: 5%;
     width: 150%;
 }

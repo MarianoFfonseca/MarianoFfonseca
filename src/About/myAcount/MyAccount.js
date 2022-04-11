@@ -29,8 +29,7 @@ function MyAccount() {
                 name: Name,
               })
               .then(function () {
-                console.log("succes Users");
-                alert("Name Changed, refresh the page!");
+                toast.success('Name Changed!');
               })
               .catch(function (error) {
                 console.error("Error writing Users ", error);
@@ -89,7 +88,6 @@ function MyAccount() {
     useWeb3React();
 
     useEffect(()=>{
-      console.log('cambio', active)
       if(active === true) {
         toast.success('Successfully connected!')
       }
@@ -97,7 +95,44 @@ function MyAccount() {
 
   useEffect(() => {
     FUsers();
+    GetNBets()
   }, []);
+
+
+
+  const [bets, setBets] = useState([])
+  const [numberBets, setNumberBets] = useState(0)
+  const [collectionL, setCollectionL] = useState()
+
+
+  const GetNBets = () => {
+    db.collection('bets')
+    .get()
+    .then((querySnapshot) => {
+     setCollectionL(querySnapshot.size)
+      querySnapshot.forEach((element) => {
+        var data = element.data();
+        setBets((bets) => [...bets, data]);
+      });
+    });
+  }
+  useEffect(()=> {
+    if(bets.length>0){
+      if(bets.length === collectionL){
+        MyBets()
+      }
+    
+    }
+  },[bets])
+  const MyBets = () => {
+    bets.map(
+      (element)=>{
+        if(element.userEmail === user.email && element.status === 'none') {
+          setNumberBets((numberBets)=> numberBets + 1 )
+        }
+      }
+    )
+  }
   return (
     <div>
       {/* onClick={() => {navigator.clipboard.writeText(x.uid) alert("copied!")}} */}
@@ -114,7 +149,7 @@ function MyAccount() {
                 {Users &&
                   Users.map((x) => {
                     if (x.email === user.email) {
-                      console.log(x);
+                      
                       return (
                         <div key={x.uid}>
                           <motion.div
@@ -181,7 +216,7 @@ function MyAccount() {
                                       navigator.clipboard.writeText(x.bets);
                                     }}
                                   >
-                                    #{x.bets}
+                                    # {numberBets}
                                   </motion.h1>
                                 </div>
                               </div>
@@ -239,28 +274,22 @@ function MyAccount() {
                                 👉change password
                               </motion.button>
                             </div>
-                            <div style={{ marginTop: "5%" }}>
-                              <p>~ You can change your email</p>
-                              <motion.button
-                                style={{ marginTop: "2%" }}
-                                whileHover={{ scale: 1.2, originX: 0 }}
-                              >
-                                👉change email
-                              </motion.button>
-                            </div>
+                         
                             <div style={{ marginTop: "5%" }}>
                               <p>~You can change your Name</p>
                               <form style={{ marginTop: "2%" }} action="">
                                 <input
                                   onChange={HandleChangeName}
                                   style={{
-                                    borderRadius: "30px",
+                                    marginRight:'3%',
                                     width: "25%",
                                     height: "15px",
                                     padding: "2%",
                                     fontSize: "100%",
                                     borderWidth: "1px",
+                                    
                                   }}
+                                  placeholder='Your new Name'
                                   type="text"
                                 />
                                 <motion.button

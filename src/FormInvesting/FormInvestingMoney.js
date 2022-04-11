@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 //Firebase
 import db from "../firebase";
 import { useState, useEffect } from "react";
-
+import { Redirect } from "react-router-dom";
 import {FaEthereum} from 'react-icons/fa'
 
 export default function FormInvestingMoney({bet, setMoney}) {
@@ -36,11 +36,20 @@ export default function FormInvestingMoney({bet, setMoney}) {
   //   });
   // };
 
+  const Check = () => {
+    if (bet) {
+    if(bet.Coin === '' || bet.Day === ''){
+      return <Redirect to='/FormCoin'></Redirect>
+    }
+    }
+  };
+
   useEffect(() => {
     optionsLotery();
   }, []);
   return (
     <div className="Total">
+      {Check()}
       <motion.div  transition={{type:'spring', duration:2}}
             initial={{ x:100, opacity:0 }}
             animate={{ x: 0, opacity:1 }} className="FormInvesting_card">
@@ -52,7 +61,7 @@ export default function FormInvestingMoney({bet, setMoney}) {
         </h3>
         <div style={{ marginTop: "5%" }}>
           {options.map((Money) => {
-            console.log(Money)
+        
             let spanClass = bet.Money === Money.Money ? "active" : "";
             return (
               <motion.li

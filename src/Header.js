@@ -23,7 +23,7 @@ function Header({ menuPage }) {
             animate={{ x: 0 }}
             initial={{ x: -100 }}
             transition={{ type: "spring", duration: 0.8, stiffness: 150 }}
-            whileHover={{ rotate: 360, duration: 5 }}
+           // whileHover={{ rotate: 360, duration: 5 }}
           >
             <img src={modernLoteryLogoBlanco} alt="" />
           </motion.div>

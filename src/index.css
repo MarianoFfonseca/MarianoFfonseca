@@ -93,7 +93,6 @@ li {
   display: flex;
   align-items: center;
   cursor: pointer;
-  justify-content: space-between;
   font-size: large;
 }
 

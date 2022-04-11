@@ -1,24 +1,16 @@
 .forset_total {
-  color: white;
-  position: fixed;
-  width: 100%;
-  min-height: 100%;
-  background-color: #BA00A1;
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 
 .forset_container {
-  border: solid;
-  border-radius: 30px;
-  border-width: 1px;
-  border-color: #8C0079;
-  margin-top: 5%;
-  margin-left: 23%;
-width: 50%;
-height: auto;
+  border-radius: 5px;
+  width: 50%;
   padding: 3%;
-  margin-bottom: 10%;
 }
 .forset_container > div > input {
-    margin-top: 2%;
-    margin-bottom: 5%;  
+  margin-top: 2%;
+  margin-bottom: 5%;
 }

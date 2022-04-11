@@ -11,12 +11,22 @@ import { motion } from "framer-motion";
 import db from "../../firebase";
 import { useState, useEffect } from "react";
 import MyMonthlyBets from "./MyMonthlyBets";
+import toast, {Toaster} from "react-hot-toast";
 
-function MyBets({ setmonthlyId }) {
+function MyBets({ setmonthlyId, setSucces, succes }) {
   //for the user
   const user = useSelector(selectUser);
   const [Users, setUsers] = useState([]);
 
+  useEffect(
+    ()=>{
+      if(succes === true){
+        toast.success('Succes payment!',{duration: 4000,})
+        setSucces(false)
+        console.log(succes)
+      }
+    },[succes]
+  )
 
   const FUsers = () => {
     db.collection("users")
@@ -35,6 +45,7 @@ function MyBets({ setmonthlyId }) {
 
   return (
     <div className="menuScreen">
+       <Toaster></Toaster>
       <div className="menuScreen__container">
         <div className="menuScreen__left">
           <MenuList />
