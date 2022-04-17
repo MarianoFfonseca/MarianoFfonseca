@@ -45,7 +45,7 @@
     height: 5vh ;
     display: flex;
 }
-.details_forLink > input, button {
+.details_forLink > input + button {
     max-height: 5vh;
     background-color: #C6C6C6;
     color: white;

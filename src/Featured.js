@@ -24,7 +24,7 @@ function Featured({
       initial={{ x:-30}}
       transition={{yoyo: Infinity, duration: 2}}
       className='featured__left' style={{ order, color }}>
-        <h1>{title}</h1>
+        <h1 style={{color:'#000'}}>{title}</h1>
         <h4>{info}</h4>
         <motion.div whileHover={{scale:1.2}}  >
         <Link to={path} className={className}>

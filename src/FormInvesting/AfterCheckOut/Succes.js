@@ -42,7 +42,9 @@ const [bet, setBet] = useState([])
           <div>Bet : {bet.CoinBet}</div>
           <div>Price : {bet.Money}</div>
           <div>Coin : {bet.Coin}</div>
-          <Link to='/menu'><button style={{marginTop:'5%'}}>Go back to the menu</button></Link>
+          <Link to='/menu'><motion.button style={{marginTop:'4%'}} initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+  <span className="spanForm"> Next </span>
+</motion.button></Link>
        
           </div>        
       </div>

@@ -4,6 +4,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Redirect } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import db from "../firebase";
+
+import {motion} from 'framer-motion'
 const startPayment = async ({ setError, setTxs, setPay, ether, addr}) => {
   try {
     if (!window.ethereum)
@@ -104,8 +106,9 @@ function CheckOutMonthly({ price, user, type , setSucces}) {
 
   return (
     <div>
-     
-      <button onClick={handleSubmit}>Pay</button>
+          <motion.button onClick={handleSubmit} initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+  <span className="spanForm"> Pay </span>
+</motion.button>
       <Toaster></Toaster>
       {Redireccion}
       {error ? <b style={{display:'block', marginTop:'3%', color:'rgb(255, 133, 133)'}}>{error}</b>:<></>}

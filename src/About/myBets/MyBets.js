@@ -97,7 +97,7 @@ function MyBets({ setmonthlyId, setSucces, succes }) {
                       </div>
                       <div style={{ marginBottom: "15%" }}>
                         <h1 style={{ fontSize: "50px", marginTop: "15%" }}>
-                          😳Your Monthly Bets
+                          Your Pack Bets
                         </h1>
                         <motion.div
                           initial={{ x: 1500 }}

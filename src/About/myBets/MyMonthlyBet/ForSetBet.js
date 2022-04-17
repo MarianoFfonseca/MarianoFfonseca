@@ -184,20 +184,12 @@ const h = allBets.some(
         {error === 'The bet need to have 5+ characters' ? <p style={{display:'block', color:'#c6c6c6'}}>{error}</p> : <></>}
         {error === 'This bet was already selected' ? <p style={{display:'block', color:'#c6c6c6'}}>{error}</p> : <></>}
 
-        {error === 'Listo1' ?             <motion.button
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ type: "spring", stiffness: "150", duration: 1 }}
-              style={{ color: "white", marginRight: "5%" }}
-              onClick={EasyFirebase}
-            >
-              Create the bet
-            </motion.button> : <></>}
+        {error === 'Listo1' ?          <motion.button style={{ marginRight: "5%" }} onClick={EasyFirebase} initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+  <span className="spanForm"> Create bet </span> </motion.button>: <></>}
+
             {error === 'Listo2' ? <Redirect to='/About/MyBets'></Redirect> : <></>}
         
-        <Link to="/about/MyBets">
-          <button style={{ color: "white" }}>Go back</button>
-        </Link>
+      
       </div>
     </div>
   );

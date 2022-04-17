@@ -3,7 +3,7 @@ import './SmallFooter.css'
 function SmallFooter() {
   return (
       <div>
-    <div className='smallFoter'>created By Mariano Fonseca</div>
+    <div className='smallFoter'>@ModernLotery</div>
     </div>
   )
 }

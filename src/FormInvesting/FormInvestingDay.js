@@ -70,18 +70,9 @@ export default function FormInvestingDay({ bet, setDay }) {
         </div>
         {bet.Day && (
           <Link to="/formMoney">
-            <motion.button
-              transition={{ type: "spring" }}
-              initial={{ x: "-1000px" }}
-              animate={{ x: 0 }}
-              whileHover={{
-                scale: 1.2,
-                originX: 0,
-              }}
-              style={{ color: "white" }}
-            >
-              Next Question
-            </motion.button>
+         <motion.button initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+  <span className="spanForm"> Next </span>
+</motion.button>
           </Link>
         )}
       </motion.div>

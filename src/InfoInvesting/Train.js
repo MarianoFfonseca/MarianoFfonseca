@@ -16,6 +16,12 @@ function Train() {
             <MenuList />
           </div>
           <div className="menuScreen__right">
+
+
+
+
+
+            
             <h1>🤓Train Yoursel</h1>
             <div>
               <motion.div initial={{x:500, opacity:0}} animate={{x:0, opacity:1}} transition={{ type:"spring", stiffness:75}} className="train_card3 StyleCards">

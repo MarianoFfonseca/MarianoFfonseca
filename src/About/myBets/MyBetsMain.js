@@ -68,13 +68,13 @@ export default function MyBetsMain() {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{color:"#FFF"}}>Coin</TableCell>
+            <TableCell style={{color:"#68055d"}}>Coin</TableCell>
 
-            <TableCell style={{color:"#FFF"}} align="right">Bet of</TableCell>
-            <TableCell style={{color:"#FFF"}} align="right">Day of the bet</TableCell>
-            <TableCell style={{color:"#FFF"}} align="right">Day submitted</TableCell>
-            <TableCell style={{color:"#FFF"}} align="right">Price of Coin (bet)</TableCell>
-            <TableCell style={{color:"#FFF"}} align="right">id#</TableCell>
+            <TableCell style={{color:"#68055d"}} align="right">Bet of</TableCell>
+            <TableCell style={{color:"#68055d"}} align="right">Day of the bet</TableCell>
+            <TableCell style={{color:"#68055d"}} align="right">Day submitted</TableCell>
+            <TableCell style={{color:"#68055d"}} align="right">Price of Coin (bet)</TableCell>
+            <TableCell style={{color:"#68055d"}} align="right">id#</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -99,14 +99,14 @@ export default function MyBetsMain() {
                       },
                     }}
                   >
-                    <TableCell  style={{color:"#FFF"}} component="th" scope="row">
+                    <TableCell  style={{color:"#68055d"}} component="th" scope="row">
                       {bet.data.Coin}
                     </TableCell>
-                    <TableCell style={{color:"#FFF"}} align="right">${bet.data.Money}</TableCell>
-                    <TableCell style={{color:"#FFF"}} align="right">{bet.data.Day}</TableCell>
-                    <TableCell style={{color:"#FFF"}} align="right">No yet</TableCell>
-                    <TableCell style={{color:"#FFF"}} align="right">{bet.data.CoinBet}</TableCell>
-                    <TableCell style={{color:"#FFF"}} align="right">
+                    <TableCell style={{color:"#68055d"}} align="right">${bet.data.Money}</TableCell>
+                    <TableCell style={{color:"#68055d"}} align="right">{bet.data.Day}</TableCell>
+                    <TableCell style={{color:"#68055d"}} align="right">No yet</TableCell>
+                    <TableCell style={{color:"#68055d"}} align="right">{bet.data.CoinBet}</TableCell>
+                    <TableCell style={{color:"#68055d"}} align="right">
                       {bet.id[0]}
                       {bet.id[1]}
                       {bet.id[2]}

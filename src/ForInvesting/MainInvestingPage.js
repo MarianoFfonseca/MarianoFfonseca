@@ -1,113 +1,81 @@
 import * as React from "react";
-import {motion } from 'framer-motion'
+import { motion } from "framer-motion";
 import Button from "@mui/material/Button";
 import "./MainInvestingPage.css";
 import { Link } from "react-router-dom";
 import undraw_outer from "../images/undraw_outer.svg";
-import undraw_astronaut from '../images/undraw_astronaut.svg'
-import undraw_real from '../images/undraw_real.svg'
-import undraw_calendar from '../images/undraw_calendar.svg'
-
-import './MainInvest.css'
+import undraw_astronaut from "../images/undraw_astronaut.svg";
+import undraw_real from "../images/undraw_real.svg";
+import undraw_calendar from "../images/undraw_calendar.svg";
+import {AiOutlineArrowRight} from 'react-icons/ai'
+import "./MainInvest.css";
 
 export default function MainInvestingPage() {
+  const list = {
+    while: { y:-10, transition: {
+    duration:0.3,  
+    }
+  }
+}
   return (
     <div>
       <div className="upContainer2">
-        <div></div>
-        <div></div>
+       <Link to='/formCoin'>
+        <motion.div whileHover='while' variants={list} className="cardContainer">
+          <div > <img src={undraw_outer} alt="" /></div>
+          <div>
+            <h3 className="h3center titleCard">Fast Bet<AiOutlineArrowRight></AiOutlineArrowRight></h3>
+            <p className="textCard">
+            Start by making a quick, simple, safe and profitable bet, it is a simple form that will guide you step by step
+            </p>
+          </div>
+        </motion.div>
+        </Link>
+        <Link to='/PremadeBet'>
+        <motion.div whileHover='while' variants={list} className="cardContainer"> 
+            <div>  <img src={undraw_astronaut} alt="" /></div>
+            <div>
+              <h3 className="h3center titleCard">Pre made bet<AiOutlineArrowRight></AiOutlineArrowRight></h3>
+              <p className="textCard">
+              Pre-made bets ready based on the data we have to guarantee a higher profit with less risk
+              </p>
+            
+           </div>
+          
+        </motion.div>
+        </Link>
       </div>
-{/* Second one  /////////////////////////////////////////////////////////*/} 
-      <div className="upContainer">
-        <motion.div   animate={{ x: 0 }}
-            initial={{ x: 1000}}
-            transition={{ type: "spring", duration: 1.5 }} className="card1 cardResp">
-          <div className="left none">
-            <img src={undraw_outer} alt="" />
-          </div>
-          <div className="rigth cardResp">
-            <h3>Fast Bet 🔥</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusantium sint accusamus recusandae optio voluptate alias
-              blanditiis 
-            </p>
-            <Link to='/formCoin'>
-            <motion.button whileHover={{boxShadow: '2px 6px #888888'}}>
-              Lets Start
-            </motion.button></Link>
-          </div>
-        </motion.div>
-        <motion.div animate={{ x: 0 }}
-            initial={{ x: 1000}}
-            transition={{ type: "spring", duration: 1.2, delay:0.5 }}  className="card1">
-          <div className="left2 none">
-            <img src={undraw_astronaut} alt="" />
-          </div>
-          <div className="rigth2">
-            <h3>Pre Made Bet ♻</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit
-              Accusantium sint accusamus recusandae optio voluptate alias
-              blanditiis 
-            </p>
-            <Link to='/PremadeBet'>
-            <motion.button whileHover={{  boxShadow: '2px 6px #888888'}}>
-              Learn more
-            </motion.button></Link>
-          </div>
-        </motion.div>
 
-      </div>
-      <motion.div
-      animate={{ y: 0 }}
-      initial={{ y: 1000}}
-      transition={{ type: "spring", delay:0.7, duration: 1.5 }} 
+      <Link to='/About/MyBets'>
+      <motion.div whileHover='while' variants={list} className="cardLarge">
+     
+            <div>  <img src={undraw_real} alt="" /></div>
+            <div>
+              <h3 className="h3center titleCard">Track your bets<AiOutlineArrowRight></AiOutlineArrowRight></h3>
+              <p className="textCard">
+              See and analyze your active bets, you will only be able to see your bets in case you have them, you will be able to manage your amount of bets per month and others
+              </p>
+            
+           </div>
+       
+      </motion.div>
+     </Link>
+
+
+     <Link to='/MonthlyBet'>
+      <motion.div whileHover='while' variants={list} className="cardBig">
       
-      className="card3 StyleCards">
-          <div className="left3 none">
-            <img  src={undraw_real} alt="" />
-          </div>
-          <div className="rigth3">
-            <h3>Analize and track your bets 📊</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusantium sint accusamus recusandae optio voluptate alias
-              blanditiis 
-            </p>
-            <Link to='/about/MyBets'>
-            <motion.button whileHover={{boxShadow: '2px 6px #888888'}}>
-              Track
-            </motion.button>
-            </Link>
-            <Link to='/about/Analisis'>
-            <motion.button style={{marginLeft:30}} whileHover={{ boxShadow: '2px 6px #888888'}}>
-              Analize
-            </motion.button>
-            </Link>
-          </div>
-        </motion.div>
-      <motion.div className="card3 StyleCards">
-          <div className="rigth4">
-            <h1>Monthly lotery investing 🗓</h1>
-            <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, provident debitis, fuga amet quam id porro at dolorem animi totam ab temporibus voluptatum odit quaerat eaque. Perferendis eveniet a ab?
-            Architecto, vel nam autem laudantium enim ad assumenda reprehenderit ipsa veritatis consequuntur laborum iusto, aliquam itaque at? Facere laborum voluptates necessitatibus blanditiis a saepe vitae qui sequi! Placeat, dolores commodi! 
-            </p>
-            <Link to='/MonthlyBet'>
-            <motion.button whileHover={{ boxShadow: '2px 6px #888888'}}>
-              See plans
-            </motion.button></Link>
-            <Link to='/MonthlyBet'>
-            <motion.button style={{marginLeft:30}} whileHover={{ boxShadow: '2px 6px #888888'}}>
-              More info
-            </motion.button></Link>
-          </div>
-          <div className="left4">
-            <img  src={undraw_calendar} alt="" />
-          </div>
-        </motion.div>
-    
+            <div>
+              <h3 className="h3center titleCard">Pack of bets! <AiOutlineArrowRight></AiOutlineArrowRight></h3>
+              <p className="textCard">
+              This is the method that we recommend here, you can compare betting packs that will be worth much less than normal, it is more for less, the minimum number of bets that can be purchased is 6 and they are always bitcoin bets! What are you waiting for!
+                  </p>
+            
+           </div>
+           <div> <img src={undraw_calendar} alt="" /></div>
+      </motion.div>
+     </Link>
+      {/* Second one  /////////////////////////////////////////////////////////*/}
     </div>
   );
 }

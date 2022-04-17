@@ -2,6 +2,7 @@
   display: grid;
   justify-items: center;
   margin: 5% 20%;
+  min-height: 80vh;
 }
 
 .succes_container > div {
@@ -38,4 +39,29 @@ display: block;
   padding: 2% 2%;
   border-radius: 5px;
   margin-top: 2%;
+}
+
+@media (max-width:1000px) {
+  .succes_container{
+    margin: 5% 5%;
+  }
+  .succes_header{
+    width: 92%;
+    padding: 2% 2%;
+    hyphens: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+  display: flex;
+  align-items: center;
+  }
+  .succes_body > div
+  {
+    width: 96%;
+    margin-top: 5%;
+    padding: 2% 2%;
+    hyphens: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
 }

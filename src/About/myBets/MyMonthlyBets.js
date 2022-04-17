@@ -66,9 +66,11 @@ export default function MyMonthlyBets({setmonthlyId}) {
           if (x.data.userUid === user.uid && x.data.nBets > 0) {
             return (
               <div className="mymonthly_div">
-                <p>You have {x.data.nBets} left</p> 
+                <p style={{color:'#68055d'}}>You have {x.data.nBets} left</p> 
                 <Link to='/ForSetBet' onClick={()=>setmonthlyId(x.id)}>
-                <motion.button style={{marginTop:'2%'}} whileHover={{scale:1.2}}>Use one bet</motion.button></Link>
+                <motion.button className="buttonForm">
+  <span className="spanForm"> Use one of this bet </span>
+</motion.button></Link>
             
               </div>
             );

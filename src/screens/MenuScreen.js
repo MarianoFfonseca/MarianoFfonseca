@@ -10,12 +10,9 @@ import Featured from "../Featured";
 import MainInvestingPage from "../ForInvesting/MainInvestingPage";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 import { Redirect } from "react-router-dom";
-import firebase from 'firebase/compat/app';
 function MenuScreen() {
-
-
-
-  
+  const user = getAuth()
+  const Name = user.currentUser.displayName
   return (
     <div className="menuScreen">
       <div className="menuScreen__container">
@@ -23,7 +20,7 @@ function MenuScreen() {
           <MenuList />
         </div>
         <div className="menuScreen__right">
-          <h1>Main page</h1>
+          <h1>👋 Welcome {Name}!</h1>
           <div className="menuScreen__category">
     
             <MainInvestingPage></MainInvestingPage>

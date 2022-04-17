@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { MenuLink } from "./MenuLink";
 import SignInButton from "./SignInButton";
@@ -34,19 +35,57 @@ const variants2 = {
   },
 };
 
+
 export const Navigation = ({ toggle }) => {
   const user = useSelector(selectUser);
   const [showMenuCategories, setShowMenuCategories] = React.useState(false);
-  
+  const [showAccountCategories, setShowAccountCategories] = React.useState(false);
+  const [show ,setShow] = React.useState(true)
+useEffect(()=> {
+  if(showAccountCategories === true || showMenuCategories === true) {
+    setShow(false)
+  }
+  else if(showAccountCategories === false && showMenuCategories === false) {
+    setShow(true)
+  }
+ 
+}, [showMenuCategories, showAccountCategories])
 
 
   return (
     <>
+      {showAccountCategories ? <>    <motion.ul variants={variants}>
+          <MenuLink
+            link="Back"
+            goBackIcon
+            onClick={() => {
+              setShowAccountCategories(false);
+            }}
+            width="60%"
+          />
+          <MenuLink
+            link="My Bets"
+            path='/about/MyBets'
+            onClick={() => {
+              setShowAccountCategories(false);
+              toggle();
+            }}
+          />
+          <MenuLink
+            link="My account"
+            path='/about/MyAccount'
+            onClick={() => {
+              setShowAccountCategories(false);
+              toggle();
+            }}
+          />
+        </motion.ul></> : <></>}
+      
       {showMenuCategories ? (
         <motion.ul variants={variants}>
           <MenuLink
           
-            link="Menu"
+            link="Back"
             goBackIcon
             onClick={() => {
               setShowMenuCategories(false);
@@ -54,29 +93,33 @@ export const Navigation = ({ toggle }) => {
             width="60%"
           />
           <MenuLink
-            link="Main Menu"
+            link="Main menu"
             path='/menu'
             onClick={() => {
               setShowMenuCategories(false);
               toggle();
             }}
+          
           />
           <MenuLink
-            link="Featured"
+            link="Fast Bet"
+            path='/FormCoin'
             onClick={() => {
               setShowMenuCategories(false);
               toggle();
             }}
           />
           <MenuLink
-            link="Previous Orders"
+            link="Premade bet"
+            path='/PremadeBet'
             onClick={() => {
               setShowMenuCategories(false);
               toggle();
             }}
           />
           <MenuLink
-            link="Favorite Products"
+            link="Pack of bets"
+            path='/MonthlyBet'
             onClick={() => {
               setShowMenuCategories(false);
               toggle();
@@ -84,14 +127,22 @@ export const Navigation = ({ toggle }) => {
           />
         </motion.ul>
       ) : (
-        <motion.ul variants={variants}>
+      <></>
+      )}
+
+      {show ? (  <motion.ul variants={variants}>
           <MenuLink
             link="Menu"
             icon
             onClick={() => setShowMenuCategories(true)}
           />
-          <MenuLink link="Rewards" />
-          <MenuLink link="Gift Cards" />
+          <MenuLink
+            link="Account"
+            icon
+            onClick={() => setShowAccountCategories(true)}
+          />
+         
+          <MenuLink link="Information" path='/HowInvest'/>
           <motion.hr variants={variants2} />
           <motion.div className="navigation__buttons" variants={variants2}>
             {!user ? (
@@ -103,8 +154,7 @@ export const Navigation = ({ toggle }) => {
               <LogoutButton />
             )}
           </motion.div>
-        </motion.ul>
-      )}
+        </motion.ul>) : <></>}
     </>
   );
 };

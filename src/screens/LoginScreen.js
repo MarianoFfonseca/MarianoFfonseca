@@ -14,6 +14,7 @@ import FormSubmit from "../FormSubmit";
 import FooterSecondary from "../FooterSecondary";
 import { motion } from "framer-motion";
 import modernLoteryLogoBlanco from '../images/modernLoteryLogoBlanco.png'
+import Button from '../Button'
 function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -120,24 +121,21 @@ function LoginScreen() {
               </div>
             )}
           </div>
-          {/* <div className="loginScreen__resetLinks">
+          {/* <div className="loginBuScreen__resetLinks">
             <Link>Forgot your username?</Link>
             <Link>Forgot your password?</Link>
           </div> */}
           <FormSubmit name="Sign in" type="submit" />
         </form>
         <div className="loginScreen__rewards">
-          <h4>JOIN MODERNLOTERY'S REWARDS</h4>
+          <h4>JOIN MODERNLOTTERY</h4>
         </div>
         <div className="loginScreen__joinNow">
           <div className="loginScreen__joinNowContainer">
-            <motion.div whileHover={{scale:1.4, originX:0 }}>
-              <Link to="/account/create">Join now</Link>
-            </motion.div>
-            <h4>Create an account and bring on the Rewards!</h4>
+            <Button Text={'Join now'} To={'/account/create'} Type={1}/>
+            <h4>Create an account and start investing!</h4>
             <p>
-              Join modernLotery® Rewards to earn free food and drinks, get free
-              refills, pay and order with your phone, and more.
+            When you enter modern lottery you accept our terms and conditions on payments and distribution of winnings
             </p>
           </div>
         </div>

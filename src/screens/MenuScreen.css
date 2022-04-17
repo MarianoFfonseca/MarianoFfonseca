@@ -7,9 +7,8 @@
 }
 
 .menuScreen__container {
-
-  padding-left: 42px;
-  padding-right: 42px;
+ padding-left: 4vw;
+ padding-right: 4vw;
   margin-top: 101px;
   display: flex;
   gap: 50px;
@@ -45,7 +44,7 @@
   padding-right: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .menuScreen {
     margin-top: 0;
   }

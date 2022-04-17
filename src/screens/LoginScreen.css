@@ -42,7 +42,6 @@
   flex: 1;
   place-items: center;
   background-color: #f7f7f7;
-  padding: 20px 0;
 }
 
 .loginScreen__right > form {

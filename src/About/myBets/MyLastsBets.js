@@ -2,6 +2,7 @@ import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -59,21 +60,21 @@ export default function MyLastsBets() {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{ color: "#FFF" }}>Coin</TableCell>
+            <TableCell style={{ color: "#68055d" }}>Coin</TableCell>
 
-            <TableCell style={{ color: "#FFF" }} align="right">
+            <TableCell style={{ color: "#68055d" }} align="right">
               Bet of
             </TableCell>
-            <TableCell style={{ color: "#FFF" }} align="right">
+            <TableCell style={{ color: "#68055d" }} align="right">
               Day of the bet
             </TableCell>
-            <TableCell style={{ color: "#FFF" }} align="right">
+            <TableCell style={{ color: "#68055d" }} align="right">
               Price of Coin (bet)
             </TableCell>
-            <TableCell style={{ color: "#FFF" }} align="right">
+            <TableCell style={{ color: "#68055d" }} align="right">
               Final price of the coin
             </TableCell>
-            <TableCell style={{ color: "#FFF" }} align="right">
+            <TableCell style={{ color: "#68055d" }} align="right">
               Status
             </TableCell>
           </TableRow>

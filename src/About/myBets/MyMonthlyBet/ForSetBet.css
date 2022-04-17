@@ -1,16 +1,24 @@
 .forset_total {
-  min-height: 100vh;
+  min-height: 94vh;
   display: grid;
   justify-items: center;
-  align-items: center;
+  align-items: start;
 }
 
 .forset_container {
   border-radius: 5px;
-  width: 50%;
+  width: auto;
   padding: 3%;
+  margin: 5vh 4vw;
 }
 .forset_container > div > input {
   margin-top: 2%;
   margin-bottom: 5%;
+}
+@media (min-width:1299) {
+  .forset_container {
+    border-radius: 5px;
+    width: 50%;
+    padding: 3%;
+  }
 }

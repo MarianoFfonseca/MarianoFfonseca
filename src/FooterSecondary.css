@@ -2,7 +2,7 @@
 .footerSecondary {
   background-color: #303030;
   width: 100%;
-  padding: 30px;
+  padding: 30px 0;
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-left: 5%;
 }
 
 .footerSecondary__info {
@@ -23,7 +24,7 @@
 
 .footerSecondary__left > div> a {
   font-size: large;
-  color: #C6C6C6;
+  padding-left: 5%;
 }
 
 .footerSecondary__right {
@@ -44,7 +45,6 @@
   .footerSecondary {
     display: flex;
     flex-direction: row;
-    margin-left: 20px;
   }
   .footerSecondary__container {
     padding-left: 20px;

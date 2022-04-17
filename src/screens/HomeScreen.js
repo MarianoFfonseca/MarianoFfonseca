@@ -18,11 +18,9 @@ function HomeScreen() {
   
         <div className="homeScreen__bottom">
           <motion.div className="homeScreen__bottomLeft">
-            <h4>Investing in our communities 😏</h4>
+            <h4>Investing in our communities😏</h4>
             <p style={{color:'#C6C6C6'}}>
-              The Starbucks Foundation awarded grants to over 400 nonprofits
-              serving communities of color. Recipients were nominated by
-              Starbucks partners (employees).
+            Start using the new online cryptocurrency betting method, nothing is needed! Learn about this new way to earn digital money
             </p>
             <motion.button whileHover={{ scale: 1.2 }}>
               Learn more
@@ -60,10 +58,10 @@ function HomeScreen() {
      
 
           <Featured
-            title="NICELY NONDAIRY"
-            info="Say yes to sips of delight with our Honey Almondmilk Flat White and new Honey Almondmilk Cold Brew."
-            link="Explore the honey drinks"
-            path=""
+            title="A sure way to win"
+            info="All our transactions are with metamask, the safest way to send money, this is how bets are made and prizes are distributed"
+            link="Explore this world"
+            path="/account/signin"
             image={undraw_Investing}
             background="#f0ebe0"
             color="#000"
@@ -72,10 +70,10 @@ function HomeScreen() {
          
        
           <Featured
-            title="PISTACHIO"
-            info="Embrace creamy coffee bliss with our new Pistachio Latte and Pistachio Frappuccino® blended beverage."
-            link="Try the new pistachio drinks"
-            path=""
+            title="Multiply your income"
+            info="No more winning small percentages, invest a little and win a lot, this is how modernLotery works"
+            link="Lets go!"
+            path="/account/signin"
             image={undraw_wallet}
             order="2"
             background="#f0ebe0"

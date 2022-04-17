@@ -40,7 +40,7 @@ function Header({ menuPage }) {
             Menu
           </motion.div>
         </Link>
-        <Link to="/" className="header__link">
+        <Link to="/about/MyAccount" className="header__link">
           <motion.div
             animate={{ y: 0 }}
             initial={{ y: -100 }}
@@ -51,7 +51,7 @@ function Header({ menuPage }) {
             Account
           </motion.div>
         </Link>
-        <Link to="/" className="header__link">
+        <Link to="/about/MyBets" className="header__link">
           <motion.div
             animate={{ y: 0 }}
             initial={{ y: -100 }}

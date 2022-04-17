@@ -43,23 +43,9 @@
     }
 }
 
-.addMetamask {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 60% 40%;
-    box-shadow: 2px 2px 10px #000;
-    background-color: #303030;
-    padding: 2%;
-    justify-content: start;
-    gap: 0 20px;
-    border-radius: 5px;
-    margin-top: 5%;
-    text-align: center;
-}
 
-.addMetamask > div {
-    padding-bottom: 0;
-}
+
+
 .addMetamask > div > img {
     max-width: 50%;
     max-height: 50%;
@@ -70,8 +56,17 @@
 }
     
 .account_1 > button{
-    margin-top: 2%;
+    margin-top: 5%;
 }
 .account_2{
     grid-column-start:2;
+}
+
+.accountMargin {
+    margin-top: 0;
+}
+@media (min-width:1299px){
+    .accountMargin{
+        margin-top: 15%
+    }
 }

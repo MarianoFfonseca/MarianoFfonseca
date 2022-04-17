@@ -7,3 +7,9 @@
  .premade_left4{
      margin-top: 5%;
  }
+ .monthly_txt {
+     margin-top: 10vh;
+     text-align: center;
+     display: grid;
+     justify-items: center;
+ }

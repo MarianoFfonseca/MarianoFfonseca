@@ -38,7 +38,7 @@ export const MenuLink = ({ link, path, icon, goBackIcon, onClick, width }) => {
           style={{ width, color:"white" }}
           onClick={onClick}
           variants={variants}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.15, originX:0 }}
           whileTap={{ scale: 0.95 }}
         >
           {goBackIcon && <ChevronLeftRoundedIcon fontSize='large' />}

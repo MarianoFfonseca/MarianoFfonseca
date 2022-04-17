@@ -20,7 +20,7 @@ code {
     monospace;
 }
 
-nav {
+.nav {
   position: absolute;
   top: 0;
   right: 0;
@@ -31,12 +31,29 @@ nav {
   overflow: hidden;
   z-index: 999;
 }
+.noNav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  width: 70vw;
+  height: 10vh !important;
+  display: none;
+  overflow: hidden;
+  z-index: 999;
+}
 
-@media (max-width: 768px) {
-  nav {
+
+@media (max-width: 1000px) {
+  .nav {
+    display: inline;
+  }
+  .noNav {
     display: inline;
   }
 }
+
 
 .background {
   position: absolute;

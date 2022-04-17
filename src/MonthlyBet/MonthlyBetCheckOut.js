@@ -44,7 +44,7 @@ export default function MonthlyBetCheckOut({ monthlyB, setSucces, succes }) {
           ) : (
             <div>
               {" "}
-              <li style={{textDecorationLine: 'line-through'}}>In total 6 bets of 50%</li>
+              <li>In total 6 bets of 50% award</li>
               <li>Price x bet:  <a style={{textDecorationLine: 'line-through', margin:'0 10px'}}>0.015</a>   <FaEthereum/>0.012</li>
               <li>Saving:<FaEthereum style={{marginLeft:'10px'}}/>0.018</li>
             </div>

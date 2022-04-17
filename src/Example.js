@@ -32,16 +32,19 @@ export const Example = () => {
 
   const containerRef = useRef(null)
   const { height } = useDimensions(containerRef)
+  console.log(height)
   const Display = isOpen === false ? 'none' : '';
-
+  
   return (
     <motion.nav
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
-      custom={height}
+      custom={isOpen ? height : '50px'}
       ref={containerRef}
+      className={isOpen ? 'nav' : 'noNav'}
     >
-      <motion.div className='background' variants={sidebar} />
+      
+      <motion.div className='background'  variants={sidebar} />
       <div className={Display}>
       <Navigation toggle={() => toggleOpen()} />
       </div>

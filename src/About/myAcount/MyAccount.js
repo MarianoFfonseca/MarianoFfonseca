@@ -10,7 +10,7 @@ import "./MyAccount.css";
 import { motion } from "framer-motion";
 import MetaMask from "../../images/MetaMask.png";
 import { useWeb3React } from "@web3-react/core";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 function MyAccount() {
   const HandleChangeName = (e) => {
     setName(e.target.value);
@@ -29,7 +29,7 @@ function MyAccount() {
                 name: Name,
               })
               .then(function () {
-                toast.success('Name Changed!');
+                toast.success("Name Changed!");
               })
               .catch(function (error) {
                 console.error("Error writing Users ", error);
@@ -38,7 +38,6 @@ function MyAccount() {
       }
     });
   };
-  const ariaLabel = { "aria-label": "description" };
   const FUsers = () => {
     db.collection("users")
       .get()
@@ -69,75 +68,71 @@ function MyAccount() {
   };
 
   async function connect(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
       await activate(injected);
     } catch (ex) {
       console.log(ex);
+      toast.error("Error!");
     }
   }
   async function disconnect(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      deactivate()
+      deactivate();
     } catch (ex) {
-      console.log(ex)
+      console.log(ex);
     }
   }
   const { active, account, library, connector, activate, deactivate } =
     useWeb3React();
 
-    useEffect(()=>{
-      if(active === true) {
-        toast.success('Successfully connected!')
-      }
-    },[active])
+  useEffect(() => {
+    if (active === true) {
+      toast.success("Successfully connected!");
+    }
+    
+  }, [active]);
 
   useEffect(() => {
     FUsers();
-    GetNBets()
+    GetNBets();
   }, []);
 
-
-
-  const [bets, setBets] = useState([])
-  const [numberBets, setNumberBets] = useState(0)
-  const [collectionL, setCollectionL] = useState()
-
+  const [bets, setBets] = useState([]);
+  const [numberBets, setNumberBets] = useState(0);
+  const [collectionL, setCollectionL] = useState();
 
   const GetNBets = () => {
-    db.collection('bets')
-    .get()
-    .then((querySnapshot) => {
-     setCollectionL(querySnapshot.size)
-      querySnapshot.forEach((element) => {
-        var data = element.data();
-        setBets((bets) => [...bets, data]);
+    db.collection("bets")
+      .get()
+      .then((querySnapshot) => {
+        setCollectionL(querySnapshot.size);
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setBets((bets) => [...bets, data]);
+        });
       });
-    });
-  }
-  useEffect(()=> {
-    if(bets.length>0){
-      if(bets.length === collectionL){
-        MyBets()
+  };
+  useEffect(() => {
+    if (bets.length > 0) {
+      if (bets.length === collectionL) {
+        MyBets();
       }
-    
     }
-  },[bets])
+  }, [bets]);
   const MyBets = () => {
-    bets.map(
-      (element)=>{
-        if(element.userEmail === user.email && element.status === 'none') {
-          setNumberBets((numberBets)=> numberBets + 1 )
-        }
+    bets.map((element) => {
+      if (element.userEmail === user.email && element.status === "none") {
+        setNumberBets((numberBets) => numberBets + 1);
       }
-    )
-  }
+    });
+  };
   return (
     <div>
       {/* onClick={() => {navigator.clipboard.writeText(x.uid) alert("copied!")}} */}
       <div className="menuScreen">
-      <Toaster />
+        <Toaster />
         <div className="menuScreen__container">
           <div className="menuScreen__left">
             <MenuList />
@@ -149,99 +144,49 @@ function MyAccount() {
                 {Users &&
                   Users.map((x) => {
                     if (x.email === user.email) {
-                      
                       return (
                         <div key={x.uid}>
-                          <motion.div
-                            animate={{ y: 0 }}
-                            initial={{ y: 1000 }}
-                            transition={{ type: "spring", duration: 1.5 }}
-                            className="myaccount_card1 StyleCards"
-                          >
-                            <div className="myaccount_cardup  responsive">
-                              <div style={{ width: "50%" }}>
-                                <p>📜Name:</p>
-                                <motion.h1
-                                  onClick={() => {
-                                    navigator.clipboard.writeText(x.name);
-                                  }}
-                                  whileHover={{ cursor: "pointer" }}
-                                  style={{ marginTop: "5%" }}
-                                >
-                                  {x.name}
-                                </motion.h1>
-                              </div>
-                              <div>
-                                <p>📨Email:</p>
-                                <motion.h1
-                                  onClick={() => {
-                                    navigator.clipboard.writeText(x.email);
-                                  }}
-                                  whileHover={{ cursor: "pointer" }}
-                                  style={{ marginTop: "5%" }}
-                                >
-                                  {x.email}
-                                </motion.h1>
-                              </div>
-                            </div>
+                          <div className="account_card">
+                            <div>Name: <p>{x.name}</p></div>
                             <div>
-                              <div className="myaccount_carddown responsive">
-                                <div style={{ width: "50%" }}>
-                                  <p>📌Uid:</p>
-                                  <motion.h1
-                                    whileHover={{ cursor: "pointer" }}
-                                    style={{ marginTop: "1%" }}
-                                    onClick={() => {
-                                      navigator.clipboard.writeText(x.uid);
-                                    }}
-                                  >
-                                    {x.uid[0]}
-                                    {x.uid[1]}
-                                    {x.uid[2]}
-                                    {x.uid[3]}
-                                    {x.uid[4]}
-                                    {x.uid[5]}
-                                    {x.uid[6]}
-                                    {x.uid[7]}
-                                    {x.uid[8]}
-                                    {x.uid[9]}*****
-                                  </motion.h1>
-                                </div>
-                                <div>
-                                  <p>📂N*Bets:</p>
-                                  <motion.h1
-                                    whileHover={{ cursor: "pointer" }}
-                                    style={{ marginTop: "5%" }}
-                                    onClick={() => {
-                                      navigator.clipboard.writeText(x.bets);
-                                    }}
-                                  >
-                                    # {numberBets}
-                                  </motion.h1>
-                                </div>
-                              </div>
+                              Uid: 
+                              <p>
+                              {x.uid[0]}
+                              {x.uid[1]}
+                              {x.uid[2]}
+                              {x.uid[3]}
+                              {x.uid[4]}
+                              {x.uid[5]}
+                              {x.uid[6]}
+                              {x.uid[7]}
+                              {x.uid[8]}
+                              {x.uid[9]}*****
+                              </p>
                             </div>
-                          </motion.div>
+                            <div className="accountMargin" >Number of bets: <p>#{numberBets}</p></div>
+                            <div className="accountMargin" >Email <p>{x.email}</p></div>
+                          </div>
                           <div className="addMetamask">
                             <div className="account_1">
                               <h1>Connect Metamask With ModernLotery</h1>
                               <p>
-                                Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Nam, possimus. Praesentium
-                                deleniti temporibus quam odit! Aliquam quia
-                                distinctio non unde totam culpa dolorum? Ut
-                                perferendis explicabo odio quidem quam quas?
+                              Connect your metamask here, this will make the process easier and as for you, we only accept the main etherum network, if you can't connect try to switch to this network!
                               </p>
-                             
+
                               {active ? (
-                                <div style={{marginTop:'5%'}}>
+                                <div style={{ marginTop: "5%" }}>
                                   Connected with <b>{account}</b>
-                                  <button style={{display:'block', marginTop:'2%'}} onClick={disconnect}>Disconnect</button>
+                                  <motion.button style={{
+                                      display: "block",
+                                      marginTop: "2%",
+                                    }} onClick={disconnect} initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+                                <span className="spanForm"> Disconect </span>
+                              </motion.button>
                                 </div>
                               ) : (
-                                <button onClick={connect}>
-                                Conect Metamask Here
-                              </button>
+                                <motion.button onClick={connect} initial={{y:10, opacity:0}} animate={{y:0, opacity:1}} className="buttonForm">
+                                <span className="spanForm"> Connect with Metamask </span>
+                              </motion.button>
                               )}
                             </div>
                             <div className="account_2">
@@ -250,57 +195,6 @@ function MyAccount() {
                           </div>
 
                           {/* Aca es el segundo */}
-
-                          <motion.h1
-                            animate={{ x: 0 }}
-                            initial={{ x: 1000 }}
-                            transition={{
-                              type: "spring",
-                              delay: 1,
-                              duration: 1.5,
-                            }}
-                            style={{ marginTop: "5%" }}
-                          >
-                            🔧Change
-                          </motion.h1>
-                          <div className="myaccount_card2 StyleCards">
-                            <div>
-                              <p>~ You can change your password</p>
-                              <motion.button
-                                onClick={ResetPassword}
-                                style={{ marginTop: "2%" }}
-                                whileHover={{ scale: 1.2, originX: 0 }}
-                              >
-                                👉change password
-                              </motion.button>
-                            </div>
-                         
-                            <div style={{ marginTop: "5%" }}>
-                              <p>~You can change your Name</p>
-                              <form style={{ marginTop: "2%" }} action="">
-                                <input
-                                  onChange={HandleChangeName}
-                                  style={{
-                                    marginRight:'3%',
-                                    width: "25%",
-                                    height: "15px",
-                                    padding: "2%",
-                                    fontSize: "100%",
-                                    borderWidth: "1px",
-                                    
-                                  }}
-                                  placeholder='Your new Name'
-                                  type="text"
-                                />
-                                <motion.button
-                                  onClick={setNewName}
-                                  whileHover={{ scale: 1.2, originX: 0 }}
-                                >
-                                  set
-                                </motion.button>
-                              </form>
-                            </div>
-                          </div>
                         </div>
                       );
                     } else {

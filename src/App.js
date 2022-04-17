@@ -674,28 +674,15 @@ function App() {
         </Router>
       ) : (
         <div className="ForLoading">
-          <motion.h3
-            style={{ color: "white" }}
-            transition={{ yoyo: Infinity, duration: 2 }}
-            className="ImgLoading"
-          >
-            Loading{" "}
-            <motion.p animate={{ y: [-30, 0] }} transition={{ yoyo: Infinity }}>
-              .{" "}
-            </motion.p>
-            <motion.p
-              animate={{ y: [-30, 0] }}
-              transition={{ yoyo: Infinity, delay: 0.4 }}
-            >
-              .{" "}
-            </motion.p>
-            <motion.p
-              animate={{ y: [-30, 0] }}
-              transition={{ yoyo: Infinity, delay: 0.8 }}
-            >
-              .{" "}
-            </motion.p>
-          </motion.h3>
+          <div class="loader">
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+</div>
         </div>
       )}
        <SmallFooter></SmallFooter>
