@@ -23,11 +23,7 @@
       }
     ],
     "food": [
-      {
-        "path": "/Train",
-        "type": "Train myself",
-        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
-      },{
+     {
         "path": "/HowInvest",
         "type": "How to invest",
         "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
@@ -39,35 +35,10 @@
         "image": "https://globalassets.starbucks.com/assets/69b578aa962c40f98d88d9d521c5410c.jpg?impolicy=1by1_wide_1242"
       },
       {
-        "path": "/about/Analisis",
-        "type": " Analisis",
-        "image": "https://globalassets.starbucks.com/assets/833e95732cc849a4b1fe1d315771ae0a.jpg?impolicy=1by1_wide_1242"
-      }
-      ,
-      {
         "path": "/about/MyAccount",
         "type": " My account",
         "image": "https://globalassets.starbucks.com/assets/833e95732cc849a4b1fe1d315771ae0a.jpg?impolicy=1by1_wide_1242"
       }
-    ],
-    "personalBets": [
-      {
-        "path": "/personalBets",
-        "type": "PersonalBets",
-        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
-      },{
-        "path": "/FindBetPage",
-        "type": "Find personal bet",
-        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
-      },{
-        "path": "/SelectType",
-        "type": "Create personal bet",
-        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
-      
-      },{
-        "path": "/MySocialBets",
-        "type": "MySocialBets",
-        "image": "https://globalassets.starbucks.com/assets/f9a4cd143c4342abbb4f60b7fab4e6df.jpg?impolicy=1by1_wide_1242"
-      }]
+    ]
   }
 ]

@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "starbucks-clone"
-  }
+    "default": "ahorasi-88a02",
+    "Lotery": "ahorasi-88a02"
+  },
+  "targets": {}
 }

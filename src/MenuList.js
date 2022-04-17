@@ -30,7 +30,7 @@ function MenuList() {
             
         </div>
       </div>
-      <div className="menuList__container">
+      {/* <div className="menuList__container">
         <h4 onClick={() => setOpen("personal")}>
           ~ Personal Bets
         </h4>
@@ -52,7 +52,7 @@ function MenuList() {
             ))
           )}
         </div>
-      </div>
+      </div> */}
       <div className="menuList__container">
         <h4 onClick={() => setOpen("info")}>~ Info for investing</h4>
         <div className="menuList__items">

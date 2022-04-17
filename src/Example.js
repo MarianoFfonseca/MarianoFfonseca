@@ -44,7 +44,7 @@ export const Example = () => {
       className={isOpen ? 'nav' : 'noNav'}
     >
       
-      <motion.div className='background'  variants={sidebar} />
+      <motion.div className={isOpen ? 'background' : 'noBackground'}  variants={sidebar} />
       <div className={Display}>
       <Navigation toggle={() => toggleOpen()} />
       </div>
